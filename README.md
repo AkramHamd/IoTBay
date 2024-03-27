@@ -2,7 +2,7 @@
 
 ### Description
 
-The Internet of Things store (IoTBay) is a small company based in Sydney, Australia. IoTBay wants to develop an online IoT devices ordering application to allow their customers to purchase IoT devices (e.g. sensors, actuators, gateways). Based on the initial analysis and meetings with the stakeholders; project team have documented the project brief. The project brief discusses the objectives and current IoTBay device collection management, order management, payment processing, delivery, user registration, login and logout features of the web application.!!!
+The Internet of Things store (IoTBay) is a small company based in Sydney, Australia. IoTBay wants to develop an online IoT devices ordering application to allow their customers to purchase IoT devices (e.g. sensors, actuators, gateways). Based on the initial analysis and meetings with the stakeholders; project team have documented the project brief. The project brief discusses the objectives and current IoTBay device collection management, order management, payment processing, delivery, user registration, login and logout features of the web application.
 
 ## Onboarding
 
