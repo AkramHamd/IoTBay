@@ -13,7 +13,7 @@
     <div class="left-div">
       <div class="register-div">
         <div class="logo-div">
-          <a href="/homepage.jsp"
+          <a href="/index.jsp"
             ><img src="/assests/logo.png" alt="logo" class="logo"
           /></a>
         </div>

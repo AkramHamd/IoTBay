@@ -19,7 +19,7 @@
   <body>
     <nav>
       <div class="container navbar">
-        <a href="/homepage.html"
+        <a href="/index.jsp"
           ><img src="/assests/logo.png" alt="logo" class="logo"
         /></a>
         <div class="search-div">
@@ -35,7 +35,7 @@
           <img src="/assests/cart-icon.png" alt="cart icon" class="cart-icon" />
         </div>
         <div class="user-div">
-          <a href="/homepage.jsp">Logout</a>
+          <a href="/index.jsp">Logout</a>
           <img src="/assests/user-icon.png" alt="user icon" class="user-icon" />
         </div>
       </div>
