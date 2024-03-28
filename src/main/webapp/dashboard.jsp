@@ -1,3 +1,6 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.util.Random"%>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -35,7 +38,7 @@
           <img src="/assests/cart-icon.png" alt="cart icon" class="cart-icon" />
         </div>
         <div class="user-div">
-          <a href="/index.jsp">Logout</a>
+          <a href="/logout.jsp">Logout</a>
           <img src="/assests/user-icon.png" alt="user icon" class="user-icon" />
         </div>
       </div>

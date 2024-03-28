@@ -7,7 +7,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/forgot_password.css" />
-    <title>Document</title>
+    <title>IoTBay - Forgot Password</title>
   </head>
   <body>
     <div class="left-div">

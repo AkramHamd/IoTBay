@@ -6,7 +6,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <!--<link rel="stylesheet" href="css/layout.css">-->
         <script type="text/javascript" src="js/index.js"></script>
-        <title>Home Page</title>
+        <title>Index Page</title>
     </head>
     <body onload="startTime()" >
         <h1>Home Page</h1>

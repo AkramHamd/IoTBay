@@ -7,7 +7,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/register.css" />
-    <title>Document</title>
+    <title>IoTBay - Register</title>
   </head>
   <body>
     <div class="left-div">
