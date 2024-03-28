@@ -28,25 +28,29 @@
               name="firstName"
               id="firstName"
               placeholder="First Name"
+              required
             />
             <input
               type="text"
               name="lastName"
               id="lastName"
               placeholder="Last Name"
+              required
             />
-            <input type="email" name="email" id="email" placeholder="Email" />
+            <input type="email" name="email" id="email" placeholder="Email" required/>
             <input
               type="password"
               name="password1"
               id="password1"
               placeholder="Password"
+              required
             />
             <input
               type="password"
-              name="confirmPassword"
-              id="confirmPassword"
+              name="password2"
+              id="password2"
               placeholder="Confirm Password"
+              required
             />
           </div>
           <div class="submit-div">

@@ -14,6 +14,13 @@
     <link rel="stylesheet" href="css/logout.css" />
     <title>IoTBay - Logout</title>
 </head>
+
+<%
+  if (session != null) {
+    session.invalidate();
+  }
+%>
+
 <body>
     <nav>
         <div class="container navbar">

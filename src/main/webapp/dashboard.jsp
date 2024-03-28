@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.Random"%>
+<%@page import="uts.isd.model.*"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,6 +18,14 @@
 
   <%
     String firstName = request.getParameter("firstName");
+    String lastName = request.getParameter("lastName");
+    String email = request.getParameter("email");
+    String password1 = request.getParameter("password1");
+    String password2 = request.getParameter("password2");
+
+
+    User user1 = new User(firstName, lastName, email, password1, password2);
+    session.setAttribute("authUser", user1);
   %>
 
   <body>
