@@ -103,7 +103,9 @@
       <div class="container footer-container">
         <div class="footer-left">
           <div>
-            <img src="/assests/logo.png" alt="logo" class="footer-logo" />
+            <a href="/index.jsp">
+              <img src="/assests/logo.png" alt="logo" class="footer-logo" />
+            </a>
             <p>You name it, we got it</p>
           </div>
           <div class="AOC-div">
