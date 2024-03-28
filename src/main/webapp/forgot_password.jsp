@@ -6,20 +6,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/register.css" />
+    <link rel="stylesheet" href="css/forgot_password.css" />
     <title>Document</title>
   </head>
   <body>
     <div class="left-div">
-      <div class="register-div">
+      <div class="forgot-password-div">
         <div class="logo-div">
           <a href="/homepage.jsp"
             ><img src="/assests/logo.png" alt="logo" class="logo"
           /></a>
         </div>
         <div class="welcome-text-div">
-          <p>Nice to meet you!</p>
-          <p>Create an account to get the most from IoTBay</p>
+          <p>Reset your password</p>
         </div>
         <form action="/dashboard.jsp">
           <div class="input-div">
@@ -29,29 +28,11 @@
               id="firstName"
               placeholder="First Name"
             />
-            <input
-              type="text"
-              name="lastName"
-              id="lastName"
-              placeholder="Last Name"
-            />
             <input type="email" name="email" id="email" placeholder="Email" />
-            <input
-              type="password"
-              name="password1"
-              id="password1"
-              placeholder="Password"
-            />
-            <input
-              type="password"
-              name="confirmPassword"
-              id="confirmPassword"
-              placeholder="Confirm Password"
-            />
           </div>
           <div class="submit-div">
-            <input type="submit" value="Register" />
-            <p>Don't have an account? <a href="/login.jsp">Login</a></p>
+            <input type="submit" value="Reset Password" />
+            <p>Remember your password? <a href="/login.jsp">Login</a></p>
           </div>
         </form>
       </div>
@@ -62,4 +43,3 @@
     </div>
   </body>
 </html>
-
