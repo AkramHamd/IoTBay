@@ -10,6 +10,9 @@
         <script type="text/javascript" src="js/index.js"></script>
         <title>Index Page</title>
     </head>
+
+    <% User user = (User) session.getAttribute("authUser"); %>
+
     <body >
         <nav>
             <div class="container navbar">
@@ -29,22 +32,22 @@
                 <img src="/assests/cart-icon.png" alt="cart icon" class="cart-icon" />
               </div>
               <div class="user-div">
+
+                <% if(user == null) { %>
+                  <a href="/login.jsp">Login</a>
+                  <a href="/register.jsp">Register</a>
+                <% } else { %>
+                  <a href="/logout.jsp">Logout</a>
+                <% } %>
                 
-                <a href="/login.jsp">Login</a>
-                <a href="/register.jsp">Register</a>
-             
-                <img src="/assests/user-icon.png" alt="user icon" class="user-icon" />
+                <a href="/dashboard.jsp"><img src="/assests/user-icon.png" alt="user icon" class="user-icon" /></a>
               </div>
             </div>
           </nav>
 
           <main class="container">
             <h1>Home Page</h1>
-    
-            <a href="/dashboard.jsp">Dashboard</a>
-            
-            <% User user = (User) session.getAttribute("authUser"); %>
-    
+                
             <% if(user == null) { %>
                 <p>You are either not registered or authenticated</p>
             <% } else { %>
