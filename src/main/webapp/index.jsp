@@ -6,6 +6,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="apple-touch-icon" sizes="180x180" href="/assests/favicon/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/assests/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/assests/favicon/favicon-16x16.png">
+        <link rel="manifest" href="/assests/favicon/site.webmanifest">
+        
         <link rel="stylesheet" href="css/index.css">
         <script type="text/javascript" src="js/index.js"></script>
         <title>Index Page</title>
@@ -46,7 +51,7 @@
           </nav>
 
           <main class="container">
-            <h1>Home Page</h1>
+            <h1>Home Page still under construction</h1>
                 
             <% if(user == null) { %>
                 <p>You are either not registered or authenticated</p>
