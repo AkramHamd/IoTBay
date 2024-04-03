@@ -25,7 +25,7 @@
           <p>Nice to meet you!</p>
           <p>Create an account to get the most from IoTBay</p>
         </div>
-        <form action="/dashboard.jsp">
+        <form method="post" action="/dashboard.jsp">
           <div class="input-div">
             <input
               type="text"
