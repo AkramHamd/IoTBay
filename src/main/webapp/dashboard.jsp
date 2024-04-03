@@ -20,17 +20,24 @@
     <title>IoTBay - Dashboard</title>
   </head>
 
-  <%
-    String firstName = request.getParameter("firstName");
-    String lastName = request.getParameter("lastName");
-    String email = request.getParameter("email");
-    String password1 = request.getParameter("password1");
-    String password2 = request.getParameter("password2");
+  <% User isAuthenticated = (User) session.getAttribute("authUser"); %>
 
+  <% if(isAuthenticated == null) { %>
+    <%
+      String firstName = request.getParameter("firstName");
+      String lastName = request.getParameter("lastName");
+      String email = request.getParameter("email");
+      String password1 = request.getParameter("password1");
+      String password2 = request.getParameter("password2");
 
-    User user1 = new User(firstName, lastName, email, password1, password2);
-    session.setAttribute("authUser", user1);
-  %>
+      if (email != null || firstName != null){
+        User user1 = new User(firstName, lastName, email, password1, password2);
+        session.setAttribute("authUser", user1);
+      }
+    %>
+  <% } %>
+
+  <% User user = (User) session.getAttribute("authUser"); %>
 
   <body>
     <nav>
@@ -51,7 +58,7 @@
           <img src="/assests/cart-icon.png" alt="cart icon" class="cart-icon" />
         </div>
         <div class="user-div">
-          <% if(firstName == null && email == null) { %>
+          <% if(user == null) { %>
             <a href="/login.jsp">Login</a>
             <a href="/register.jsp">Register</a>
           <% } else { %>
@@ -62,7 +69,7 @@
       </div>
     </nav>
 
-    <% if(email == null && firstName == null) { %>
+    <% if(user == null) { %>
       <div class="container" style="margin-top: 100px; margin-bottom: 100px;">
 
         <h1>You are not authenticated</h1>
@@ -101,12 +108,18 @@
           </div>
           <div class="main-div">
             <div class="welcome-div">
-              <% if(firstName == null) { %>
-                <h1>Hi welcome back, <%= email%></h1>
-              <% } else { %>
-                <h1>Hi welcome back, <%= firstName%></h1>
-              <% } %>
               
+              <%
+                String authEmail = user.getEmail();
+                String authFirstName = user.getFirstName();
+              %>
+              
+              <% if(authFirstName == null) { %>
+                <h1>Hi welcome back, <%= authEmail%></h1>
+              <% } else { %>
+                <h1>Hi welcome back, <%= authFirstName%></h1>
+              <% } %>
+
               <p>You last sign into your account on 31/03/2024</p>       
             </div>
             <div class="recommended-div">

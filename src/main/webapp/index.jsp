@@ -51,12 +51,12 @@
           </nav>
 
           <main class="container">
-            <h1>Home Page still under construction</h1>
+            <h1>Home page still under construction</h1>
                 
             <% if(user == null) { %>
-                <p>You are either not registered or authenticated</p>
+                <p>You are NOT authenticated</p>
             <% } else { %>
-                <p>You are authenticated <%=user.getFirstName() %></p>
+                <p>You are authenticated</p>
             <% } %>
           </main>
     </body>
