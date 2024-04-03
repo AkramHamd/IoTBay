@@ -26,7 +26,7 @@
           <p>Welcome back!</p>
           <p>Login to get the most from IoTBay</p>
         </div>
-        <form action="/dashboard.jsp">
+        <form method="post" action="/dashboard.jsp">
           <div class="input-div">
             <input type="email" name="email" id="email" placeholder="Email" required/>
             <input
