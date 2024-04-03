@@ -51,70 +51,88 @@
           <img src="/assests/cart-icon.png" alt="cart icon" class="cart-icon" />
         </div>
         <div class="user-div">
-          <a href="/logout.jsp">Logout</a>
+          <% if(firstName == null && email == null) { %>
+            <a href="/login.jsp">Login</a>
+            <a href="/register.jsp">Register</a>
+          <% } else { %>
+            <a href="/logout.jsp">Logout</a>
+          <% } %>
           <img src="/assests/user-icon.png" alt="user icon" class="user-icon" />
         </div>
       </div>
     </nav>
-    <main>
-      <div class="container dashboard-div">
-        <h1>Dashboard</h1>
-      </div>
-      <div class="container main-wrapper">
-        <div class="sidebar-div">
-          <div class="sidebar-items">
-            <a href="/">Home</a>
-            <i class="material-icons" id="sidebar-item-arrow">chevron_right</i>
-          </div>
-          <div class="sidebar-items">
-            <a href="/">Personal Details</a>
-            <i class="material-icons" id="sidebar-item-arrow">chevron_right</i>
-          </div>
-          <div class="sidebar-items">
-            <a href="/">Payment Details</a>
-            <i class="material-icons" id="sidebar-item-arrow">chevron_right</i>
-          </div>
-          <div class="sidebar-items">
-            <a href="/">Active Orders</a>
-            <i class="material-icons" id="sidebar-item-arrow">chevron_right</i>
-          </div>
-          <div class="sidebar-items">
-            <a href="/">Order History</a>
-            <i class="material-icons" id="sidebar-item-arrow">chevron_right</i>
-          </div>
-          <div class="sidebar-items">
-            <a href="/">Wish List</a>
-            <i class="material-icons" id="sidebar-item-arrow">chevron_right</i>
-          </div>
-        </div>
-        <div class="main-div">
-          <div class="welcome-div">
-            <h1>Hi welcome back, <%= firstName%></h1>
-            <p>You last sign into your account on 31/03/2024</p>
-          </div>
-          <div class="recommended-div">
-            <h1>Recommended Products</h1>
-            <div class="carousel-div">
-              <img
-                src="/assests/carousel-icons.png"
-                alt="arrow icon"
-                class="carousel-arrow-left"
-              />
-              <div class="products-div">
-                <div class="product"></div>
-                <div class="product"></div>
-              </div>
 
-              <img
-                src="/assests/carousel-icons.png"
-                alt="arrow icon"
-                class="carousel-arrow-right"
-              />
+    <% if(email == null && firstName == null) { %>
+      <div class="container" style="margin-top: 100px; margin-bottom: 100px;">
+
+        <h1>You are not authenticated</h1>
+      </div>
+    <% } else { %>
+      <main>
+        <div class="container dashboard-div">
+          <h1>Dashboard</h1>
+        </div>
+        <div class="container main-wrapper">
+          <div class="sidebar-div">
+            <div class="sidebar-items">
+              <a href="/">Home</a>
+              <i class="material-icons" id="sidebar-item-arrow">chevron_right</i>
+            </div>
+            <div class="sidebar-items">
+              <a href="/">Personal Details</a>
+              <i class="material-icons" id="sidebar-item-arrow">chevron_right</i>
+            </div>
+            <div class="sidebar-items">
+              <a href="/">Payment Details</a>
+              <i class="material-icons" id="sidebar-item-arrow">chevron_right</i>
+            </div>
+            <div class="sidebar-items">
+              <a href="/">Active Orders</a>
+              <i class="material-icons" id="sidebar-item-arrow">chevron_right</i>
+            </div>
+            <div class="sidebar-items">
+              <a href="/">Order History</a>
+              <i class="material-icons" id="sidebar-item-arrow">chevron_right</i>
+            </div>
+            <div class="sidebar-items">
+              <a href="/">Wish List</a>
+              <i class="material-icons" id="sidebar-item-arrow">chevron_right</i>
+            </div>
+          </div>
+          <div class="main-div">
+            <div class="welcome-div">
+              <% if(firstName == null) { %>
+                <h1>Hi welcome back, <%= email%></h1>
+              <% } else { %>
+                <h1>Hi welcome back, <%= firstName%></h1>
+              <% } %>
+              
+              <p>You last sign into your account on 31/03/2024</p>       
+            </div>
+            <div class="recommended-div">
+              <h1>Recommended Products</h1>
+              <div class="carousel-div">
+                <img
+                  src="/assests/carousel-icons.png"
+                  alt="arrow icon"
+                  class="carousel-arrow-left"
+                />
+                <div class="products-div">
+                  <div class="product"></div>
+                  <div class="product"></div>
+                </div>
+  
+                <img
+                  src="/assests/carousel-icons.png"
+                  alt="arrow icon"
+                  class="carousel-arrow-right"
+                />
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </main>
+      </main>
+    <% } %>
     <footer>
       <div class="container footer-container">
         <div class="footer-left">
