@@ -85,3 +85,71 @@ main {
     flex-direction: column;
     gap: 20px;
 }
+
+footer {
+  margin-top: 200px;
+  background-color: var(--background-colour);
+
+  padding: 80px 0;
+}
+
+.footer-container {
+  display: flex;
+}
+
+.footer-left {
+  width: 50%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+}
+
+.footer-logo {
+  width: 200px;
+}
+
+.AOC-div {
+  width: 80%;
+}
+
+.AOC-div h1 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 40px;
+}
+
+.AOC-div p {
+  font-size: 15px;
+  font-weight: 300;
+}
+
+.footer-right {
+  width: 50%;
+
+  display: flex;
+  justify-content: end;
+}
+
+.footer-links {
+  display: flex;
+  gap: 50px;
+}
+
+.footer-links div {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-weight: 300;
+}
+
+.footer-footer {
+  font-weight: 300;
+  font-size: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 200px;
+  margin-bottom: 50px;
+}
