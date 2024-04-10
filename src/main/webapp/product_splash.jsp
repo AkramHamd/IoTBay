@@ -1,6 +1,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.Random"%>
 <%@page import="uts.isd.model.*"%>
+<%@page import="java.sql.*"%>  
+<%@page import="javax.sql.*" %>
+
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -57,7 +60,10 @@
                 </a>
             </div>
             <div class="container">
-
+                <div class="product-card-container">
+                    <div class="product-card">
+                    </div>
+                </div>
             </div>
           </main>
     
