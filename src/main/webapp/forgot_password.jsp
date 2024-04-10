@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="css/forgot_password.css" />
     <title>IoTBay - Forgot Password</title>
   </head>
+  
+  
   <body>
     <div class="left-div">
       <div class="forgot-password-div">

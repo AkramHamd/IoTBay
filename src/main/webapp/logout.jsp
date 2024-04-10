@@ -24,13 +24,7 @@
 %>
 
 <body>
-    <nav>
-        <div class="container navbar">
-          <a href="/index.jsp"
-            ><img src="/assets/logo.png" alt="logo" class="logo"
-          /></a>
-        </div>
-      </nav>
+    <%@ include file="assets/nav.jsp" %>
 
       <main>
         <div class="container log-out-div">

@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="/css/login.css" />
     <title>IoTBay - Login</title>
   </head>
+  
   <body>
     <div class="left-div">
       <div class="login-div">
