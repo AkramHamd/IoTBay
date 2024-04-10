@@ -7,10 +7,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/assests/favicon/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="/assests/favicon/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/assests/favicon/favicon-16x16.png">
-        <link rel="manifest" href="/assests/favicon/site.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+        <link rel="manifest" href="/assets/favicon/site.webmanifest">
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -40,34 +40,7 @@
   <% User user = (User) session.getAttribute("authUser"); %>
 
   <body>
-    <nav>
-      <div class="container navbar">
-        <a href="/index.jsp"
-          ><img src="/assests/logo.png" alt="logo" class="logo"
-        /></a>
-        <div class="search-div">
-          <input type="text" placeholder="Search millions of things . . ." />
-          <img
-            src="/assests/search-icon.png"
-            alt="search icon"
-            class="search-icon"
-          />
-        </div>
-        <div class="cart-div">
-          Cart
-          <img src="/assests/cart-icon.png" alt="cart icon" class="cart-icon" />
-        </div>
-        <div class="user-div">
-          <% if(user == null) { %>
-            <a href="/login.jsp">Login</a>
-            <a href="/register.jsp">Register</a>
-          <% } else { %>
-            <a href="/logout.jsp">Logout</a>
-          <% } %>
-          <img src="/assests/user-icon.png" alt="user icon" class="user-icon" />
-        </div>
-      </div>
-    </nav>
+    <%@ include file="assets/nav.jsp" %>
 
     <% if(user == null) { %>
       <div class="container" style="margin-top: 100px; margin-bottom: 100px;">
@@ -126,7 +99,7 @@
               <h1>Recommended Products</h1>
               <div class="carousel-div">
                 <img
-                  src="/assests/carousel-icons.png"
+                  src="/assets/carousel-icons.png"
                   alt="arrow icon"
                   class="carousel-arrow-left"
                 />
@@ -136,7 +109,7 @@
                 </div>
   
                 <img
-                  src="/assests/carousel-icons.png"
+                  src="/assets/carousel-icons.png"
                   alt="arrow icon"
                   class="carousel-arrow-right"
                 />
@@ -146,45 +119,6 @@
         </div>
       </main>
     <% } %>
-    <footer>
-      <div class="container footer-container">
-        <div class="footer-left">
-          <div>
-            <a href="/index.jsp">
-              <img src="/assests/logo.png" alt="logo" class="footer-logo" />
-            </a>
-            <p>You name it, we got it</p>
-          </div>
-          <div class="AOC-div">
-            <h1>Acknowledgement of Country</h1>
-            <p>
-              IoTBay acknowledges Aboriginal and Torres Strait Islander people
-              as the Traditional Custodians of the land and acknowledges and
-              pays respect to their Elders, past and present.
-            </p>
-          </div>
-        </div>
-        <div class="footer-right">
-          <div class="footer-links">
-            <div>
-              <p>Showcase</p>
-              <p>Services</p>
-              <p>Privacy policy</p>
-              <p>Return policy</p>
-            </div>
-            <div>
-              <p>About Us</p>
-              <p>Contact Us</p>
-              <p>Affiliates</p>
-              <p>Resources</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="container footer-footer">
-        <p>Copyright &copy 2024. All rights reserved.</p>
-        <p>Built by ISD Group 2</p>
-      </div>
-    </footer>
+    <%@ include file="assets/footer.jsp" %>
   </body>
 </html>

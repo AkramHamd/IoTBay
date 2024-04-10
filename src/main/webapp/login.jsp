@@ -7,19 +7,20 @@
     <meta charset="UTF-8" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/assests/favicon/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="/assests/favicon/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/assests/favicon/favicon-16x16.png">
-        <link rel="manifest" href="/assests/favicon/site.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+        <link rel="manifest" href="/assets/favicon/site.webmanifest">
     <link rel="stylesheet" href="/css/login.css" />
     <title>IoTBay - Login</title>
   </head>
+  
   <body>
     <div class="left-div">
       <div class="login-div">
         <div class="logo-div">
           <a href="/index.jsp"
-            ><img src="/assests/logo.png" alt="logo" class="logo"
+            ><img src="/assets/logo.png" alt="logo" class="logo"
           /></a>
         </div>
         <div class="welcome-text-div">
@@ -47,7 +48,7 @@
     </div>
 
     <div class="right-div">
-      <img src="/assests/wallpaper.jpeg" alt="mouse wallpaper" />
+      <img src="/assets/wallpaper.jpeg" alt="mouse wallpaper" />
     </div>
   </body>
 </html>
