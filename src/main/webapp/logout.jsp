@@ -19,21 +19,23 @@
     <title>IoTBay - Logout</title>
 </head>
 
-<%
-  session.invalidate();
-%>
+
 
 <body>
-    <%@ include file="assets/nav.jsp" %>
+  <%@ include file="assets/nav.jsp" %>
 
-      <main>
-        <div class="container log-out-div">
-          <h1>You're now logged out!</h1>
-        </div>
-        <div class="container" style="display: flex; gap: 20px; margin-top: 100px;">
-          <a href="/login.jsp" style="background-color: #d22020; color: #ffffff; text-decoration: none; padding: 10px 20px; border-radius: 25px;">Login again</a>
-          <a href="/index.jsp" style="background-color: #d22020; color: #ffffff; text-decoration: none; padding: 10px 20px; border-radius: 25px;">Go to Homepage</a>
-        </div>
-      </main>
+  <%
+  session.invalidate();
+  %>
+
+  <main>
+    <div class="container log-out-div">
+      <h1>You're now logged out!</h1>
+    </div>
+    <div class="container" style="display: flex; gap: 20px; margin-top: 100px;">
+      <a href="/login.jsp" style="background-color: #d22020; color: #ffffff; text-decoration: none; padding: 10px 20px; border-radius: 25px;">Login again</a>
+      <a href="/index.jsp" style="background-color: #d22020; color: #ffffff; text-decoration: none; padding: 10px 20px; border-radius: 25px;">Go to Homepage</a>
+    </div>
+  </main>
 </body>
 </html>

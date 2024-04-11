@@ -16,7 +16,6 @@
         <title>Index Page</title>
     </head>
 
-    <% User user = (User) session.getAttribute("authUser"); %>
 
     <body >
         <%@ include file="assets/nav.jsp" %>
