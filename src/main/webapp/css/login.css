@@ -23,7 +23,7 @@ body {
   align-items: center;
 }
 
-.register-div {
+.login-div {
   height: 700px;
   width: 450px;
   border-radius: 25px;
@@ -76,7 +76,7 @@ form {
 .input-div {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
 }
 
 .input-div input {
@@ -99,6 +99,10 @@ form {
   font-size: 14px;
   font-weight: 200;
   margin-left: 20px;
+}
+
+.input-div a:hover {
+  text-decoration: underline;
 }
 
 .submit-div {
@@ -134,6 +138,7 @@ form {
 .right-div {
   width: 60vw;
   height: 100vh;
+  background-color: aquamarine;
 }
 
 .right-div img {
