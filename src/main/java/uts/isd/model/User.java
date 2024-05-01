@@ -13,6 +13,11 @@ public class User implements Serializable{
     private String phoneNumber;
     private int addressId;
 
+    public User(){};
+
+    
+
+
     public User(String firstName, String lastName, String email, String password1, String passowrd2) {
         this.firstName = firstName;
         this.lastName = lastName;
