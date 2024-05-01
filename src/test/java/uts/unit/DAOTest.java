@@ -37,4 +37,8 @@ public class DAOTest {
         ArrayList<User> users = userDAO.fetchUsers();
         assertTrue(users.size() > 0);
     }
+    @Test
+    public void testCreateUsers() throws SQLException {
+        userDAO.createUser("22@22", "hello", "password");
+    }
 }
