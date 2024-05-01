@@ -1,6 +1,6 @@
 package uts.isd.model;
 import java.io.Serializable;
-
+// testing if git is wokring
 public class Product implements Serializable{
     
     private int productId;
