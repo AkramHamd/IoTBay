@@ -13,7 +13,7 @@ public class Product implements Serializable{
     private boolean productOnSpecial;
     private int productStock;
     private int productOrderQty;
-    
+    public Product(){};
     public Product(int productId, String productName, String productBrand, String productDescription, String productImg,
             double productPrice, double productSpecialPrice, boolean productOnSpecial, int productStock,
             int productOrderQty) {

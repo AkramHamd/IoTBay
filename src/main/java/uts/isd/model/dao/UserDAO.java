@@ -57,39 +57,39 @@ public class UserDAO {
 		return users;
 	}
 	
-// 	//product fetch
-// 	public ArrayList<Product> fetchProducts() throws SQLException {
-// 		ResultSet rs = productFetchReadSt.executeQuery();
+	//product fetch
+	public ArrayList<Product> fetchProducts() throws SQLException {
+		ResultSet rs = productFetchReadSt.executeQuery();
 
-// 		ArrayList<Product> products = new ArrayList<Product>();
-// 		while (rs.next()) { //loop through every row in the rs variable
-// 			String productName = rs.getString(1);
-// 			String productBrand = rs.getString(2);
-// 			String productDescription = rs.getString(3);
-// 			String productImage = rs.getString(4);
-// 			Integer productPrice = rs.getString(5);
-// 			Integer specialPrice = rs.getString(6);
-// 			Boolean productOnSpecial = rs.getString(7);
-// 			Integer productStock = rs.getString(8);
+		ArrayList<Product> products = new ArrayList<Product>();
+		while (rs.next()) { //loop through every row in the rs variable
+			String productName = rs.getString(1);
+			String productBrand = rs.getString(2);
+			String productDescription = rs.getString(3);
+			String productImage = rs.getString(4);
+			Integer productPrice = rs.getInt(5);
+			Integer specialPrice = rs.getInt(6);
+			Boolean productOnSpecial = rs.getBoolean(7);
+			Integer productStock = rs.getInt(8);
+			//setting every product value to match the data base
+			//all of these objects being created can be accessed through the array "products"
+			Product p = new Product();
+			p.setProductName(productName);
+			p.setProductBrand(productBrand);
+			p.setProductDescription(productDescription);
+			p.setProductImg(productImage);
+			p.setProductPrice(productPrice);
+			p.setProductSpecialPrice(specialPrice);
+			p.setProductOnSpecial(productOnSpecial);
+			p.setProductStock(productStock);
 
-// 			User u = new User();
-// 			u.setFirstName(firstname);
-// 			u.setPassword1(password);
-// 			// u.setPhone(phone);
-// 			u.setEmail(email);
-
-
-// 			System.out.println(u.getFirstName());
-
-// 			users.add(u);
-
-
-// 			System.out.println(u.getFirstName());
-
-// 			users.add(u);
-// 		}
-
-// 		return users;
+			System.out.println(p.getProductName());
+			//adding the just set up product (p) to the list products.
+			products.add(p);
+		}
+		return products;
+	}
+	// 		return users;
 // 	}
 // 	public void createProduct(String email, String firstname, String password) throws SQLException {
 // 		PreparedStatement st = con.prepareStatement("INSERT INTO ACCOUNT(firstname, password, email) VALUES(?,?,?)");
