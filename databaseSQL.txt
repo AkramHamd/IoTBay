@@ -1,104 +1,67 @@
--- Someone have a look to see if I missed something, specially the Foreign keys for some relations.
+-- IoTBay.Courier definition
 
-CREATE TABLE Customers (
-  CustomerID INT PRIMARY KEY,
-  GivenName VARCHAR(255) NOT NULL,
-  FamilyName VARCHAR(255) NOT NULL,
-  Email VARCHAR(255) NOT NULL,
-  Password VARCHAR(255) NOT NULL,
-  DOB DATETIME NOT NULL,
-  PhoneNumber VARCHAR(255) NOT NULL,
-  AddressID INT FOREIGN KEY REFERENCES Address(AddressID)
-);
+CREATE TABLE `Courier` (
+  `CourierID` int NOT NULL,
+  `CourierName` varchar(255) NOT NULL,
+  `CourierFees` float NOT NULL,
+  PRIMARY KEY (`CourierID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE Address (
-  AddressID INT PRIMARY KEY,
-  UnitNumber VARCHAR(255),
-  StreetNumber VARCHAR(255),
-  StreetName VARCHAR(255),
-  StateName VARCHAR(255),
-  PostCode VARCHAR(255),
-  CountryName VARCHAR(255)
-);
 
-CREATE TABLE Staff (
-  StaffID INT PRIMARY KEY,
-  GivenName VARCHAR(255) NOT NULL,
-  FamilyName VARCHAR(255) NOT NULL,
-  Email VARCHAR(255) NOT NULL,
-  Password VARCHAR(255) NOT NULL,
-  DOB DATETIME NOT NULL,
-  AdminRole BOOLEAN NOT NULL
-);
+-- IoTBay.Customer definition
 
-CREATE TABLE Log (
-  LogID INT PRIMARY KEY,
-  CustomerID INT FOREIGN KEY REFERENCES Customers(CustomerID),
-  StaffID INT FOREIGN KEY REFERENCES Staff(StaffID),
-  OrderID INT FOREIGN KEY REFERENCES Orders(OrderID),
-  AccessDate DATE NOT NULL,
-  AccessTime TIME NOT NULL,
-  AccessSuccess BOOLEAN NOT NULL
-);
+CREATE TABLE `Customer` (
+  `Customer_ID` int NOT NULL AUTO_INCREMENT COMMENT 'Customer''s unique ID, beginning at "CU-1000". Increase by one for each cutomer',
+  `Given_Name` varchar(15) NOT NULL COMMENT 'Customer''s  given name',
+  `Family_Name` varchar(15) NOT NULL COMMENT 'Customer''s family name',
+  `Email` varchar(30) NOT NULL COMMENT 'Customer''s email in the format, max 15 characters, @, max 15 characters (to prevent false emails.',
+  `Password` varchar(20) NOT NULL COMMENT 'Customer''s secure password',
+  `DOB` date NOT NULL COMMENT 'Customer''s date of birth',
+  `Phone_Number` varchar(10) NOT NULL COMMENT 'Customer''s phone number',
+  PRIMARY KEY (`Customer_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE Orders (
-  OrderID INT PRIMARY KEY,
-  CustomerID INT FOREIGN KEY REFERENCES Customers(CustomerID),
-  OrderDate DATETIME NOT NULL,
-  Status VARCHAR(255) NOT NULL,
-  ShipmentID INT FOREIGN KEY REFERENCES Shipment(ShipmentID)
-);
 
-CREATE TABLE OrderLineItem (
-  OrderLineItemID INT PRIMARY KEY,
-  OrderID INT FOREIGN KEY REFERENCES Orders(OrderID),
-  ProductID INT FOREIGN KEY REFERENCES Products(ProductID),
-  Quantity INT NOT NULL,
-  OrderLineItemPrice FLOAT NOT NULL
-);
+-- IoTBay.Staff definition
 
-CREATE TABLE Products (
-  ProductID INT PRIMARY KEY,
-  ProductName VARCHAR(255) NOT NULL,
-  ProductBrand VARCHAR(255),
-  ProductDescription TEXT,
-  ProductIMG VARCHAR(255),
-  ProductPrice FLOAT NOT NULL,
-  ProductSpecialPrice FLOAT,
-  ProductOnSpecial BOOLEAN NOT NULL,
-  ProductStock INT NOT NULL,
-  ProductOrderQty INT NOT NULL
-);
+CREATE TABLE `Staff` (
+  `Staff_ID` int NOT NULL AUTO_INCREMENT,
+  `Given_Name` varchar(15) NOT NULL,
+  `Family_Name` varchar(15) NOT NULL,
+  `Email` varchar(30) NOT NULL,
+  `Password` varchar(20) NOT NULL,
+  `DOB` date NOT NULL,
+  `Admin_Role` int NOT NULL,
+  PRIMARY KEY (`Staff_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE Payment (
-  PaymentID INT PRIMARY KEY,
-  PaymentMethod VARCHAR(255) NOT NULL,
-  PaymentDate DATETIME NOT NULL,
-  Amount FLOAT NOT NULL,
-  Currency VARCHAR(255) NOT NULL
-);
 
-CREATE TABLE PaymentLog (
-  PaymentLogID INT PRIMARY KEY,
-  PaymentID INT FOREIGN KEY REFERENCES Payment(PaymentID),
-  OrderID INT FOREIGN KEY REFERENCES Orders(OrderID),
-  LogDate DATE NOT NULL,
-  LogTime TIME NOT NULL
-);
+-- IoTBay.Address definition
 
-CREATE TABLE Shipment (
-  ShipmentID INT PRIMARY KEY,
-  OrderID INT FOREIGN KEY REFERENCES Orders(OrderID),
-  CustomerID INT FOREIGN KEY REFERENCES Customers(CustomerID),
-  AddressID INT FOREIGN KEY REFERENCES Address(AddressID),
-  CourierID INT FOREIGN KEY REFERENCES Courier(CourierID),
-  DateShipped DATETIME,
-  DateDelivered DATETIME,
-  TrackingNumber VARCHAR(255)
-);
+CREATE TABLE `Address` (
+  `Address_ID` int NOT NULL AUTO_INCREMENT,
+  `Customer_ID` int NOT NULL,
+  `Unit_Number` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `Street_Number` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `Street_Name` varchar(60) NOT NULL,
+  `City_Name` varchar(40) NOT NULL,
+  `State_Name` varchar(20) NOT NULL,
+  `Post_Code` int NOT NULL,
+  `Country_Name` varchar(20) NOT NULL,
+  PRIMARY KEY (`Address_ID`),
+  KEY `Address_Customer_FK` (`Customer_ID`),
+  CONSTRAINT `Address_Customer_FK` FOREIGN KEY (`Customer_ID`) REFERENCES `Customer` (`Customer_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE Courier (
-  CourierID INT PRIMARY KEY,
-  CourierName VARCHAR(255) NOT NULL,
-  CourierFees FLOAT NOT NULL
-);
+
+-- IoTBay.`Order` definition
+
+CREATE TABLE `Order` (
+  `Order_ID` int NOT NULL AUTO_INCREMENT,
+  `Customer_ID` int NOT NULL,
+  `Order_Date` date NOT NULL,
+  `Status` varchar(256) DEFAULT NULL,
+  PRIMARY KEY (`Order_ID`),
+  KEY `Order_Customer_FK` (`Customer_ID`),
+  CONSTRAINT `Order_Customer_FK` FOREIGN KEY (`Customer_ID`) REFERENCES `Customer` (`Customer_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
