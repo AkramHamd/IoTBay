@@ -1,6 +1,7 @@
 package uts.isd.model;
 import java.io.Serializable;
 
+
 public class Product implements Serializable {
     private String productName;
     private String productBrand;
@@ -34,6 +35,45 @@ public class Product implements Serializable {
         
     public String getProductName() {
         return this.productName;
+
+public class Product implements Serializable{
+    
+    private int productId;
+    private String productName;
+    private String productBrand;
+    private String productDescription;
+    private String productImg;
+    private double productPrice;
+    private double productSpecialPrice;
+    private boolean productOnSpecial;
+    private int productStock;
+    private int productOrderQty;
+    
+    public Product(int productId, String productName, String productBrand, String productDescription, String productImg,
+            double productPrice, double productSpecialPrice, boolean productOnSpecial, int productStock,
+            int productOrderQty) {
+        this.productId = productId;
+        this.productName = productName;
+        this.productBrand = productBrand;
+        this.productDescription = productDescription;
+        this.productImg = productImg;
+        this.productPrice = productPrice;
+        this.productSpecialPrice = productSpecialPrice;
+        this.productOnSpecial = productOnSpecial;
+        this.productStock = productStock;
+        this.productOrderQty = productOrderQty;
+    }
+
+    public int getProductId() {
+        return productId;
+    }
+
+    public void setProductId(int productId) {
+        this.productId = productId;
+    }
+
+    public String getProductName() {
+        return productName;
     }
 
     public void setProductName(String productName) {
@@ -55,6 +95,7 @@ public class Product implements Serializable {
     public void setProductDescription(String productDescription) {
         this.productDescription = productDescription;
     }
+
 
     public String getProductImage() {
         return this.productImage;
@@ -86,11 +127,39 @@ public class Product implements Serializable {
 
     public boolean getProductOnSpecial() {
         return this.productOnSpecial;
+
+    public String getProductImg() {
+        return productImg;
+    }
+
+    public void setProductImg(String productImg) {
+        this.productImg = productImg;
+    }
+
+    public double getProductPrice() {
+        return productPrice;
+    }
+
+    public void setProductPrice(double productPrice) {
+        this.productPrice = productPrice;
+    }
+
+    public double getProductSpecialPrice() {
+        return productSpecialPrice;
+    }
+
+    public void setProductSpecialPrice(double productSpecialPrice) {
+        this.productSpecialPrice = productSpecialPrice;
+    }
+
+    public boolean isProductOnSpecial() {
+        return productOnSpecial;
     }
 
     public void setProductOnSpecial(boolean productOnSpecial) {
         this.productOnSpecial = productOnSpecial;
     }
+
 
     public Integer getProductStock() {
         return this.productStock;
@@ -106,5 +175,20 @@ public class Product implements Serializable {
 
     public void setOrderQty(Integer orderQty) {
         this.orderQty = orderQty;
+        
+    public int getProductStock() {
+        return productStock;
+    }
+
+    public void setProductStock(int productStock) {
+        this.productStock = productStock;
+    }
+
+    public int getProductOrderQty() {
+        return productOrderQty;
+    }
+
+    public void setProductOrderQty(int productOrderQty) {
+        this.productOrderQty = productOrderQty;
     }
 }

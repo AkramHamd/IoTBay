@@ -35,6 +35,50 @@ nav {
   width: 200px;
 }
 
+.search-div {
+  width: 550px;
+  display: flex;
+  border: 1px solid var(--border-colour);
+  border-radius: 25px;
+  padding: 10px 20px;
+  gap: 10px;
+}
+
+.search-div input {
+  flex: 1;
+  border: none;
+  font-size: 14px;
+}
+
+.search-div input:focus {
+  outline: none;
+}
+
+.search-icon,
+.cart-icon {
+  width: 25px;
+}
+
+.user-icon {
+  width: 30px;
+}
+
+.cart-div {
+  background-color: var(--primary);
+  color: #fff;
+  padding: 5px 15px;
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.user-div {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
 .log-out-div {
     padding: 70px 0;
 }
