@@ -8,7 +8,9 @@ public class User implements Serializable{
     private String email;
     private String password1;
     private String passowrd2;
-    
+
+    public User(){};
+
     public User(String firstName, String lastName, String email, String password1, String passowrd2) {
         this.firstName = firstName;
         this.lastName = lastName;
