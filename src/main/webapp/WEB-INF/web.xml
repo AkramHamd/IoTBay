@@ -1,27 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
       version="3.1">
+  
   <servlet>
     <servlet-name>ConnServlet</servlet-name>
     <servlet-class>uts.isd.controller.ConnServlet</servlet-class>
     <load-on-startup>0</load-on-startup>
   </servlet>
+  
+  <!--  -->
   <servlet>
     <servlet-name>RegisterServlet</servlet-name>
     <servlet-class>uts.isd.controller.RegisterServlet</servlet-class>
   </servlet>
+
+  <!-- s -->
+  <servlet>
+    <servlet-name>ShipmentServlet</servlet-name>
+    <servlet-class>uts.isd.controller.ShipmentServlet</servlet-class>
+  </servlet>
+  
+  <!-- ConnServlet -->
   <servlet-mapping>
     <servlet-name>ConnServlet</servlet-name>
     <url-pattern>/</url-pattern>
   </servlet-mapping>
+  
+  <!--RegisterServlet -->
   <servlet-mapping>
     <servlet-name>RegisterServlet</servlet-name>
     <url-pattern>/RegisterServlet</url-pattern>
   </servlet-mapping>
+
+  <!--  ShipmentServlet -->
+  <servlet-mapping>
+    <servlet-name>ShipmentServlet</servlet-name>
+    <url-pattern>/ShipmentServlet</url-pattern>
+  </servlet-mapping>
+  
+  <!--  sesión -->
   <session-config>
     <session-timeout>30</session-timeout>
   </session-config>
+  
 </web-app>
