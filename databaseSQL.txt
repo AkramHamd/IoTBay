@@ -35,8 +35,8 @@ CREATE TABLE Payment (
 -- Creación de la tabla Customer
 CREATE TABLE Customer (
     Customer_ID INT AUTO_INCREMENT,
-    Given_Name VARCHAR(15),
-    Family_Name VARCHAR(15),
+    firstname VARCHAR(15),
+    lastname VARCHAR(15),
     Email VARCHAR(30),
     Password VARCHAR(20),
     DOB DATE,
@@ -47,8 +47,8 @@ CREATE TABLE Customer (
 -- Creación de la tabla Staff
 CREATE TABLE Staff (
     Staff_ID INT AUTO_INCREMENT,
-    Given_Name VARCHAR(15),
-    Family_Name VARCHAR(15),
+    firstname VARCHAR(15),
+    lastname VARCHAR(15),
     Email VARCHAR(30),
     Password VARCHAR(20),
     DOB DATE,
