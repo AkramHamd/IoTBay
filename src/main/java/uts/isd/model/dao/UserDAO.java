@@ -20,12 +20,12 @@ public class UserDAO {
 		//prevents needing confirmation before making changes to db
 		connection.setAutoCommit(true);
 		//preparing predetermined statement
-		userFetchReadSt = connection.prepareStatement("SELECT firstname, lastname, Password, Phone, Email FROM account");
+		userFetchReadSt = connection.prepareStatement("SELECT firstname, lastname, Password, Phone, Email FROM customer");
 		productFetchReadSt = connection.prepareStatement("SELECT product_name, product_brand, product_description, product_image, product_price, product_special_price, product_on_special, product_stock, product_order_qty FROM PRODUCT");
 	}
 
 	public void createUser(String email, String firstname, String password) throws SQLException {
-		PreparedStatement st = con.prepareStatement("INSERT INTO ACCOUNT(firstname, password, email) VALUES(?,?,?)");
+		PreparedStatement st = con.prepareStatement("INSERT INTO Customer(firstname, password, email) VALUES(?,?,?)");
 		st.setString(1, firstname); //replacing ? with variables
 		st.setString(2, password);
 		st.setString(3, email);
