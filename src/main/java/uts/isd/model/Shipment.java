@@ -1,5 +1,6 @@
 package uts.isd.model;
 import java.io.Serializable;
+import java.sql.Date;
 
 public class Shipment implements Serializable{
     
@@ -8,12 +9,12 @@ public class Shipment implements Serializable{
     private int customerId;
     private int addressId;
     private int courierId;
-    private String dateShipped;
-    private String dateDelivered;
+    private Date dateShipped;
+    private Date dateDelivered;
     private String trackingNumber;
     
-    public Shipment(int shipmentId, int orderId, int customerId, int addressId, int courierId, String dateShipped,
-            String dateDelivered, String trackingNumber) {
+    public Shipment(int shipmentId, int orderId, int customerId, int addressId, int courierId, Date dateShipped,
+            Date dateDelivered, String trackingNumber) {
         this.shipmentId = shipmentId;
         this.orderId = orderId;
         this.customerId = customerId;
@@ -64,19 +65,19 @@ public class Shipment implements Serializable{
         this.courierId = courierId;
     }
 
-    public String getDateShipped() {
+    public Date getDateShipped() {
         return dateShipped;
     }
 
-    public void setDateShipped(String dateShipped) {
+    public void setDateShipped(Date dateShipped) {
         this.dateShipped = dateShipped;
     }
 
-    public String getDateDelivered() {
+    public Date getDateDelivered() {
         return dateDelivered;
     }
 
-    public void setDateDelivered(String dateDelivered) {
+    public void setDateDelivered(Date dateDelivered) {
         this.dateDelivered = dateDelivered;
     }
 
