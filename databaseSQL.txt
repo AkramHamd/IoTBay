@@ -1,67 +1,134 @@
--- IoTBay.Courier definition
+-- SQL Database fixed 1.0
 
-CREATE TABLE `Courier` (
-  `CourierID` int NOT NULL,
-  `CourierName` varchar(255) NOT NULL,
-  `CourierFees` float NOT NULL,
-  PRIMARY KEY (`CourierID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE Product (
+    Product_ID INT AUTO_INCREMENT,
+    Product_Name VARCHAR(30),
+    Product_Brand VARCHAR(30),
+    Product_Description VARCHAR(1024),
+    Product_IMG BLOB,
+    Product_Price INT,
+    Product_Special_Price INT,
+    Product_On_Special BOOLEAN,
+    Product_Stock INT,
+    Product_Order_Qty INT,
+    PRIMARY KEY (Product_ID)
+);
 
+-- Creación de la tabla Courier
+CREATE TABLE Courier (
+    Courier_ID INT AUTO_INCREMENT,
+    Courier_Name VARCHAR(20),
+    Courier_Fees VARCHAR(256),
+    PRIMARY KEY (Courier_ID)
+);
 
--- IoTBay.Customer definition
+-- Creación de la tabla Payment
+CREATE TABLE Payment (
+    Payment_ID INT AUTO_INCREMENT,
+    Payment_Method VARCHAR(20),
+    Payment_Date DATE,
+    Amount INT,
+    Currency VARCHAR(3),
+    PRIMARY KEY (Payment_ID)
+);
 
-CREATE TABLE `Customer` (
-  `Customer_ID` int NOT NULL AUTO_INCREMENT COMMENT 'Customer''s unique ID, beginning at "CU-1000". Increase by one for each cutomer',
-  `Given_Name` varchar(15) NOT NULL COMMENT 'Customer''s  given name',
-  `Family_Name` varchar(15) NOT NULL COMMENT 'Customer''s family name',
-  `Email` varchar(30) NOT NULL COMMENT 'Customer''s email in the format, max 15 characters, @, max 15 characters (to prevent false emails.',
-  `Password` varchar(20) NOT NULL COMMENT 'Customer''s secure password',
-  `DOB` date NOT NULL COMMENT 'Customer''s date of birth',
-  `Phone_Number` varchar(10) NOT NULL COMMENT 'Customer''s phone number',
-  PRIMARY KEY (`Customer_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+-- Creación de la tabla Customer
+CREATE TABLE Customer (
+    Customer_ID INT AUTO_INCREMENT,
+    Given_Name VARCHAR(15),
+    Family_Name VARCHAR(15),
+    Email VARCHAR(30),
+    Password VARCHAR(20),
+    DOB DATE,
+    Phone_Number VARCHAR(10),
+    PRIMARY KEY (Customer_ID)
+);
 
+-- Creación de la tabla Staff
+CREATE TABLE Staff (
+    Staff_ID INT AUTO_INCREMENT,
+    Given_Name VARCHAR(15),
+    Family_Name VARCHAR(15),
+    Email VARCHAR(30),
+    Password VARCHAR(20),
+    DOB DATE,
+    Admin_Role INT,
+    PRIMARY KEY (Staff_ID)
+);
 
--- IoTBay.Staff definition
+-- Creación de la tabla Address
+CREATE TABLE Address (
+    Address_ID INT AUTO_INCREMENT,
+    Customer_ID INT,
+    Unit_Number VARCHAR(10),
+    Street_Number VARCHAR(10),
+    Street_Name VARCHAR(60),
+    City_Name VARCHAR(40),
+    State_Name VARCHAR(20),
+    Post_Code INT,
+    Country_Name VARCHAR(20),
+    PRIMARY KEY (Address_ID),
+    FOREIGN KEY (Customer_ID) REFERENCES Customer(Customer_ID)
+);
 
-CREATE TABLE `Staff` (
-  `Staff_ID` int NOT NULL AUTO_INCREMENT,
-  `Given_Name` varchar(15) NOT NULL,
-  `Family_Name` varchar(15) NOT NULL,
-  `Email` varchar(30) NOT NULL,
-  `Password` varchar(20) NOT NULL,
-  `DOB` date NOT NULL,
-  `Admin_Role` int NOT NULL,
-  PRIMARY KEY (`Staff_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+-- Creación de la tabla OrderTable
+CREATE TABLE OrderTable (
+    Order_ID INT AUTO_INCREMENT,
+    Customer_ID INT,
+    Order_Date DATE,
+    Status VARCHAR(256),
+    PRIMARY KEY (Order_ID),
+    FOREIGN KEY (Customer_ID) REFERENCES Customer(Customer_ID)
+);
 
+-- Creación de la tabla OrderLineItem
+CREATE TABLE OrderLineItem (
+    OrderLineItem_ID INT AUTO_INCREMENT,
+    Order_ID INT,
+    Product_ID INT,
+    Quantity INT,
+    OrderLineItem_Price INT,
+    PRIMARY KEY (OrderLineItem_ID),
+    FOREIGN KEY (Order_ID) REFERENCES OrderTable(Order_ID),
+    FOREIGN KEY (Product_ID) REFERENCES Product(Product_ID)
+);
 
--- IoTBay.Address definition
+-- Creación de la tabla AccessLog
+CREATE TABLE AccessLog (
+    Log_ID INT AUTO_INCREMENT,
+    Customer_ID INT,
+    Access_Date DATE,
+    Access_Time TIME,
+    Access_Success BOOLEAN,
+    PRIMARY KEY (Log_ID),
+    FOREIGN KEY (Customer_ID) REFERENCES Customer(Customer_ID)
+);
 
-CREATE TABLE `Address` (
-  `Address_ID` int NOT NULL AUTO_INCREMENT,
-  `Customer_ID` int NOT NULL,
-  `Unit_Number` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `Street_Number` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `Street_Name` varchar(60) NOT NULL,
-  `City_Name` varchar(40) NOT NULL,
-  `State_Name` varchar(20) NOT NULL,
-  `Post_Code` int NOT NULL,
-  `Country_Name` varchar(20) NOT NULL,
-  PRIMARY KEY (`Address_ID`),
-  KEY `Address_Customer_FK` (`Customer_ID`),
-  CONSTRAINT `Address_Customer_FK` FOREIGN KEY (`Customer_ID`) REFERENCES `Customer` (`Customer_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+-- Creación de la tabla Shipment
+CREATE TABLE Shipment (
+    Shipment_ID INT AUTO_INCREMENT,
+    Order_ID INT,
+    Customer_ID INT,
+    Address_ID INT,
+    Courier_ID INT,
+    Date_Shipped DATE,
+    Date_Delivered DATE,
+    Tracking_Number VARCHAR(20),
+    PRIMARY KEY (Shipment_ID),
+    FOREIGN KEY (Order_ID) REFERENCES OrderTable(Order_ID),
+    FOREIGN KEY (Customer_ID) REFERENCES Customer(Customer_ID),
+    FOREIGN KEY (Address_ID) REFERENCES Address(Address_ID),
+    FOREIGN KEY (Courier_ID) REFERENCES Courier(Courier_ID)
+);
 
-
--- IoTBay.`Order` definition
-
-CREATE TABLE `Order` (
-  `Order_ID` int NOT NULL AUTO_INCREMENT,
-  `Customer_ID` int NOT NULL,
-  `Order_Date` date NOT NULL,
-  `Status` varchar(256) DEFAULT NULL,
-  PRIMARY KEY (`Order_ID`),
-  KEY `Order_Customer_FK` (`Customer_ID`),
-  CONSTRAINT `Order_Customer_FK` FOREIGN KEY (`Customer_ID`) REFERENCES `Customer` (`Customer_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+-- Creación de la tabla PaymentLog
+CREATE TABLE PaymentLog (
+    Payment_Log_ID INT AUTO_INCREMENT,
+    Payment_ID INT,
+    Customer_ID INT,
+    Log_Date DATE,
+    Log_Time TIME,
+    PRIMARY KEY (Payment_Log_ID),
+    FOREIGN KEY (Payment_ID) REFERENCES Payment(Payment_ID),
+    FOREIGN KEY (Customer_ID) REFERENCES Customer(Customer_ID)
+);
