@@ -41,8 +41,31 @@ public class ShipmentServlet extends HttpServlet {
     }
 
     @Override
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // Here you can handle POST requests, such as creating a new shipment
+        try {
+            // Retrieve the session
+            HttpSession session = request.getSession();
+            
+            // Retrieve the shipment DAO object from the session
+            ShipmentDAO shipmentDAO = (ShipmentDAO) session.getAttribute("shipmentDAO");
+            
+            // Extract shipment details from request parameters
+            String method = request.getParameter("method");
+            String date = request.getParameter("date");
+            String address = request.getParameter("address");
+            
+            // Assuming orderId is retrieved from session or request
+            int orderId = 123; // Replace with actual orderId
+            
+            // Save shipment details to the database
+            shipmentDAO.createShipment(orderId, method, date, address);
+            
+            // Redirect to the shipment page to display the updated list of shipments
+            response.sendRedirect(request.getContextPath() + "/shipment");
+        } catch (SQLException e) {
+            throw new ServletException("Error creating shipment", e);
+        }
     }
 }
