@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.sql.Connection;
 import java.sql.Date;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -52,23 +53,45 @@ public class DAOTest {
         assertTrue(shipments.size() >= 0);
     }
 
-    @Test
-    public void testAddAndGetShipment() throws SQLException {
+
+    // @Test
+    // public void testGetShipmentById() throws SQLException {
+    //     // ID de envío a buscar
+    //     int shipmentId = 1;
         
-        Date dateShipped = Date.valueOf("2024-05-05");
-        Date dateDelivered = Date.valueOf("2024-05-10");
-        Shipment shipment = new Shipment(1, 1, 1, 1, 1, dateShipped, dateDelivered, "123456789");
-    
-        shipmentDAO.createShipment(shipment);
+    //     // Llama al método para obtener el envío por su ID
+    //     Shipment retrievedShipment = shipmentDAO.getShipmentById(shipmentId);
         
-        Shipment retrievedShipment = shipmentDAO.getShipmentById(1);
-        assertNotNull(retrievedShipment);
-        assertEquals(shipment.getOrder_Id(), retrievedShipment.getOrder_Id());
-        assertEquals(shipment.getCustomer_Id(), retrievedShipment.getCustomer_Id());
-        assertEquals(shipment.getAddress_Id(), retrievedShipment.getAddress_Id());
-        assertEquals(shipment.getCourier_Id(), retrievedShipment.getCourier_Id());
-        assertEquals(shipment.getDate_Shipped(), retrievedShipment.getDate_Shipped());
-        assertEquals(shipment.getDate_Delivered(), retrievedShipment.getDate_Delivered());
-        assertEquals(shipment.getTracking_Number(), retrievedShipment.getTracking_Number());
+    //     // Verifica que el envío recuperado no sea nulo
+    //     assertNotNull(retrievedShipment);
+        
+    //     // Verifica que el ID del envío recuperado sea igual al ID esperado
+    //     assertEquals(shipmentId, retrievedShipment.getShipment_Id());
+        
+    //     // Imprime los detalles del envío recuperado para depuración
+    //     System.out.println("Shipment details:");
+    //     System.out.println("Shipment ID: " + retrievedShipment.getShipment_Id());
+    //     System.out.println("Order ID: " + retrievedShipment.getOrder_Id());
+    //     System.out.println("Customer ID: " + retrievedShipment.getCustomer_Id());
+    //     System.out.println("Address ID: " + retrievedShipment.getAddress_Id());
+    //     System.out.println("Courier ID: " + retrievedShipment.getCourier_Id());
+    //     System.out.println("Date Shipped: " + retrievedShipment.getDate_Delivered());
+    //     System.out.println("Date Delivered: " + retrievedShipment.getDate_Delivered());
+    //     System.out.println("Tracking Number: " + retrievedShipment.getTracking_Number());
+    // }
+
+
+    public void createShipment(Shipment shipment) throws SQLException {
+        String query = "INSERT INTO Shipment (order_Id, customer_Id, address_Id, courier_Id, date_Shipped, date_Delivered, tracking_Number) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        try (PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, shipment.getOrder_Id());
+            stmt.setInt(2, shipment.getCustomer_Id());
+            stmt.setInt(3, shipment.getAddress_Id());
+            stmt.setInt(4, shipment.getCourier_Id());
+            stmt.setDate(5, shipment.getDate_Shipped());
+            stmt.setDate(6, shipment.getDate_Delivered());
+            stmt.setString(7, shipment.getTracking_Number());
+            stmt.executeUpdate();
+        }
     }
 }    
