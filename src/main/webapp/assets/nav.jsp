@@ -36,6 +36,7 @@
       />
     </div>
     <div class="cart-div">
+      <a href="/cart.jsp">
       Cart
       <img src="/assets/cart-icon.png" alt="cart icon" class="cart-icon" />
     </div>
