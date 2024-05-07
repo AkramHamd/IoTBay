@@ -12,10 +12,12 @@ import javax.servlet.http.HttpSession;
 
 import uts.isd.model.dao.CustomerDAO;
 import uts.isd.model.dao.DBConnector;
+import uts.isd.model.dao.LogDAO;
 
 public class ConnServlet extends HttpServlet{
     private DBConnector db;
     private CustomerDAO customerDAO;
+    private LogDAO logDAO;
     private Connection connection;
     
     @Override
@@ -37,10 +39,12 @@ public class ConnServlet extends HttpServlet{
 
         try {
             customerDAO = new CustomerDAO(connection);
+            logDAO = new LogDAO(connection);
         } catch (SQLException e) {
             System.out.print(e);
         }
 
+        session.setAttribute("logDAO", logDAO);
         session.setAttribute("customerDAO", customerDAO);
         response.sendRedirect("/index.jsp");
     }

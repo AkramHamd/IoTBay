@@ -11,16 +11,19 @@ import javax.servlet.http.HttpSession;
 
 import uts.isd.model.Customer;
 import uts.isd.model.dao.CustomerDAO;
+import uts.isd.model.dao.LogDAO;
 
 public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         
-        HttpSession session = request.getSession();
         CustomerDAO customerDAO = (CustomerDAO) session.getAttribute("customerDAO");
+        LogDAO logDAO = (LogDAO) session.getAttribute("logDAO");
 
         if (customerDAO == null) {
             request.getRequestDispatcher("index.jsp").include(request, response);
@@ -28,6 +31,7 @@ public class LoginServlet extends HttpServlet {
             try {
                 Customer customer = customerDAO.validateCustomer(email, password);
                 if (customer != null) {
+                    logDAO.addLog(customer.getCustomer_id(), "login");
                     session.setAttribute("customer", customer);
                     response.sendRedirect("dashboard.jsp");
                 } else {

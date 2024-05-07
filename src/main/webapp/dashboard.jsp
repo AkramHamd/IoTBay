@@ -207,10 +207,6 @@
               <p>Date of Birth: <%= customer.getDob()%></p>
               <p>Phone: <%= customer.getPhone()%></p>
               <p>Registered Date: <%= customer.getCreated_at()%></p>
-              <p>Address ID: <%= customer.getAddress_id()%></p>
-              <p>Log ID: <%= customer.getLog_id()%></p>
-              <p>Payment ID: <%= customer.getPayment_id()%></p>
-              <p>Order ID: <%= customer.getOrder_id()%></p>
             </div>
 
             <%

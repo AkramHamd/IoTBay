@@ -112,12 +112,8 @@ public class CustomerDAO {
             String dob = rs.getString(6);
             String phone = rs.getString(7);
             String created_at = rs.getString(8);
-            int address_id = rs.getInt(9);
-            int log_id = rs.getInt(10);
-            int payment_id = rs.getInt(11);
-            int order_id = rs.getInt(12);
 
-            Customer customer = new Customer(customer_id, given_name, family_name, email, password, dob, phone, created_at, address_id, payment_id, log_id, order_id);
+            Customer customer = new Customer(customer_id, given_name, family_name, email, password, dob, phone, created_at);
             return customer;
         } else {
             return null;

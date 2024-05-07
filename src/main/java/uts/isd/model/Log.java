@@ -3,49 +3,58 @@ import java.io.Serializable;
 
 public class Log implements Serializable{
     
-    private int LogId;
-    private int customerId;
-    private String accessDate;
-    private String accessTime;
-    private boolean accessSuccess;
+    private int log_id;
+    private int customer_id;
+    private String type;
+    private String timestamp;
 
-    public Log(int logId, int customerId, String accessDate, String accessTime, boolean accessSuccess) {
-        LogId = logId;
-        this.customerId = customerId;
-        this.accessDate = accessDate;
-        this.accessTime = accessTime;
-        this.accessSuccess = accessSuccess;
-    }
-    public int getLogId() {
-        return LogId;
-    }
-    public void setLogId(int logId) {
-        LogId = logId;
-    }
-    public int getCustomerId() {
-        return customerId;
-    }
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
-    }
-    public String getAccessDate() {
-        return accessDate;
-    }
-    public void setAccessDate(String accessDate) {
-        this.accessDate = accessDate;
-    }
-    public String getAccessTime() {
-        return accessTime;
-    }
-    public void setAccessTime(String accessTime) {
-        this.accessTime = accessTime;
-    }
-    public boolean isAccessSuccess() {
-        return accessSuccess;
-    }
-    public void setAccessSuccess(boolean accessSuccess) {
-        this.accessSuccess = accessSuccess;
+    public Log(int log_id, int customer_id, String type, String timestamp) {
+        this.log_id = log_id;
+        this.customer_id = customer_id;
+        this.type = type;
+        this.timestamp = timestamp;
     }
 
-    
+    public Log(int customer_id, String type, String timestamp) {
+        this.customer_id = customer_id;
+        this.type = type;
+        this.timestamp = timestamp;
+    }
+
+    public Log(int customer_id, String type) {
+        this.customer_id = customer_id;
+        this.type = type;
+    }
+
+    public int getLog_id() {
+        return log_id;
+    }
+
+    public void setLog_id(int log_id) {
+        this.log_id = log_id;
+    }
+
+    public int getCustomer_id() {
+        return customer_id;
+    }
+
+    public void setCustomer_id(int customer_id) {
+        this.customer_id = customer_id;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(String timestamp) {
+        this.timestamp = timestamp;
+    }
 }

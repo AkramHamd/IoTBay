@@ -10,12 +10,6 @@ public class Customer {
     private String dob;
     private String phone;
     private String created_at;
-    private int address_id;
-    private int payment_id;
-    private int log_id;
-    private int order_id;
-
-    
 
     public Customer(String given_name, String family_name, String email, String password, String phone, String dob) {
         this.given_name = given_name;
@@ -34,8 +28,7 @@ public class Customer {
         this.phone = phone;
     }
 
-    public Customer(int customer_id, String given_name, String family_name, String email, String password,
-            String phone) {
+    public Customer(int customer_id, String given_name, String family_name, String email, String password, String phone) {
         this.customer_id = customer_id;
         this.given_name = given_name;
         this.family_name = family_name;
@@ -44,8 +37,7 @@ public class Customer {
         this.phone = phone;
     }
 
-    public Customer(int customer_id, String given_name, String family_name, String email, String password, String dob,
-            String phone) {
+    public Customer(int customer_id, String given_name, String family_name, String email, String password, String dob, String phone) {
         this.customer_id = customer_id;
         this.given_name = given_name;
         this.family_name = family_name;
@@ -55,22 +47,7 @@ public class Customer {
         this.phone = phone;
     }
 
-    public Customer(String given_name, String family_name, String email, String password, String dob, String phone,
-            int address_id, int payment_id, int log_id, int order_id) {
-        this.given_name = given_name;
-        this.family_name = family_name;
-        this.email = email;
-        this.password = password;
-        this.dob = dob;
-        this.phone = phone;
-        this.address_id = address_id;
-        this.payment_id = payment_id;
-        this.log_id = log_id;
-        this.order_id = order_id;
-    }
-
-    public Customer(int customer_id, String given_name, String family_name, String email, String password, String dob,
-            String phone, String created_at, int address_id, int payment_id, int log_id, int order_id) {
+    public Customer(int customer_id, String given_name, String family_name, String email, String password, String dob, String phone, String created_at) {
         this.customer_id = customer_id;
         this.given_name = given_name;
         this.family_name = family_name;
@@ -79,10 +56,6 @@ public class Customer {
         this.dob = dob;
         this.phone = phone;
         this.created_at = created_at;
-        this.address_id = address_id;
-        this.payment_id = payment_id;
-        this.log_id = log_id;
-        this.order_id = order_id;
     }
 
     public int getCustomer_id() {
@@ -147,37 +120,5 @@ public class Customer {
 
     public void setCreated_at(String created_at) {
         this.created_at = created_at;
-    }
-
-    public int getAddress_id() {
-        return address_id;
-    }
-
-    public void setAddress_id(int address_id) {
-        this.address_id = address_id;
-    }
-
-    public int getPayment_id() {
-        return payment_id;
-    }
-
-    public void setPayment_id(int payment_id) {
-        this.payment_id = payment_id;
-    }
-
-    public int getLog_id() {
-        return log_id;
-    }
-
-    public void setLog_id(int log_id) {
-        this.log_id = log_id;
-    }
-
-    public int getOrder_id() {
-        return order_id;
-    }
-
-    public void setOrder_id(int order_id) {
-        this.order_id = order_id;
     }
 }

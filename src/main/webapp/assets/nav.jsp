@@ -25,10 +25,9 @@
         <a href="/login.jsp">Login</a>
         <a href="/register.jsp">Register</a>
       <% } else { %>
-        <a href="/logout.jsp">Logout</a>
+        <a href="/LogoutServlet">Logout</a>
+        <a href="/dashboard.jsp"><img src="/assets/user-icon.png" alt="user icon" class="user-icon" style="width: 30px;"/></a>
       <% } %>
-      
-      <a href="/dashboard.jsp"><img src="/assets/user-icon.png" alt="user icon" class="user-icon" style="width: 30px;"/></a>
     </div>
   </div>
 </nav>

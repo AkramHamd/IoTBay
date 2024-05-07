@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import uts.isd.model.Customer;
 import uts.isd.model.dao.CustomerDAO;
+import uts.isd.model.dao.LogDAO;
 
 public class RegisterServlet extends HttpServlet {
 
@@ -29,6 +30,7 @@ public class RegisterServlet extends HttpServlet {
         // dob = dob.substring(0, indexOfSpace);
 
         CustomerDAO customerDAO = (CustomerDAO) session.getAttribute("customerDAO");
+        LogDAO logDAO = (LogDAO) session.getAttribute("logDAO");
 
         if (given_name.length() <= 0) {
             session.setAttribute("firstNameErr", "First name can't be empty");
@@ -41,6 +43,7 @@ public class RegisterServlet extends HttpServlet {
         } else {
             try {
                 Customer customer = customerDAO.addCustomer(given_name, family_name, email, password, phone, dob);
+                logDAO.addLog(customer.getCustomer_id(), "register");
                 session.setAttribute("customer", customer);
                 response.sendRedirect("dashboard.jsp");
             } catch (SQLException e) {
