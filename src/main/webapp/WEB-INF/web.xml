@@ -51,6 +51,24 @@
       <url-pattern>/UpdateCustomerServlet</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+      <servlet-name>AddAddressServlet</servlet-name>
+      <servlet-class>uts.isd.controller.AddAddressServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>AddAddressServlet</servlet-name>
+      <url-pattern>/AddAddressServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+      <servlet-name>UpdateAddressServlet</servlet-name>
+      <servlet-class>uts.isd.controller.UpdateAddressServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>UpdateAddressServlet</servlet-name>
+      <url-pattern>/UpdateAddressServlet</url-pattern>
+  </servlet-mapping>
+
   <session-config>
     <session-timeout>30</session-timeout>
   </session-config>

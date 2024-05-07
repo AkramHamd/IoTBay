@@ -1,6 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="uts.isd.model.*"%>
 <%@page import="uts.isd.model.Log"%>
+<%@page import="uts.isd.model.Address"%>
 <%@ page import="java.util.ArrayList" %>
 
 <!DOCTYPE html>
@@ -109,6 +110,22 @@
               <p>Registered Date: <%= customer.getCreated_at()%></p>
             </div>
 
+            <% Address address = (Address) session.getAttribute("address"); %>
+
+            <div>
+              <% if(address != null) { %>
+                <p>Address ID: <%= address.getAddress_id() %></p>
+                <p>Customer ID: <%= address.getCustomer_id() %></p>
+                <p>Unit Number: <%= address.getUnit_number() %></p>
+                <p>Street Number: <%= address.getStreet_number() %></p>
+                <p>Name Name: <%= address.getStreet_name() %></p>
+                <p>Suburb: <%= address.getSuburb() %></p>
+                <p>State: <%= address.getState() %></p>
+                <p>Postcode: <%= address.getPostcode() %></p>
+                <p>Country: <%= address.getCountry() %></p>
+              <% } %>
+            </div>
+
             <%
               String dateTimeStr = customer.getDob();
               String trimmedDateStr = dateTimeStr.substring(0, 10);
@@ -126,6 +143,38 @@
               <input type="date" name="dob" value="<%= trimmedDateStr %>">
               <input type="submit" value="Update Details">
             </form>
+            
+            <% if(address == null) { %>
+              <form action="/AddAddressServlet" method="post">
+                <h2>Add address</h2>
+                <br>
+
+                <input type="hidden" name="customer_id" value="<%= customer.getCustomer_id() %>">
+                <input type="number" name="unit_number" placeholder="unit_number">
+                <input type="number" name="street_number" placeholder="street_number">
+                <input type="text" name="street_name" placeholder="street_name">
+                <input type="text" name="suburb" placeholder="suburb">
+                <input type="text" name="state" placeholder="state">
+                <input type="number" name="postcode" placeholder="postcode">
+                <input type="text" name="country" placeholder="country">
+                <input type="submit" value="Add Address">
+              </form>
+            <% } else { %>
+              <form action="/UpdateAddressServlet" method="post">
+                <h2>Update address</h2>
+                <br>
+
+                <input type="hidden" name="address_id" value="<%= address.getAddress_id() %>">
+                <input type="number" name="unit_number" value="<%= address.getUnit_number() %>">
+                <input type="number" name="street_number" value="<%= address.getStreet_number() %>">
+                <input type="text" name="street_name" value="<%= address.getStreet_name() %>">
+                <input type="text" name="suburb" value="<%= address.getSuburb() %>">
+                <input type="text" name="state" value="<%= address.getState() %>">
+                <input type="number" name="postcode" value="<%= address.getPostcode() %>">
+                <input type="text" name="country" value="<%= address.getCountry() %>">
+                <input type="submit" value="Update Address">
+              </form>
+            <% } %>
 
             <% ArrayList<Log> customerLogs = (ArrayList<Log>) session.getAttribute("customerLogs"); %>
 
