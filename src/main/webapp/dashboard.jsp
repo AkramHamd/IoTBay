@@ -1,5 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="uts.isd.model.*"%>
+<%@page import="uts.isd.model.Log"%>
+<%@ page import="java.util.ArrayList" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -54,47 +56,6 @@
         margin-bottom: 200px;
       }
 
-      .sidebar-div {
-        width: 350px;
-        background-color: var(--background-colour);
-        border: 1px solid var(--border-colour);
-        border-radius: 25px;
-        padding: 20px;
-        display: flex;
-        flex-direction: column;
-        align-self: flex-start;
-      }
-
-      .sidebar-items {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      .sidebar-items a {
-        text-decoration: none;
-        font-weight: 600;
-        color: #212121;
-      }
-
-      .sidebar-items:hover {
-        cursor: pointer;
-      }
-
-      #sidebar-item-arrow {
-        color: var(--font-colour);
-        font-size: 36px;
-      }
-
-      .sidebar-items:hover a,
-      .sidebar-items:hover #sidebar-item-arrow {
-        color: #d22020;
-      }
-
-      .arrow-icon {
-        width: 15px;
-      }
-
       .main-div {
         flex-grow: 1;
         display: flex;
@@ -111,41 +72,6 @@
       .welcome-div p {
         font-size: 16px;
         font-weight: 300;
-      }
-
-      .recommended-div h1 {
-        font-size: 22px;
-        font-weight: 600;
-        margin-bottom: 40px;
-      }
-
-      .carousel-div {
-        height: 300px;
-        display: flex;
-        align-items: center;
-        gap: 60px;
-        justify-content: space-between;
-      }
-
-      .carousel-arrow-right,
-      .carousel-arrow-left {
-        width: 50px;
-      }
-
-      .carousel-arrow-right {
-        transform: rotate(180deg);
-      }
-
-      .products-div {
-        flex-grow: 1;
-        display: flex;
-        gap: 20px;
-      }
-
-      .product {
-        flex-grow: 1;
-        height: 300px;
-        background-color: grey;
       }
     </style>
     <title>IoTBay - Dashboard</title>
@@ -164,32 +90,6 @@
           <h1>Dashboard</h1>
         </div>
         <div class="container main-wrapper">
-          <!-- <div class="sidebar-div">
-            <div class="sidebar-items">
-              <a href="/">Home</a>
-              <i class="material-icons" id="sidebar-item-arrow">chevron_right</i>
-            </div>
-            <div class="sidebar-items">
-              <a href="/">Personal Details</a>
-              <i class="material-icons" id="sidebar-item-arrow">chevron_right</i>
-            </div>
-            <div class="sidebar-items">
-              <a href="/">Payment Details</a>
-              <i class="material-icons" id="sidebar-item-arrow">chevron_right</i>
-            </div>
-            <div class="sidebar-items">
-              <a href="/">Active Orders</a>
-              <i class="material-icons" id="sidebar-item-arrow">chevron_right</i>
-            </div>
-            <div class="sidebar-items">
-              <a href="/">Order History</a>
-              <i class="material-icons" id="sidebar-item-arrow">chevron_right</i>
-            </div>
-            <div class="sidebar-items">
-              <a href="/">Wish List</a>
-              <i class="material-icons" id="sidebar-item-arrow">chevron_right</i>
-            </div>
-          </div> -->
          
           <div class="main-div">
             <div class="welcome-div">
@@ -227,26 +127,19 @@
               <input type="submit" value="Update Details">
             </form>
 
-            <!-- <div class="recommended-div">
-              <h1>Recommended Products</h1>
-              <div class="carousel-div">
-                <img
-                  src="/assets/carousel-icons.png"
-                  alt="arrow icon"
-                  class="carousel-arrow-left"
-                />
-                <div class="products-div">
-                  <div class="product"></div>
-                  <div class="product"></div>
-                </div>
-  
-                <img
-                  src="/assets/carousel-icons.png"
-                  alt="arrow icon"
-                  class="carousel-arrow-right"
-                />
-              </div>
-            </div> -->
+            <% ArrayList<Log> customerLogs = (ArrayList<Log>) session.getAttribute("customerLogs"); %>
+
+            <div>
+              <h2>Logs</h2>
+              <br>
+              <% for (Log log : customerLogs) { %>
+                <p>Log ID: <%= log.getLog_id() %></p>
+                <p>Customer ID: <%= log.getCustomer_id() %></p>
+                <p>Type: <%= log.getType() %></p>
+                <p>Timestamp: <%= log.getTimestamp() %></p>
+                <br>
+              <% } %>
+            </div>
           </div>
         </div>
       </main>

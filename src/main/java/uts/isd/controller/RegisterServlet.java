@@ -2,6 +2,7 @@ package uts.isd.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import uts.isd.model.Customer;
+import uts.isd.model.Log;
 import uts.isd.model.dao.CustomerDAO;
 import uts.isd.model.dao.LogDAO;
 
@@ -44,7 +46,10 @@ public class RegisterServlet extends HttpServlet {
             try {
                 Customer customer = customerDAO.addCustomer(given_name, family_name, email, password, phone, dob);
                 logDAO.addLog(customer.getCustomer_id(), "register");
+                ArrayList<Log> customerLogs = logDAO.getLogs(customer.getCustomer_id());
+                
                 session.setAttribute("customer", customer);
+                session.setAttribute("customerLogs", customerLogs);
                 response.sendRedirect("dashboard.jsp");
             } catch (SQLException e) {
                 System.out.println(e);
