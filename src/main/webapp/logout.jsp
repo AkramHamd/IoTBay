@@ -1,21 +1,43 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="java.util.Random"%>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
-        <link rel="manifest" href="/assets/favicon/site.webmanifest">
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-    />
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 
-    <link rel="stylesheet" href="css/logout.css" />
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Inter', sans-serif;
+        letter-spacing: 0.7px;
+      }
+
+      :root {
+        --primary: #d22020;
+        --border-colour: #d1d1d1;
+        --background-colour: #f1f3f5;
+        --font-colour: #858585;
+      }
+
+      .container {
+        width: 80%;
+        margin: 0 auto;
+      }
+
+      .log-out-div {
+          padding: 70px 0;
+      }
+  
+      .log-out-div h1 {
+          font-size: 40px;
+          font-weight: 700;
+      }
+
+    </style>
     <title>IoTBay - Logout</title>
 </head>
 
@@ -25,7 +47,7 @@
   <%@ include file="assets/nav.jsp" %>
 
   <%
-  session.invalidate();
+    session.invalidate();
   %>
 
   <main>
@@ -37,5 +59,7 @@
       <a href="/index.jsp" style="background-color: #d22020; color: #ffffff; text-decoration: none; padding: 10px 20px; border-radius: 25px;">Go to Homepage</a>
     </div>
   </main>
+
+  <%@ include file="assets/footer.jsp" %>
 </body>
 </html>
