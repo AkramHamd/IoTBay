@@ -43,9 +43,17 @@ public class DAOTest {
         userDAO.createUser("22@22", "hello", "lname", "password", "10/09/02", "0411111111");
     }
     //Feature 2 Tests
+
+    //select products
     @Test
     public void testSelectProducts() throws SQLException {
         ArrayList<Product> products = userDAO.fetchProducts();
         assertTrue(products.size() > 0);
+    }
+
+    //create product
+    @Test
+    public void testCreateProducts() throws SQLException {
+        userDAO.createProduct("MVN Test product", "Testers", "This is a test description", null, 1.23d, 0.00d, false, 30, 10);
     }
 }

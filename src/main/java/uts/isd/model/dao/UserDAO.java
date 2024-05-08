@@ -23,7 +23,7 @@ public class UserDAO {
 		userFetchReadSt = connection.prepareStatement("SELECT given_name, family_name, Password, Phone_number, Email FROM user");
 		productFetchReadSt = connection.prepareStatement("SELECT product_name, product_brand, product_description, product_img, product_price, product_special_price, product_on_special, product_stock, product_order_qty FROM PRODUCT");
 	}
-
+	//create user
 	public void createUser(String email, String firstname, String lastname, String password, String dob, String phone) throws SQLException {
 		PreparedStatement st = con.prepareStatement("INSERT INTO USER(given_name, family_name, password, email, dob, phone_number) VALUES(?,?,?,?,?,?)");
 		st.setString(1, firstname); //replacing ? with variables
@@ -35,7 +35,8 @@ public class UserDAO {
 
 		st.executeUpdate(); // executes the query
 	}
-
+	
+	//fetch uesr
 	public ArrayList<User> fetchUsers() throws SQLException {
 		ResultSet rs = userFetchReadSt.executeQuery();
 
@@ -60,7 +61,7 @@ public class UserDAO {
 
 		return users;
 	}
-	
+
 	//product fetch
 	public ArrayList<Product> fetchProducts() throws SQLException {
 		ResultSet rs = productFetchReadSt.executeQuery();
@@ -93,13 +94,34 @@ public class UserDAO {
 		}
 		return products;
 	}
-	// 		return users;
-// 	}
-// 	public void createProduct(String email, String firstname, String password) throws SQLException {
-// 		PreparedStatement st = con.prepareStatement("INSERT INTO ACCOUNT(firstname, password, email) VALUES(?,?,?)");
-// 		st.setString(1, firstname); //replacing ? with variables
-// 		st.setString(2, password);
-// 		st.setString(3, email);
-// 		st.executeUpdate(); // executes the query
-// 	}
+
+	//create product
+	public void createProduct(
+		String product_name,
+		String product_brand,
+		String product_description,
+		String product_img,
+		Double product_price,
+		Double product_special_price,
+		Boolean product_on_special,
+		Integer product_stock,
+		Integer product_order_qty
+		) throws SQLException {
+		PreparedStatement st = con.prepareStatement(
+			"INSERT INTO Product(product_name, product_brand, product_description, product_img, product_price, product_special_price, product_on_special, product_stock, product_order_qty ) VALUES(?,?,?,?,?,?,?,?,?)"
+			);
+		st.setString(1, product_name); //replacing ? with variables
+		st.setString(2, product_brand);
+		st.setString(3, product_description);
+		st.setString(4, product_img);
+		st.setDouble(5, product_price);
+		st.setDouble(6, product_special_price);
+		st.setBoolean(7, product_on_special);
+		st.setInt(8, product_stock);
+		st.setInt(9, product_order_qty);
+
+		st.executeUpdate(); // executes the query
+	}
+
+
 }
