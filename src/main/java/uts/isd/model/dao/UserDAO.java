@@ -123,9 +123,20 @@ public class UserDAO {
 		st.executeUpdate(); // executes the query
 	}
 	public void deleteProduct(Integer product_ID) throws SQLException {
+		//needed to use string contactation here because ? and st.setint wasnt working.
 		PreparedStatement st = con.prepareStatement("DELETE FROM Product WHERE product_id="+product_ID);
-		// st.setInt(1, product_ID); //replacing ? with variables
 
 		st.executeUpdate(); // executes the query
+	}
+
+	public void truncateTable(Integer passcode, String tableToBeTruncated) throws SQLException {
+		//Please be careful witht his function and make sure it is only used to clear the table before populating it for
+		//'starting' the project
+		if(passcode == 1212) {
+			PreparedStatement st = con.prepareStatement("TRUNCATE TABLE " + tableToBeTruncated);
+			st.executeUpdate();
+		} else {
+			System.out.println("Passcode wrong, please contact Brad for help");
+		}
 	}
 }

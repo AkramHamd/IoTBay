@@ -66,12 +66,35 @@ public class DAOTest {
         ArrayList<Product> products;
         products = userDAO.fetchProducts();
         Integer productOriginalSize = products.size();
-        System.out.println("Old list size: " + products.size());
+        // System.out.println("Old list size: " + products.size());
         userDAO.deleteProduct(products.get(products.size()-1).getProductId());
         products = userDAO.fetchProducts();
-        System.out.println("New list size: " + products.size());
+        // System.out.println("New list size: " + products.size());
         assertTrue(products.size() < productOriginalSize);
     }
 
-    
+    //complex create/select/delete/truncate product test
+    @Test
+    public void testAllFunctionsProducts() throws SQLException {
+        userDAO.truncateTable(1212, "product");
+        ArrayList<Product> products;
+        userDAO.createProduct("TesterProduct", "Testers", "This is a description", "null", 1.25d, 0.00d, false, 10, 10);
+        products = userDAO.fetchProducts();
+        if(products.size()>0) {
+            userDAO.deleteProduct(1);
+        } else {
+            System.out.println("error");
+        }
+        products = userDAO.fetchProducts();
+        assertTrue(products.size() == 0);
+    }
+
+    //Setting up base products through test
+    @Test
+    public void productSetUp() throws SQLException {
+        ArrayList<Product> products;
+        userDAO.createProduct(null, null, null, null, null, null, null, null, null);
+    }
+
+
 }
