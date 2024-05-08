@@ -12,6 +12,7 @@
         src="/assets/search-icon.png"
         alt="search icon"
         class="search-icon"
+        style="width: 25px;"
       />
     </div>
     <div class="cart-div" style="background-color: var(--primary); color: #fff; padding: 5px 15px; border-radius: 25px; display: flex; align-items: center; gap: 15px;">
