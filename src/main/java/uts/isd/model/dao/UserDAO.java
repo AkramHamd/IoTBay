@@ -21,7 +21,7 @@ public class UserDAO {
 		connection.setAutoCommit(true);
 		//preparing predetermined statement
 		userFetchReadSt = connection.prepareStatement("SELECT given_name, family_name, Password, Phone_number, Email FROM user");
-		productFetchReadSt = connection.prepareStatement("SELECT product_name, product_brand, product_description, product_img, product_price, product_special_price, product_on_special, product_stock, product_order_qty FROM PRODUCT");
+		productFetchReadSt = connection.prepareStatement("SELECT product_id, product_name, product_brand, product_description, product_img, product_price, product_special_price, product_on_special, product_stock, product_order_qty FROM PRODUCT");
 	}
 	//create user
 	public void createUser(String email, String firstname, String lastname, String password, String dob, String phone) throws SQLException {
@@ -68,17 +68,19 @@ public class UserDAO {
 
 		ArrayList<Product> products = new ArrayList<Product>();
 		while (rs.next()) { //loop through every row in the rs variable
-			String productName = rs.getString(1);
-			String productBrand = rs.getString(2);
-			String productDescription = rs.getString(3);
-			String productImage = rs.getString(4);
-			Integer productPrice = rs.getInt(5);
-			Integer specialPrice = rs.getInt(6);
-			Boolean productOnSpecial = rs.getBoolean(7);
-			Integer productStock = rs.getInt(8);
+			Integer product_ID = rs.getInt(1);
+			String productName = rs.getString(2);
+			String productBrand = rs.getString(3);
+			String productDescription = rs.getString(4);
+			String productImage = rs.getString(5);
+			Integer productPrice = rs.getInt(6);
+			Integer specialPrice = rs.getInt(7);
+			Boolean productOnSpecial = rs.getBoolean(8);
+			Integer productStock = rs.getInt(9);
 			//setting every product value to match the data base
 			//all of these objects being created can be accessed through the array "products"
 			Product p = new Product();
+			p.setProductId(product_ID);
 			p.setProductName(productName);
 			p.setProductBrand(productBrand);
 			p.setProductDescription(productDescription);
@@ -107,9 +109,7 @@ public class UserDAO {
 		Integer product_stock,
 		Integer product_order_qty
 		) throws SQLException {
-		PreparedStatement st = con.prepareStatement(
-			"INSERT INTO Product(product_name, product_brand, product_description, product_img, product_price, product_special_price, product_on_special, product_stock, product_order_qty ) VALUES(?,?,?,?,?,?,?,?,?)"
-			);
+		PreparedStatement st = con.prepareStatement("INSERT INTO Product(product_name, product_brand, product_description, product_img, product_price, product_special_price, product_on_special, product_stock, product_order_qty ) VALUES(?,?,?,?,?,?,?,?,?)");
 		st.setString(1, product_name); //replacing ? with variables
 		st.setString(2, product_brand);
 		st.setString(3, product_description);
@@ -122,6 +122,10 @@ public class UserDAO {
 
 		st.executeUpdate(); // executes the query
 	}
+	public void deleteProduct(Integer product_ID) throws SQLException {
+		PreparedStatement st = con.prepareStatement("DELETE FROM Product WHERE product_id="+product_ID);
+		// st.setInt(1, product_ID); //replacing ? with variables
 
-
+		st.executeUpdate(); // executes the query
+	}
 }

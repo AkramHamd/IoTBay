@@ -1,6 +1,5 @@
 package uts.unit;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -49,6 +48,10 @@ public class DAOTest {
     public void testSelectProducts() throws SQLException {
         ArrayList<Product> products = userDAO.fetchProducts();
         assertTrue(products.size() > 0);
+        // System.out.println("---------");
+        // System.out.println(products.get(4).getProductId());
+        // System.out.println(products.get(4).getProductName());
+        // System.out.println("---------");
     }
 
     //create product
@@ -56,4 +59,19 @@ public class DAOTest {
     public void testCreateProducts() throws SQLException {
         userDAO.createProduct("MVN Test product", "Testers", "This is a test description", null, 1.23d, 0.00d, false, 30, 10);
     }
+
+    //delete product
+    @Test
+    public void testDeleteProducts() throws SQLException {
+        ArrayList<Product> products;
+        products = userDAO.fetchProducts();
+        Integer productOriginalSize = products.size();
+        System.out.println("Old list size: " + products.size());
+        userDAO.deleteProduct(products.get(products.size()-1).getProductId());
+        products = userDAO.fetchProducts();
+        System.out.println("New list size: " + products.size());
+        assertTrue(products.size() < productOriginalSize);
+    }
+
+    
 }
