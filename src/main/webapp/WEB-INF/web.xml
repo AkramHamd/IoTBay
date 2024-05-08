@@ -69,6 +69,15 @@
       <url-pattern>/UpdateAddressServlet</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+      <servlet-name>DashboardServlet</servlet-name>
+      <servlet-class>uts.isd.controller.DashboardServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>DashboardServlet</servlet-name>
+      <url-pattern>/DashboardServlet</url-pattern>
+  </servlet-mapping>
+
   <session-config>
     <session-timeout>30</session-timeout>
   </session-config>

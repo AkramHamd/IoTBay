@@ -11,6 +11,8 @@
     <title>IoTBay - Login</title>
   </head>
   
+  <% String login_emailPasswordErr = (String) session.getAttribute("login_emailPasswordErr"); %>
+
   <body>
     <div class="left-div">
       <div class="login-div">
@@ -25,6 +27,9 @@
         </div>
         <form method="post" action="/LoginServlet">
           <div class="input-div">
+            <% if(login_emailPasswordErr != null) { %>
+              <p><%=login_emailPasswordErr%></p>
+            <% } %>
             <input type="email" name="email" id="email" placeholder="Email" required/>
             <input
               type="password"

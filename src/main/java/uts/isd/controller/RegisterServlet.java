@@ -17,7 +17,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import uts.isd.model.Customer;
-import uts.isd.model.Log;
 import uts.isd.model.dao.CustomerDAO;
 import uts.isd.model.dao.LogDAO;
 import javax.mail.Authenticator;
@@ -27,7 +26,7 @@ import javax.mail.Message;
 
 public class RegisterServlet extends HttpServlet {
 
-    //print out the verification code
+    // Generate random verification code
     Random random = new Random();
     String verificationCode = Integer.toString(1000 + random.nextInt(9000)); 
 
@@ -44,7 +43,6 @@ public class RegisterServlet extends HttpServlet {
 
         CustomerDAO customerDAO = (CustomerDAO) session.getAttribute("customerDAO");
         LogDAO logDAO = (LogDAO) session.getAttribute("logDAO");
-        System.out.println(verificationCode);
 
         if (given_name.length() <= 0) {
             session.setAttribute("register_givenNameErr", "First name can't be empty");
@@ -72,20 +70,16 @@ public class RegisterServlet extends HttpServlet {
 
         } else {
             try {
-
                 if (customerDAO.emailExists(email)) {
                     session.setAttribute("register_email_exists", "Email already exists");
                     request.getRequestDispatcher("register.jsp").include(request, response);
                 } else {
                     Customer customer = customerDAO.addCustomer(given_name, family_name, email, password, phone, dob, verificationCode, "false");
                     logDAO.addLog(customer.getCustomer_id(), "register");
-                    ArrayList<Log> customerLogs = logDAO.getLogs(customer.getCustomer_id());
-                    
                     session.setAttribute("customer", customer);
-                    session.setAttribute("customerLogs", customerLogs);
-    
                     sendRegistrationEmail(email);
-                    response.sendRedirect("dashboard.jsp");
+
+                    response.sendRedirect("DashboardServlet");
                 }
             } catch (SQLException e) {
                 System.out.println(e);
@@ -93,13 +87,14 @@ public class RegisterServlet extends HttpServlet {
         }
     }
 
+    // Method to send email
     public void sendRegistrationEmail(String toEmail) {
-        final String fromEmail = "iotbay35@gmail.com"; //requires valid gmail id
-        final String password = "ryyg tski sebc cvxc"; // correct password for gmail id
+        final String fromEmail = "iotbay35@gmail.com";
+        final String password = "ryyg tski sebc cvxc";
     
         Properties properties = new Properties();
         properties.put("mail.smtp.auth", "true");
-        properties.put("mail.smtp.starttls.enable", "true"); // This line enables STARTTLS
+        properties.put("mail.smtp.starttls.enable", "true");
         properties.put("mail.smtp.host", "smtp.gmail.com");
         properties.put("mail.smtp.port", "587");
 
