@@ -64,60 +64,29 @@
               </div>
 
               <div>
-                <h2>Your details</h2>
+                <h2>View Logs</h2>
                 <br>
                 <br>
-                <div class="details-div-wrapper">
-                  <div class="details-div details-div-title">
-                    <p>Customer ID:</p>
-                    <p>Given Name:</p>
-                    <p>Family name:</p>
-                    <p>Email:</p>
-                    <p>Password:</p>
-                    <p>Date of Birth:</p>
-                    <p>Phone:</p>
-                    <p>Registered Date:</p>
-                    <p>Verification Code:</p>
-                    <p>Is verified:</p>
-                  </div>
-                  <div class="details-div">
-                    <p><%= customer.getCustomer_id()%></p>
-                    <p><%= customer.getGiven_name()%></p>
-                    <p><%= customer.getFamily_name()%></p>
-                    <p><%= customer.getEmail()%></p>
-                    <p><%= customer.getPassword()%></p>
-                    <p><%= customer.getDob()%></p>
-                    <p><%= customer.getPhone()%></p>
-                    <p><%= customer.getCreated_at()%></p>
-                    <p><%= customer.getVerification_code()%></p>
-                    <p><%= customer.getIs_verified()%></p>
-                  </div>
-                </div>
+ 
+                <% ArrayList<Log> customerLogs = (ArrayList<Log>) session.getAttribute("customerLogs"); %>
 
-                <% Address address = (Address) session.getAttribute("address"); %>
-
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <h2>Your Address</h2>
-                <br>
-                <br>
                 <div>
-                  <% if(address != null) { %>
-                    <p>Address ID: <%= address.getAddress_id() %></p>
-                    <p>Customer ID: <%= address.getCustomer_id() %></p>
-                    <p>Unit Number: <%= address.getUnit_number() %></p>
-                    <p>Street Number: <%= address.getStreet_number() %></p>
-                    <p>Name Name: <%= address.getStreet_name() %></p>
-                    <p>Suburb: <%= address.getSuburb() %></p>
-                    <p>State: <%= address.getState() %></p>
-                    <p>Postcode: <%= address.getPostcode() %></p>
-                    <p>Country: <%= address.getCountry() %></p>
-                  <% } else { %>
-                    <p>No address added</p>
+                  <% for (Log log : customerLogs) { %>
+                    <div style="display: flex; gap: 30px; background-color: #fdfdfd; border: 1px solid var(--border-colour); border-radius: 10px; padding: 20px;">
+                      <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <p style="font-weight: 600;">Log ID:</p>
+                        <p style="font-weight: 600;">Customer ID:</p>
+                        <p style="font-weight: 600;">Type:</p>
+                        <p style="font-weight: 600;">Timestamp:</p>
+                      </div>
+                      <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <p><%= log.getLog_id() %></p>
+                        <p><%= log.getCustomer_id() %></p>
+                        <p><%= log.getType() %></p>
+                        <p><%= log.getTimestamp() %></p>
+                      </div>
+                    </div>
+                    <br>
                   <% } %>
                 </div>
               </div>

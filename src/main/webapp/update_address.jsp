@@ -64,62 +64,29 @@
               </div>
 
               <div>
-                <h2>Your details</h2>
+                <h2>Update address</h2>
                 <br>
                 <br>
-                <div class="details-div-wrapper">
-                  <div class="details-div details-div-title">
-                    <p>Customer ID:</p>
-                    <p>Given Name:</p>
-                    <p>Family name:</p>
-                    <p>Email:</p>
-                    <p>Password:</p>
-                    <p>Date of Birth:</p>
-                    <p>Phone:</p>
-                    <p>Registered Date:</p>
-                    <p>Verification Code:</p>
-                    <p>Is verified:</p>
-                  </div>
-                  <div class="details-div">
-                    <p><%= customer.getCustomer_id()%></p>
-                    <p><%= customer.getGiven_name()%></p>
-                    <p><%= customer.getFamily_name()%></p>
-                    <p><%= customer.getEmail()%></p>
-                    <p><%= customer.getPassword()%></p>
-                    <p><%= customer.getDob()%></p>
-                    <p><%= customer.getPhone()%></p>
-                    <p><%= customer.getCreated_at()%></p>
-                    <p><%= customer.getVerification_code()%></p>
-                    <p><%= customer.getIs_verified()%></p>
-                  </div>
-                </div>
-
+  
                 <% Address address = (Address) session.getAttribute("address"); %>
 
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <h2>Your Address</h2>
-                <br>
-                <br>
-                <div>
-                  <% if(address != null) { %>
-                    <p>Address ID: <%= address.getAddress_id() %></p>
-                    <p>Customer ID: <%= address.getCustomer_id() %></p>
-                    <p>Unit Number: <%= address.getUnit_number() %></p>
-                    <p>Street Number: <%= address.getStreet_number() %></p>
-                    <p>Name Name: <%= address.getStreet_name() %></p>
-                    <p>Suburb: <%= address.getSuburb() %></p>
-                    <p>State: <%= address.getState() %></p>
-                    <p>Postcode: <%= address.getPostcode() %></p>
-                    <p>Country: <%= address.getCountry() %></p>
-                  <% } else { %>
-                    <p>No address added</p>
-                  <% } %>
-                </div>
+                <% if(address != null) { %>
+
+                <form action="/UpdateAddressServlet" method="post" style="display: flex; flex-direction: column; gap: 20px;">
+                  <input type="hidden" name="address_id" value="<%= address.getAddress_id() %>">
+                  <input type="number" name="unit_number" value="<%= address.getUnit_number() %>">
+                  <input type="number" name="street_number" value="<%= address.getStreet_number() %>">
+                  <input type="text" name="street_name" value="<%= address.getStreet_name() %>">
+                  <input type="text" name="suburb" value="<%= address.getSuburb() %>">
+                  <input type="text" name="state" value="<%= address.getState() %>">
+                  <input type="number" name="postcode" value="<%= address.getPostcode() %>">
+                  <input type="text" name="country" value="<%= address.getCountry() %>">
+                  <input type="submit" value="Update Address">
+                </form>
+
+                <% } else { %>
+                  <p>No address is added to be updated</p>
+                <% } %>
               </div>
             </div>
           </div>
