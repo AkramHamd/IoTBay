@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import javax.mail.Address;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -51,8 +50,8 @@ public class ConnServlet extends HttpServlet{
         session.setAttribute("logDAO", logDAO);
         session.setAttribute("customerDAO", customerDAO);
         session.setAttribute("addressDAO", addressDAO);
-
-        response.sendRedirect("/index.jsp");
+        System.out.println("Conn Servlet");
+        request.getRequestDispatcher("index.jsp").include(request, response);
     }
 
     @Override

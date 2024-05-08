@@ -12,7 +12,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>ConnServlet</servlet-name>
-    <url-pattern>/</url-pattern>
+    <url-pattern>/index</url-pattern>
   </servlet-mapping>
 
   <servlet>

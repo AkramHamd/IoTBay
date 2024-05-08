@@ -10,6 +10,8 @@ public class Customer {
     private String dob;
     private String phone;
     private String created_at;
+    private String verification_code;
+    private String is_verified;
 
     public Customer(String given_name, String family_name, String email, String password, String phone, String dob) {
         this.given_name = given_name;
@@ -56,6 +58,20 @@ public class Customer {
         this.dob = dob;
         this.phone = phone;
         this.created_at = created_at;
+    }
+
+    public Customer(int customer_id, String given_name, String family_name, String email, String password, String dob,
+            String phone, String created_at, String verification_code, String is_verified) {
+        this.customer_id = customer_id;
+        this.given_name = given_name;
+        this.family_name = family_name;
+        this.email = email;
+        this.password = password;
+        this.dob = dob;
+        this.phone = phone;
+        this.created_at = created_at;
+        this.verification_code = verification_code;
+        this.is_verified = is_verified;
     }
 
     public int getCustomer_id() {
@@ -120,5 +136,21 @@ public class Customer {
 
     public void setCreated_at(String created_at) {
         this.created_at = created_at;
+    }
+
+    public String getVerification_code() {
+        return verification_code;
+    }
+
+    public void setVerification_code(String verification_code) {
+        this.verification_code = verification_code;
+    }
+
+    public String getIs_verified() {
+        return is_verified;
+    }
+
+    public void setIs_verified(String is_verified) {
+        this.is_verified = is_verified;
     }
 }

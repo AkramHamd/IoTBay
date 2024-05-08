@@ -154,6 +154,15 @@
     </style>
     <title>IoTBay - Register</title>
   </head>
+
+  <% String register_givenNameErr = (String) session.getAttribute("register_givenNameErr"); %>
+  <% String register_familyNameErr = (String) session.getAttribute("register_familyNameErr"); %>
+  <% String register_emailErr = (String) session.getAttribute("register_emailErr"); %>
+  <% String register_passwordErr = (String) session.getAttribute("register_passwordErr"); %>
+  <% String register_phoneErr = (String) session.getAttribute("register_phoneErr"); %>
+  <% String register_dobErr = (String) session.getAttribute("register_dobErr"); %>
+  <% String register_email_exists = (String) session.getAttribute("register_email_exists"); %>
+
   <body>
     <div class="left-div">
       <div class="register-div">
@@ -168,37 +177,66 @@
         </div>
         <form method="post" action="/RegisterServlet">
           <div class="input-div">
+
+            <% if(register_givenNameErr != null) { %>
+              <p><%=register_givenNameErr%></p>
+            <% } %>
             <input
               type="text"
               name="given_name"
               id="given_name"
               placeholder="Given Name"
-              required
+              
             />
+
+            <% if(register_familyNameErr != null) { %>
+              <p><%=register_familyNameErr%></p>
+            <% } %>
             <input
               type="text"
               name="family_name"
               id="family_name"
               placeholder="Family Name"
-              required
+              
             />
-            <input type="email" name="email" id="email" placeholder="Email" required/>
+
+            
+
+            <% if(register_emailErr != null) { %>
+              <p><%=register_emailErr%></p>
+            <% } %>
+            <% if(register_email_exists != null) { %>
+              <p><%=register_email_exists%></p>
+            <% } %>
+            <input type="email" name="email" id="email" placeholder="Email" />
+
+            <% if(register_passwordErr != null) { %>
+              <p><%=register_passwordErr%></p>
+            <% } %>
             <input
               type="password"
               name="password"
               id="password"
               placeholder="Password"
-              required
+              
             />
+
+            <% if(register_phoneErr != null) { %>
+              <p><%=register_phoneErr%></p>
+            <% } %>
             <input
               type="text"
               name="phone"
               id="phone"
               placeholder="Phone"
-              required
+              
             />
 
-            <input type="date" name="dob" id="dob">
+            <% if(register_dobErr != null) { %>
+              <p><%=register_dobErr%></p>
+            <% } %>
+            <input type="date" name="dob" id="dob" >
+
           </div>
           <div class="submit-div">
             <input type="submit" value="Register" />

@@ -36,6 +36,6 @@ public class DAOTest {
     }
     @Test
     public void testCreateUsers() throws SQLException {
-        customerDAO.addCustomer("test_given", "test_last", "test_give@email.comer", "123456", "0422 222 222", "1999-01-01");	
+        customerDAO.addCustomer("test_given", "test_last", "test_give@email.comer", "123456", "0422 222 222", "1999-01-01", "1234", "false");	
     }
 }

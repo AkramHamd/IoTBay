@@ -28,6 +28,7 @@ public class LoginServlet extends HttpServlet {
         LogDAO logDAO = (LogDAO) session.getAttribute("logDAO");
     
         if (customerDAO == null) {
+            System.out.println("customerDAO is null");
             request.getRequestDispatcher("index.jsp").include(request, response);
         } else {
             try {

@@ -108,6 +108,8 @@
               <p>Date of Birth: <%= customer.getDob()%></p>
               <p>Phone: <%= customer.getPhone()%></p>
               <p>Registered Date: <%= customer.getCreated_at()%></p>
+              <p>Verification Code: <%= customer.getVerification_code()%></p>
+              <p>Is verified: <%= customer.getIs_verified()%></p>
             </div>
 
             <% Address address = (Address) session.getAttribute("address"); %>
