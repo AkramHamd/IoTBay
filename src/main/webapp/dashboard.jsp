@@ -10,71 +10,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
-        <link rel="manifest" href="/assets/favicon/site.webmanifest">
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-    />
-
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/assets/favicon/site.webmanifest">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <link rel="stylesheet" href="css/layout.css">
     <link rel="stylesheet" href="css/dashboard.css" />
-    <style>
-      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
-
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: 'Inter', sans-serif;
-        letter-spacing: 0.7px;
-      }
-
-      :root {
-        --primary: #d22020;
-        --border-colour: #d1d1d1;
-        --background-colour: #f1f3f5;
-        --font-colour: #858585;
-      }
-
-      .container {
-        width: 80%;
-        margin: 0 auto;
-      }
-
-      .dashboard-div {
-        padding: 70px 0;
-      }
-
-      .dashboard-div h1 {
-        font-size: 50px;
-        font-weight: 700;
-      }
-
-      .main-wrapper {
-        display: flex;
-        gap: 80px;
-        margin-bottom: 200px;
-      }
-
-      .main-div {
-        flex-grow: 1;
-        display: flex;
-        flex-direction: column;
-        gap: 80px;
-      }
-
-      .welcome-div h1 {
-        font-size: 22px;
-        font-weight: 600;
-        margin-bottom: 15px;
-      }
-
-      .welcome-div p {
-        font-size: 16px;
-        font-weight: 300;
-      }
-    </style>
     <title>IoTBay - Dashboard</title>
   </head>
 

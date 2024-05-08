@@ -10,36 +10,6 @@
         <link rel="manifest" href="/assets/favicon/site.webmanifest">
         <link rel="stylesheet" href="css/layout.css" type="text/css">
         <link rel="stylesheet" href="css/index.css" type="text/css">
-        <style>
-            @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
-
-            * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-            letter-spacing: 0.7px;
-            }
-
-            :root {
-            --primary: #d22020;
-            --border-colour: #d1d1d1;
-            --background-colour: #f1f3f5;
-            --font-colour: #858585;
-            }
-
-            .container {
-            width: 80%;
-            margin: 0 auto;
-            }
-
-            main {
-                padding: 100px 0;
-                display: flex;
-                flex-direction: column;
-                gap: 20px;
-            }
-        </style>
         <title>Index Page</title>
     </head>
 
