@@ -65,6 +65,14 @@
                     </div>
                 </div>
             </div>
+
+
+            <div>
+                <% 
+                Arraylist<Product> products = userDAO.selectProducts; 
+                products.get(0).getProductName;
+                %>
+            </div>
           </main>
     
         <%@ include file="assets/footer.jsp" %>

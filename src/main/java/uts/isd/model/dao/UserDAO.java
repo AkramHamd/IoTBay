@@ -130,7 +130,7 @@ public class UserDAO {
 	}
 
 	public void truncateTable(Integer passcode, String tableToBeTruncated) throws SQLException {
-		//Please be careful witht his function and make sure it is only used to clear the table before populating it for
+		//Please be careful with this function and make sure it is only used to clear the table before populating it for
 		//'starting' the project
 		if(passcode == 1212) {
 			PreparedStatement st = con.prepareStatement("TRUNCATE TABLE " + tableToBeTruncated);

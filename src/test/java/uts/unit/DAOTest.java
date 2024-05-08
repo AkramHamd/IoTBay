@@ -93,7 +93,18 @@ public class DAOTest {
     @Test
     public void productSetUp() throws SQLException {
         ArrayList<Product> products;
-        userDAO.createProduct(null, null, null, null, null, null, null, null, null);
+        userDAO.createProduct(
+            "Nest Mini Smart Speaker",
+            "Google",
+            "The Google Nest Mini Smart Speaker comes with powerful, rich bass for great sounding music. And with the Google Assistant it’s also helpful around the house, easily set timers, alarms or ask Google a question. Plus, control hundreds of compatible smart devices, like lights, smart plugs and TVs**. Google Nest Mini has also been designed with the environment in mind, with its fabric covering made from recycled plastic bottles.",
+            "googlenest",
+            69.99d,
+            0.00d,
+            false,
+            5,
+            1);
+        products = userDAO.fetchProducts();
+        assertTrue(products.size() == 1);
     }
 
 

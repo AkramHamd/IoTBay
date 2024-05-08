@@ -10,7 +10,7 @@
         <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
         <link rel="manifest" href="/assets/favicon/site.webmanifest">
-    <link rel="stylesheet" href="css/forgot_password.css" />
+    <link rel="stylesheet" href="/css/forgot_password.css" />
     <title>IoTBay - Forgot Password</title>
   </head>
   
