@@ -19,7 +19,7 @@ public class CustomerDAO {
         connection.setAutoCommit(true);
     }
 
-    public Customer addCustomer(String given_name, String family_name, String email, String password, String phone, String dob, String verification_code, String is_verified) throws SQLException {
+    public Integer addCustomer(String given_name, String family_name, String email, String password, String phone, String dob, String verification_code, String is_verified) throws SQLException {
         String query = "INSERT INTO customers (given_name, family_name, email, password, phone, dob, verification_code, is_verified) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement st = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
         st.setString(1, given_name);
@@ -35,19 +35,7 @@ public class CustomerDAO {
         ResultSet rs = st.getGeneratedKeys();
         if (rs.next()) {
             int customer_id = rs.getInt(1);
-            
-            // New query to get the 'created_at' value
-            String selectQuery = "SELECT created_at FROM customers WHERE customer_id = ?";
-            PreparedStatement selectStatement = connection.prepareStatement(selectQuery);
-            selectStatement.setInt(1, customer_id);
-            ResultSet selectResultSet = selectStatement.executeQuery();
-            if (selectResultSet.next()) {
-                Timestamp created_at = selectResultSet.getTimestamp("created_at");
-                Customer customer = new Customer(customer_id, given_name, family_name, email, password, dob, phone, created_at.toString(), verification_code, is_verified);
-                return customer;
-            } else {
-                return null;
-            }
+            return customer_id;
         } else {
             return null;
         }
@@ -112,17 +100,21 @@ public class CustomerDAO {
             String family_name = rs.getString(3);
             String email = rs.getString(4);
             String password = rs.getString(5);
-            String phone = rs.getString(6);
+            String dob = rs.getString(6);
+            String phone = rs.getString(7);
+            String created_at = rs.getString(8);
+            String verification_code = rs.getString(9);
+            String is_verified = rs.getString(10);
 
 
-            Customer customer = new Customer(customer_id, given_name, family_name, email, password, phone);
+            Customer customer = new Customer(customer_id, given_name, family_name, email, password, dob, phone, created_at, verification_code, is_verified);
             return customer;
         } else {
             return null;
         }
     }
 
-    public Customer validateCustomer(String email, String password) throws SQLException {
+    public Integer validateCustomer(String email, String password) throws SQLException {
         String query = "SELECT * FROM customers WHERE email = ? AND password = ?";
         PreparedStatement st = connection.prepareStatement(query);
         st.setString(1, email);
@@ -131,16 +123,7 @@ public class CustomerDAO {
 
         if (rs.next()) {
             int customer_id = rs.getInt(1);
-            String given_name = rs.getString(2);
-            String family_name = rs.getString(3);
-            email = rs.getString(4);
-            password = rs.getString(5);
-            String dob = rs.getString(6);
-            String phone = rs.getString(7);
-            String created_at = rs.getString(8);
-
-            Customer customer = new Customer(customer_id, given_name, family_name, email, password, dob, phone, created_at);
-            return customer;
+            return customer_id;
         } else {
             return null;
         }

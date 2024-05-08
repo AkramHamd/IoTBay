@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import uts.isd.model.Log;
 import uts.isd.model.Customer;
+import uts.isd.model.dao.CustomerDAO;
 import uts.isd.model.dao.LogDAO;
 
 public class DashboardServlet extends HttpServlet {
@@ -20,14 +21,17 @@ public class DashboardServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
 
-        Customer customer = (Customer) session.getAttribute("customer");
+        int customer_id = (int) session.getAttribute("authorisedCustomer_id");
         LogDAO logDAO = (LogDAO) session.getAttribute("logDAO");
+        CustomerDAO CustomerDAO = (CustomerDAO) session.getAttribute("customerDAO");
 
         System.out.println("inside dashboard servlet");
 
         try {
-            ArrayList<Log> customerLogs = logDAO.getLogs(customer.getCustomer_id());
+            ArrayList<Log> customerLogs = logDAO.getLogs(customer_id);
+            Customer customer = CustomerDAO.fetchCustomer(customer_id);
             session.setAttribute("customerLogs", customerLogs);
+            session.setAttribute("customer", customer);
 
             response.sendRedirect("dashboard.jsp");
         } catch (SQLException e) {

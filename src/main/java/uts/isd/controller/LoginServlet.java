@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import uts.isd.model.Customer;
 import uts.isd.model.dao.CustomerDAO;
 import uts.isd.model.dao.LogDAO;
 
@@ -26,12 +25,11 @@ public class LoginServlet extends HttpServlet {
         LogDAO logDAO = (LogDAO) session.getAttribute("logDAO");
     
         try {
-            Customer customer = customerDAO.validateCustomer(email, password);
+            Integer customer_id = customerDAO.validateCustomer(email, password);
 
-            if (customer != null) {
-                logDAO.addLog(customer.getCustomer_id(), "login");
-                session.setAttribute("customer", customer);
-
+            if (customer_id != null) {
+                logDAO.addLog(customer_id, "login");
+                session.setAttribute("authorisedCustomer_id", customer_id);
                 response.sendRedirect("DashboardServlet");
             } else {
                 session.setAttribute("login_emailPasswordErr", "Invalid email or password");

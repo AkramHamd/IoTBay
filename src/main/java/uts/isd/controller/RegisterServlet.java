@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import uts.isd.model.Customer;
 import uts.isd.model.dao.CustomerDAO;
 import uts.isd.model.dao.LogDAO;
 import javax.mail.Authenticator;
@@ -74,9 +73,9 @@ public class RegisterServlet extends HttpServlet {
                     session.setAttribute("register_email_exists", "Email already exists");
                     request.getRequestDispatcher("register.jsp").include(request, response);
                 } else {
-                    Customer customer = customerDAO.addCustomer(given_name, family_name, email, password, phone, dob, verificationCode, "false");
-                    logDAO.addLog(customer.getCustomer_id(), "register");
-                    session.setAttribute("customer", customer);
+                    int customer_id = customerDAO.addCustomer(given_name, family_name, email, password, phone, dob, verificationCode, "false");
+                    logDAO.addLog(customer_id, "register");
+                    session.setAttribute("authorisedCustomer_id", customer_id);
                     sendRegistrationEmail(email);
 
                     response.sendRedirect("DashboardServlet");
