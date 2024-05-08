@@ -5,30 +5,26 @@
          version="3.1">
     
     <!-- Servlet Mapping for ShipmentServlet -->
-<servlet>
-        <servlet-name>list_shipments.jsp</servlet-name>
-        <jsp-file>/list_shipments.jsp</jsp-file>
-        <!-- <load-on-startup></load-on-startup> -->
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>list_shipments.jsp</servlet-name>
-        <url-pattern>/list_shipments/*</url-pattern>
-    </servlet-mapping>
-    
-    <!-- Servlet Mapping for index.jsp -->
     <servlet>
-        <servlet-name>index.jsp</servlet-name>
-        <jsp-file>/index.jsp</jsp-file>
-        <load-on-startup>1</load-on-startup>
+        <servlet-name>ListShipmentServlet</servlet-name>
+        <servlet-class>uts.isd.controller.ListShipmentServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>index.jsp</servlet-name>
-        <url-pattern>/index/*</url-pattern>
+        <servlet-name>ListShipmentServlet</servlet-name>
+        <url-pattern>/ListShipmentServlet</url-pattern>
     </servlet-mapping>
     
-    <!-- Default welcome file -->
-    <welcome-file-list>
-        <welcome-file>index.jsp</welcome-file>
-    </welcome-file-list>
+     <servlet>
+    <servlet-name>ConnServlet</servlet-name>
+        <servlet-class>uts.isd.controller.ConnServlet</servlet-class>
+        <load-on-startup>0</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ConnServlet</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>30</session-timeout>
+    </session-config>
     
 </web-app>

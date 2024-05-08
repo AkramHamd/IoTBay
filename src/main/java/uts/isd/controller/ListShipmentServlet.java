@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.sql.Date;
 //import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -17,7 +18,7 @@ import javax.servlet.http.HttpSession;
 import uts.isd.model.Shipment;
 import uts.isd.model.dao.ShipmentDAO;
 
-@WebServlet("/shipment")
+
 public class ListShipmentServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -31,7 +32,7 @@ public class ListShipmentServlet extends HttpServlet {
             
             // Get all shipments from the database
             List<Shipment> shipments = shipmentDAO.getAllShipments();
-            
+            System.out.println(shipments.size());
             // Add shipments to request attributes to display in a JSP view
             session.setAttribute("shipments", shipments);
             
@@ -42,6 +43,7 @@ public class ListShipmentServlet extends HttpServlet {
         }
     }
 
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

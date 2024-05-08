@@ -28,6 +28,13 @@
 
 <h1>List of Shipments</h1>
 
+<%-- Retrieve the list of shipments from the session attribute --%>
+<%@ page import="java.util.List" %>
+<%@ page import="uts.isd.model.Shipment" %>
+<%
+    List<Shipment> shipments = (List<Shipment>) session.getAttribute("shipments");
+%>
+
 <c:if test="${empty shipments}">
     <p>No shipments available.</p>
 </c:if>
