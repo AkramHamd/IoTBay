@@ -3,28 +3,8 @@
 <%@page import="uts.isd.model.*"%>
 
 <nav>
-
   <div class="container navbar">
-    <a href="/index.jsp"
-      ><img src="/assets/logo.png" alt="logo" class="logo"
-    /></a>
-    <div class="search-div">
-      <input type="text" placeholder="Search millions of things . . ." />
-      <img
-        src="/assets/search-icon.png"
-        alt="search icon"
-        class="search-icon"
-      />
-    </div>
-    <div class="cart-div">
-      Cart
-      <img src="/assets/cart-icon.png" alt="cart icon" class="cart-icon" />
-    </div>
-    <div class="user-div">
-
-
-  <div class="container navbar">
-    <a href="/index.jsp"
+    <a href="/index.jsp"  
       ><img src="/assets/logo.png" alt="logo" class="logo"
     /></a>
     <div class="search-div">

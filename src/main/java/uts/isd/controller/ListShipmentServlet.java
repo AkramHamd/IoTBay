@@ -1,6 +1,8 @@
+//ShipmentServlet.java
 package uts.isd.controller;
 
 import java.io.IOException;
+import java.sql.Date;
 //import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
@@ -16,7 +18,7 @@ import uts.isd.model.Shipment;
 import uts.isd.model.dao.ShipmentDAO;
 
 @WebServlet("/shipment")
-public class ShipmentServlet extends HttpServlet {
+public class ListShipmentServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -31,41 +33,48 @@ public class ShipmentServlet extends HttpServlet {
             List<Shipment> shipments = shipmentDAO.getAllShipments();
             
             // Add shipments to request attributes to display in a JSP view
-            request.setAttribute("shipments", shipments);
+            session.setAttribute("shipments", shipments);
             
             // Forward to the JSP view to display shipments
-            request.getRequestDispatcher("/shipments.jsp").forward(request, response);
+            request.getRequestDispatcher("/list_shipments.jsp").forward(request, response);
         } catch (SQLException e) {
             throw new ServletException("Error getting shipments", e);
         }
     }
 
     @Override
-    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
             // Retrieve the session
-            HttpSession session = request.getSession();
+            HttpSession session = request.getSession(false);
+            
+            // Check if the user is authenticated
+            if (session == null || session.getAttribute("user") == null) {
+                // Redirect the user to the login page if not authenticated
+                response.sendRedirect(request.getContextPath() + "/login.jsp");
+                return;
+            }
             
             // Retrieve the shipment DAO object from the session
             ShipmentDAO shipmentDAO = (ShipmentDAO) session.getAttribute("shipmentDAO");
-            
-            // Extract shipment details from request parameters
-            String method = request.getParameter("method");
-            String date = request.getParameter("date");
-            String address = request.getParameter("address");
-            
-            // Assuming orderId is retrieved from session or request
-            int orderId = 123; // Replace with actual orderId
-            
-            // Save shipment details to the database
-            shipmentDAO.createShipment(orderId, method, date, address);
-            
-            // Redirect to the shipment page to display the updated list of shipments
-            response.sendRedirect(request.getContextPath() + "/shipment");
+            if (shipmentDAO == null) {
+                throw new ServletException("ShipmentDAO not found in session");
+            }
+
+            // Retrieve the user's shipments using the user ID from the session
+            int userId = (int) session.getAttribute("userId");
+            List<Shipment> shipments = shipmentDAO.getShipmentsByUserId(userId);
+
+            // Add shipments to session attributes to display in a JSP view
+            session.setAttribute("shipments", shipments);
+
+            // Forward to the JSP view to display shipments
+            request.getRequestDispatcher("/list_shipments.jsp").forward(request, response);
         } catch (SQLException e) {
-            throw new ServletException("Error creating shipment", e);
+            throw new ServletException("Error retrieving shipments", e);
+        } catch (NumberFormatException e) {
+            throw new ServletException("Invalid user ID", e);
         }
     }
 }

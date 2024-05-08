@@ -1,3 +1,4 @@
+//Shipment.java
 package uts.isd.model;
 import java.io.Serializable;
 import java.sql.Date;
@@ -13,6 +14,9 @@ public class Shipment implements Serializable{
     private Date date_Delivered;
     private String tracking_Number;
     
+    public Shipment() {
+    }
+
     public Shipment(int shipment_Id, int order_Id, int customer_Id, int address_Id, int courier_Id, Date date_Shipped2,
             Date date_Delivered2, String tracking_Number) {
         this.shipment_Id = shipment_Id;
