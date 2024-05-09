@@ -22,7 +22,7 @@
         <%-- <%@ include file="assets/nav.jsp" %> --%>
           <main class="container">
             <h1>Home page still under construction</h1>
-                <%-- h --%>
+                <%-- h testing commit again--%>
             <%-- <% if(user == null) { %>
                 <p>You are NOT authenticated</p>
             <% } else { %>
