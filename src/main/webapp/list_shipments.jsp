@@ -54,6 +54,7 @@
                 <th>Date Delivered</th>
                 <th>Tracking Number</th>
                 <th>Update Tracking</th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -68,10 +69,16 @@
                     <td>${shipment.date_Delivered}</td>
                     <td>${shipment.tracking_Number}</td>
                     <td>
-                       <form action="/UpdateTrackingNumberServlet" method="post">
+                        <form action="<c:url value='/UpdateTrackingNumberServlet'/>" method="post">
                             <input type="hidden" name="shipmentId" value="${shipment.shipment_Id}" />
                             <input type="text" name="trackingNumber" value="${shipment.tracking_Number}" />
                             <input type="submit" value="Update" />
+                        </form>
+                    </td>
+                    <td>
+                        <form action="/DeleteShipmentServlet" method="post">
+                            <input type="hidden" name="shipmentId" value="${shipment.shipment_Id}" />
+                            <input type="submit" value="Delete" />
                         </form>
                     </td>
                 </tr>

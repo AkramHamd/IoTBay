@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import uts.isd.model.User;
-//import uts.isd.model.Product;
+import uts.isd.model.Product;
 
 public class UserDAO {
 	private Connection con;
@@ -21,7 +21,7 @@ public class UserDAO {
 		connection.setAutoCommit(true);
 		//preparing predetermined statement
 		userFetchReadSt = connection.prepareStatement("SELECT firstname, lastname, Password, Phone, Email FROM customer");
-		productFetchReadSt = connection.prepareStatement("SELECT product_name, product_brand, product_description, product_image, product_price, product_special_price, product_on_special, product_stock, product_order_qty FROM PRODUCT");
+		//productFetchReadSt = connection.prepareStatement("SELECT product_name, product_brand, product_description, product_image, product_price, product_special_price, product_on_special, product_stock, product_order_qty FROM PRODUCT");
 	}
 
 	public void createUser(String email, String firstname, String password) throws SQLException {

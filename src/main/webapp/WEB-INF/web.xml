@@ -3,8 +3,8 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
-
-    <!-- Servlet Mapping for ListShipmentServlet -->
+    
+    <!-- Servlet Mapping for ShipmentServlet -->
     <servlet>
         <servlet-name>ListShipmentServlet</servlet-name>
         <servlet-class>uts.isd.controller.ListShipmentServlet</servlet-class>
@@ -14,29 +14,29 @@
         <url-pattern>/ListShipmentServlet</url-pattern>
     </servlet-mapping>
 
-    <!-- Servlet Mapping for ConnServlet -->
+  <servlet>
+      <servlet-name>DeleteShipmentServlet</servlet-name>
+      <servlet-class>uts.isd.controller.DeleteShipmentServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>DeleteShipmentServlet</servlet-name>
+      <url-pattern>/DeleteShipmentServlet</url-pattern>
+  </servlet-mapping>
+
+    
     <servlet>
-        <servlet-name>ConnServlet</servlet-name>
+    <servlet-name>ConnServlet</servlet-name>
         <servlet-class>uts.isd.controller.ConnServlet</servlet-class>
-        <load-on-startup>1</load-on-startup>
+        <load-on-startup>0</load-on-startup>
     </servlet>
     <servlet-mapping>
         <servlet-name>ConnServlet</servlet-name>
-        <url-pattern>/ConnServlet</url-pattern>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
 
-    <!-- Servlet Mapping for UpdateTrackingNumberServlet -->
-    <servlet>
-        <servlet-name>UpdateTrackingNumberServlet</servlet-name>
-        <servlet-class>uts.isd.controller.UpdateTrackingNumberServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>UpdateTrackingNumberServlet</servlet-name>
-        <url-pattern>/UpdateTrackingNumberServlet</url-pattern>
-    </servlet-mapping>
-
-    <!-- Session Configuration -->
     <session-config>
         <session-timeout>30</session-timeout>
     </session-config>
+    
 </web-app>
+

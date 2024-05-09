@@ -55,6 +55,7 @@ public class ShipmentDAO {
         }
     }
 
+
     private Shipment extractShipmentFromResultSet(ResultSet rs) throws SQLException {
         int shipmentId = rs.getInt("shipment_Id");
         int orderId = rs.getInt("order_Id");
@@ -65,5 +66,13 @@ public class ShipmentDAO {
         java.sql.Date dateDelivered = rs.getDate("date_Delivered");
         String trackingNumber = rs.getString("tracking_Number");
         return new Shipment(shipmentId, orderId, customerId, addressId, courierId, dateShipped, dateDelivered, trackingNumber);
+    }
+
+    public void deleteShipment(int shipmentId) throws SQLException {
+        String query = "DELETE FROM shipment WHERE shipment_Id = ?";
+        try (PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, shipmentId);
+            stmt.executeUpdate();
+        }
     }
 }
