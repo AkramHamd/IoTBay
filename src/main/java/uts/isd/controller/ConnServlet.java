@@ -10,15 +10,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import uts.isd.model.dao.AddressDAO;
+import uts.isd.model.dao.CustomerDAO;
 import uts.isd.model.dao.DBConnector;
-import uts.isd.model.dao.UserDAO;
+import uts.isd.model.dao.LogDAO;
 
 public class ConnServlet extends HttpServlet{
-    
     private DBConnector db;
-    private UserDAO userDAO;
-    private Connection conn;
-    //runs whenever the server is first runn
+    private CustomerDAO customerDAO;
+    private LogDAO logDAO;
+    private AddressDAO addressDAO;
+    private Connection connection;
+    
     @Override
     public void init() {
         try {
@@ -28,20 +31,27 @@ public class ConnServlet extends HttpServlet{
             System.out.println(ex);
         }
     }
-    //run whenever a user connects to the website
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
-        conn = db.openConnection();
+        
+        connection = db.openConnection();
 
         try {
-            userDAO = new UserDAO(conn);
+            customerDAO = new CustomerDAO(connection);
+            logDAO = new LogDAO(connection);
+            addressDAO = new AddressDAO(connection);
         } catch (SQLException e) {
             System.out.print(e);
         }
 
-        session.setAttribute("userDAO", userDAO);
+        session.setAttribute("logDAO", logDAO);
+        session.setAttribute("customerDAO", customerDAO);
+        session.setAttribute("addressDAO", addressDAO);
+        System.out.println("Conn Servlet");
+        request.getRequestDispatcher("index.jsp").include(request, response);
     }
 
     @Override
