@@ -13,16 +13,19 @@ import uts.isd.model.Customer;
 import uts.isd.model.Product;
 import uts.isd.model.dao.DBConnector;
 import uts.isd.model.dao.CustomerDAO;
+import uts.isd.model.dao.ProductDAO;
 
 public class DAOTest {
     private DBConnector connector;
     private Connection conn;
     private CustomerDAO customerDAO;
+    private ProductDAO productDAO;
 
     public DAOTest() throws ClassNotFoundException, SQLException {
         connector = new DBConnector();
         conn = connector.openConnection();
         customerDAO = new CustomerDAO(conn);
+        productDAO = new ProductDAO(conn);
     }
 
     @Test
@@ -44,7 +47,7 @@ public class DAOTest {
     //select products
     @Test
     public void testSelectProducts() throws SQLException {
-        ArrayList<Product> products = userDAO.fetchProducts();
+        ArrayList<Product> products = productDAO.fetchProducts();
         assertTrue(products.size() > 0);
         // System.out.println("---------");
         // System.out.println(products.get(4).getProductId());
@@ -55,18 +58,18 @@ public class DAOTest {
     //create product
     @Test
     public void testCreateProducts() throws SQLException {
-        userDAO.createProduct("MVN Test product", "Testers", "This is a test description", null, 1.23d, 0.00d, false, 30, 10);
+        productDAO.createProduct("MVN Test product", "Testers", "This is a test description", null, 1.23d, 0.00d, false, 30, 10);
     }
 
     //delete product
     @Test
     public void testDeleteProducts() throws SQLException {
         ArrayList<Product> products;
-        products = userDAO.fetchProducts();
+        products = productDAO.fetchProducts();
         Integer productOriginalSize = products.size();
         // System.out.println("Old list size: " + products.size());
-        userDAO.deleteProduct(products.get(products.size()-1).getProductId());
-        products = userDAO.fetchProducts();
+        productDAO.deleteProduct(products.get(products.size()-1).getProductId());
+        products = productDAO.fetchProducts();
         // System.out.println("New list size: " + products.size());
         assertTrue(products.size() < productOriginalSize);
     }
@@ -74,16 +77,16 @@ public class DAOTest {
     //complex create/select/delete/truncate product test
     @Test
     public void testAllFunctionsProducts() throws SQLException {
-        userDAO.truncateTable(1212, "product");
+        productDAO.truncateTable(1212, "product");
         ArrayList<Product> products;
-        userDAO.createProduct("TesterProduct", "Testers", "This is a description", "null", 1.25d, 0.00d, false, 10, 10);
-        products = userDAO.fetchProducts();
+        productDAO.createProduct("TesterProduct", "Testers", "This is a description", "null", 1.25d, 0.00d, false, 10, 10);
+        products = productDAO.fetchProducts();
         if(products.size()>0) {
-            userDAO.deleteProduct(1);
+            productDAO.deleteProduct(1);
         } else {
             System.out.println("error");
         }
-        products = userDAO.fetchProducts();
+        products = productDAO.fetchProducts();
         assertTrue(products.size() == 0);
     }
 
@@ -91,7 +94,7 @@ public class DAOTest {
     @Test
     public void productSetUp() throws SQLException {
         ArrayList<Product> products;
-        userDAO.createProduct(
+        productDAO.createProduct(
             "Nest Mini Smart Speaker",
             "Google",
             "The Google Nest Mini Smart Speaker comes with powerful, rich bass for great sounding music. And with the Google Assistant it’s also helpful around the house, easily set timers, alarms or ask Google a question. Plus, control hundreds of compatible smart devices, like lights, smart plugs and TVs**. Google Nest Mini has also been designed with the environment in mind, with its fabric covering made from recycled plastic bottles.",
@@ -101,7 +104,7 @@ public class DAOTest {
             false,
             5,
             1);
-        products = userDAO.fetchProducts();
+        products = productDAO.fetchProducts();
         assertTrue(products.size() == 1);
     }
 
