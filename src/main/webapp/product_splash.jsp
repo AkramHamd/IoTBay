@@ -6,19 +6,6 @@
 <%@page import="javax.sql.*" %>
 <%@page import="uts.isd.model.dao.ProductDAO"%>
 <%@page import="uts.isd.model.dao.DBConnector"%>
-    <% 
-
-    //Set up for the product fetching to display the products that are on the page.
-
-    //initiate a connection using DBConnector (connect to the db)
-    DBConnector conn = new DBConnector();
-    //open a connection
-    Connection con = conn.openConnection();
-    //use the connection to create a productDAO controller
-    ProductDAO productDAO = new ProductDAO(con);
-    //and use the controller to fetch a list of all of the products and store it in "products" for later use.
-    ArrayList<Product> products = productDAO.fetchProducts();
-    %>
 
 <html>
     <head>
@@ -75,21 +62,37 @@
                 <span class="sr-only">Next</span>
                 </a>
             </div>
-            <div class="container">
-                <div class="product-card-container">
-                    <div class="product-card">
-                    </div>
-                </div>
-            </div>
-
-
             <div>
-            <test></test>
-
-                 <% for(Product product : products) { %>
-                    <p><%= product.getProductName() %></p>
-                 <% } %>
+            <% 
+            //Set up for the product fetching to display the products that are on the page.
+            %>
+            <% //initiate a connection using DBConnector (connect to the db)
+            DBConnector conn = new DBConnector(); %>
+            <% //open a connection
+            Connection con = conn.openConnection(); %>
+            <% //use the connection to create a productDAO controller
+            ProductDAO productDAO = new ProductDAO(con); %>
+            <% productDAO.setUpProduct(); %>
+            <%-- <% productDAO.setUpProduct(); %> --%>
+            <% //and use the controller to fetch a list of all of the products and store it in "products" for later use.
+            ArrayList<Product> products = productDAO.fetchProducts(); %>
+                <%-- <% for(Product product : products) { %>
+                <p><%= product.getProductName() %></p>
+                <% } %> --%>
             </div>
+            <div class="container-products">
+                <% 
+                for (Product product : products) { %>
+                    <jsp:include page="assets/product-card.jsp">
+                        <jsp:param name="imageURL" value="<%= product.getProductImg() %>"/>
+                        <jsp:param name="productName" value="<%= product.getProductName() %>"/>
+                        <jsp:param name="productDescription" value="<%= product.getProductDescription() %>"/>
+                        <jsp:param name="productPrice" value="<%= product.getProductPrice() %>"/>
+                    </jsp:include>
+                <% } %>
+            </div>
+
+            
           </main>
     
         <%@ include file="assets/footer.jsp" %>

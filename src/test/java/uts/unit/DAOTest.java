@@ -93,20 +93,26 @@ public class DAOTest {
     //Setting up base products through test
     @Test
     public void productSetUp() throws SQLException {
-        ArrayList<Product> products;
-        productDAO.createProduct(
-            "Nest Mini Smart Speaker",
-            "Google",
-            "The Google Nest Mini Smart Speaker comes with powerful, rich bass for great sounding music. And with the Google Assistant it’s also helpful around the house, easily set timers, alarms or ask Google a question. Plus, control hundreds of compatible smart devices, like lights, smart plugs and TVs**. Google Nest Mini has also been designed with the environment in mind, with its fabric covering made from recycled plastic bottles.",
-            "googlenest",
-            69.99d,
-            0.00d,
-            false,
-            5,
-            1);
-        products = productDAO.fetchProducts();
-        assertTrue(products.size() == 1);
+       productDAO.setUpProduct();
+       ArrayList<Product> products = productDAO.fetchProducts();
+       assertTrue(products.size() == 1);
+       
+        // ArrayList<Product> products;
+        // productDAO.truncateTable(1212, "product");
+        // productDAO.createProduct(
+        //     "Nest Mini Smart Speaker",
+        //     "Google",
+        //     "The Google Nest Mini Smart Speaker comes with powerful, rich bass for great sounding music. And with the Google Assistant it’s also helpful around the house, easily set timers, alarms or ask Google a question. Plus, control hundreds of compatible smart devices, like lights, smart plugs and TVs**. Google Nest Mini has also been designed with the environment in mind, with its fabric covering made from recycled plastic bottles.",
+        //     "googlenest",
+        //     69.99d,
+        //     0.00d,
+        //     false,
+        //     5,
+        //     1);
+        // products = productDAO.fetchProducts();
+        // assertTrue(products.size() == 1);
+        // for(Product product : products) {
+        //     System.out.println(product.getProductName());
+        // }
     }
-
-
 }

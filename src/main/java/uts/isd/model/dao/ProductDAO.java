@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+
 import uts.isd.model.Product;
 
 public class ProductDAO {
@@ -49,7 +50,7 @@ public class ProductDAO {
 			p.setProductOnSpecial(productOnSpecial);
 			p.setProductStock(productStock);
 
-			System.out.println(p.getProductName());
+			// System.out.println(p.getProductName());
 			//adding the just set up product (p) to the list products.
 			products.add(p);
 		}
@@ -97,5 +98,19 @@ public class ProductDAO {
 		} else {
 			System.out.println("Passcode wrong, please contact Brad for help");
 		}
+	}
+	
+	public void setUpProduct() throws SQLException {
+        truncateTable(1212, "product");
+        createProduct(
+            "Nest Mini Saaamart Speaker",
+            "Google",
+            "The Google Nest Mini Smart Speaker comes with powerful, rich bass for great sounding music. And with the Google Assistant it’s also helpful around the house, easily set timers, alarms or ask Google a question. Plus, control hundreds of compatible smart devices, like lights, smart plugs and TVs**. Google Nest Mini has also been designed with the environment in mind, with its fabric covering made from recycled plastic bottles.",
+            "googlenest",
+            69.99d,
+            0.00d,
+            false,
+            5,
+            1);
 	}
 }
