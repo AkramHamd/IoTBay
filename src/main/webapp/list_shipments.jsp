@@ -22,13 +22,15 @@
         h1 {
             text-align: center;
         }
+        form {
+            margin: 0;
+        }
     </style>
 </head>
 <body>
 
 <h1>List of Shipments</h1>
 
-<%-- Retrieve the list of shipments from the session attribute --%>
 <%@ page import="java.util.List" %>
 <%@ page import="uts.isd.model.Shipment" %>
 <%
@@ -51,6 +53,7 @@
                 <th>Date Shipped</th>
                 <th>Date Delivered</th>
                 <th>Tracking Number</th>
+                <th>Update Tracking</th>
             </tr>
         </thead>
         <tbody>
@@ -64,6 +67,13 @@
                     <td>${shipment.date_Shipped}</td>
                     <td>${shipment.date_Delivered}</td>
                     <td>${shipment.tracking_Number}</td>
+                    <td>
+                       <form action="/UpdateTrackingNumberServlet" method="post">
+                            <input type="hidden" name="shipmentId" value="${shipment.shipment_Id}" />
+                            <input type="text" name="trackingNumber" value="${shipment.tracking_Number}" />
+                            <input type="submit" value="Update" />
+                        </form>
+                    </td>
                 </tr>
             </c:forEach>
         </tbody>

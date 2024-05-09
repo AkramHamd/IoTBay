@@ -7,12 +7,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import uts.isd.model.User;
-import uts.isd.model.Product;
+//import uts.isd.model.Product;
 
 public class UserDAO {
 	private Connection con;
 	private PreparedStatement userFetchReadSt;
-	private PreparedStatement productFetchReadSt;
+	//private PreparedStatement productFetchReadSt;
 
 	public UserDAO(Connection connection) throws SQLException {
 		//initiates connection to db
