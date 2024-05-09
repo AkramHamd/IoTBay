@@ -61,6 +61,10 @@
                   <a href="/view_logs.jsp" style="color: #d22020;">View logs</a>
                   <i class="material-icons" id="sidebar-item-arrow" style="color: #d22020;">chevron_right</i>
                 </div>
+                <div class="sidebar-items">
+                  <a href="/delete_account.jsp">Delete Account</a>
+                  <i class="material-icons" id="sidebar-item-arrow">chevron_right</i>
+                </div>
               </div>
 
               <div>

@@ -50,8 +50,8 @@
                   <i class="material-icons" id="sidebar-item-arrow">chevron_right</i>
                 </div>
                 <div class="sidebar-items">
-                  <a href="/add_address.jsp" style="color: #d22020;">Add Address</a>
-                  <i class="material-icons" id="sidebar-item-arrow" style="color: #d22020;">chevron_right</i>
+                  <a href="/add_address.jsp">Add Address</a>
+                  <i class="material-icons" id="sidebar-item-arrow">chevron_right</i>
                 </div>
                 <div class="sidebar-items">
                   <a href="/update_address.jsp">Update Address</a>
@@ -62,30 +62,25 @@
                   <i class="material-icons" id="sidebar-item-arrow">chevron_right</i>
                 </div>
                 <div class="sidebar-items">
-                  <a href="/delete_account.jsp">Delete Account</a>
-                  <i class="material-icons" id="sidebar-item-arrow">chevron_right</i>
+                  <a href="/delete_account.jsp" style="color: #d22020;">Delete Account</a>
+                  <i class="material-icons" id="sidebar-item-arrow" style="color: #d22020;">chevron_right</i>
                 </div>
               </div>
 
               <div>
-                <h2>Add address</h2>
+                <h2>Delete account</h2>
+                <br>
+                <p>This will account your account and anything associated with this account BUT we will keep your logs history for privacy reasons :)</p>
                 <br>
                 <br>
-  
-                <% Address address = (Address) session.getAttribute("address"); %>
+                <br>
+                <br>
+                <p>Are you sure you want to delete your account? This can not be reversed</p>
+                <br>
 
-                <form action="/AddAddressServlet" method="post" style="display: flex; flex-direction: column; gap: 20px;">
-                  <input type="hidden" name="customer_id" value="<%= customer.getCustomer_id() %>">
-                  <input type="number" name="unit_number" placeholder="unit_number">
-                  <input type="number" name="street_number" placeholder="street_number">
-                  <input type="text" name="street_name" placeholder="street_name">
-                  <input type="text" name="suburb" placeholder="suburb">
-                  <input type="text" name="state" placeholder="state">
-                  <input type="number" name="postcode" placeholder="postcode">
-                  <input type="text" name="country" placeholder="country">
-                  <input type="submit" value="Add Address">
+                <form action="/DeleteAccountServlet" method="post">
+                  <input type="submit" value="Delete account">
                 </form>
-                
               </div>
             </div>
           </div>

@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import uts.isd.model.Address;
 
@@ -16,7 +17,7 @@ public class AddressDAO {
         connection.setAutoCommit(true);
     }
 
-    public Address addAddress(int customer_id, int unit_number, int street_number, String street_name, String suburb, String state, int postcode, String country) throws SQLException {
+    public Integer addAddress(int customer_id, int unit_number, int street_number, String street_name, String suburb, String state, int postcode, String country) throws SQLException {
         String query = "INSERT INTO addresses (customer_id, unit_number, street_number, street_name, suburb, state, postcode, country) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement st = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
         st.setInt(1, customer_id);
@@ -32,38 +33,95 @@ public class AddressDAO {
         ResultSet rs = st.getGeneratedKeys();
         if (rs.next()) {
             int address_id = rs.getInt(1);
-            String selectQuery = "SELECT * FROM addresses WHERE address_id = ?";
-            PreparedStatement selectStatement = connection.prepareStatement(selectQuery);
-            selectStatement.setInt(1, address_id);
-            ResultSet selectResultSet = selectStatement.executeQuery();
-            if (selectResultSet.next()) {
-                return new Address(
-                    selectResultSet.getInt("address_id"),
-                    selectResultSet.getInt("customer_id"),
-                    selectResultSet.getInt("unit_number"),
-                    selectResultSet.getInt("street_number"),
-                    selectResultSet.getString("street_name"),
-                    selectResultSet.getString("suburb"),
-                    selectResultSet.getString("state"),
-                    selectResultSet.getInt("postcode"),
-                    selectResultSet.getString("country")
-                );
-            }
+            return address_id;
         }
         return null;
     }
 
-    public void updateAddress(Address address) throws SQLException {
+    public Address getAddressById(int addressId) throws SQLException {
+        String query = "SELECT * FROM addresses WHERE address_id = ?";
+        PreparedStatement st = connection.prepareStatement(query);
+        st.setInt(1, addressId);
+        ResultSet rs = st.executeQuery();
+    
+        if (rs.next()) {
+            int customerId = rs.getInt("customer_id");
+            int unitNumber = rs.getInt("unit_number");
+            int streetNumber = rs.getInt("street_number");
+            String streetName = rs.getString("street_name");
+            String suburb = rs.getString("suburb");
+            String state = rs.getString("state");
+            int postcode = rs.getInt("postcode");
+            String country = rs.getString("country");
+    
+            return new Address(addressId, customerId, unitNumber, streetNumber, streetName, suburb, state, postcode, country);
+        }
+    
+        return null;
+    }
+
+    public Address getAddressByCustomerId(int customerId) throws SQLException {
+        String query = "SELECT * FROM addresses WHERE customer_id = ?";
+        PreparedStatement st = connection.prepareStatement(query);
+        st.setInt(1, customerId);
+        ResultSet rs = st.executeQuery();
+    
+        if (rs.next()) {
+            int addressId = rs.getInt("address_id");
+            int unitNumber = rs.getInt("unit_number");
+            int streetNumber = rs.getInt("street_number");
+            String streetName = rs.getString("street_name");
+            String suburb = rs.getString("suburb");
+            String state = rs.getString("state");
+            int postcode = rs.getInt("postcode");
+            String country = rs.getString("country");
+    
+            return new Address(addressId, customerId, unitNumber, streetNumber, streetName, suburb, state, postcode, country);
+        }
+    
+        return null;
+    }
+
+    public ArrayList<Address> getAddressesByCustomerId(int customerId) throws SQLException {
+    String query = "SELECT * FROM addresses WHERE customer_id = ?";
+    PreparedStatement st = connection.prepareStatement(query);
+    st.setInt(1, customerId);
+    ResultSet rs = st.executeQuery();
+
+    ArrayList<Address> addresses = new ArrayList<>();
+    while (rs.next()) {
+        int addressId = rs.getInt("address_id");
+        int unitNumber = rs.getInt("unit_number");
+        int streetNumber = rs.getInt("street_number");
+        String streetName = rs.getString("street_name");
+        String suburb = rs.getString("suburb");
+        String state = rs.getString("state");
+        int postcode = rs.getInt("postcode");
+        String country = rs.getString("country");
+
+        addresses.add(new Address(addressId, customerId, unitNumber, streetNumber, streetName, suburb, state, postcode, country));
+    }
+        return addresses;
+    }
+
+    public void updateAddress(int addressId, int unitNumber, int streetNumber, String streetName, String suburb, String state, int postcode, String country) throws SQLException {
         String query = "UPDATE addresses SET unit_number = ?, street_number = ?, street_name = ?, suburb = ?, state = ?, postcode = ?, country = ? WHERE address_id = ?";
         PreparedStatement statement = connection.prepareStatement(query);
-        statement.setInt(1, address.getUnit_number());
-        statement.setInt(2, address.getStreet_number());
-        statement.setString(3, address.getStreet_name());
-        statement.setString(4, address.getSuburb());
-        statement.setString(5, address.getState());
-        statement.setInt(6, address.getPostcode());
-        statement.setString(7, address.getCountry());
-        statement.setInt(8, address.getAddress_id());
+        statement.setInt(1, unitNumber);
+        statement.setInt(2, streetNumber);
+        statement.setString(3, streetName);
+        statement.setString(4, suburb);
+        statement.setString(5, state);
+        statement.setInt(6, postcode);
+        statement.setString(7, country);
+        statement.setInt(8, addressId);
+        statement.executeUpdate();
+    }
+
+    public void deleteAddress(int addressId) throws SQLException {
+        String query = "DELETE FROM addresses WHERE address_id = ?";
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setInt(1, addressId);
         statement.executeUpdate();
     }
 }

@@ -61,32 +61,62 @@
                   <a href="/view_logs.jsp">View logs</a>
                   <i class="material-icons" id="sidebar-item-arrow">chevron_right</i>
                 </div>
+                <div class="sidebar-items">
+                  <a href="/delete_account.jsp">Delete Account</a>
+                  <i class="material-icons" id="sidebar-item-arrow">chevron_right</i>
+                </div>
               </div>
 
               <div>
                 <h2>Update address</h2>
                 <br>
                 <br>
-  
-                <% Address address = (Address) session.getAttribute("address"); %>
 
-                <% if(address != null) { %>
+                <%
+                String addressIdParam = request.getParameter("address_id");
+                int addressId = 0;
+                int customerId = 0;
+                int unitNumber = 0;
+                int streetNumber = 0;
+                String streetName = null;
+                String suburb = null;
+                String state = null;
+                int postcode = 0;
+                String country = null;
+
+                if(addressIdParam != null) {
+                    addressId = Integer.parseInt(request.getParameter("address_id"));
+                    customerId = Integer.parseInt(request.getParameter("customer_id"));
+                    unitNumber = Integer.parseInt(request.getParameter("unit_number"));
+                    streetNumber = Integer.parseInt(request.getParameter("street_number"));
+                    streetName = request.getParameter("street_name");
+                    suburb = request.getParameter("suburb");
+                    state = request.getParameter("state");
+                    postcode = Integer.parseInt(request.getParameter("postcode"));
+                    country = request.getParameter("country"); 
+                } 
+                %>
+
+                <% if(addressIdParam != null) { %>
 
                 <form action="/UpdateAddressServlet" method="post" style="display: flex; flex-direction: column; gap: 20px;">
-                  <input type="hidden" name="address_id" value="<%= address.getAddress_id() %>">
-                  <input type="number" name="unit_number" value="<%= address.getUnit_number() %>">
-                  <input type="number" name="street_number" value="<%= address.getStreet_number() %>">
-                  <input type="text" name="street_name" value="<%= address.getStreet_name() %>">
-                  <input type="text" name="suburb" value="<%= address.getSuburb() %>">
-                  <input type="text" name="state" value="<%= address.getState() %>">
-                  <input type="number" name="postcode" value="<%= address.getPostcode() %>">
-                  <input type="text" name="country" value="<%= address.getCountry() %>">
+                  <input type="hidden" name="address_id" value="<%= addressId %>">
+                  <input type="hidden" name="customer_id" value="<%= customerId %>">
+                  <input type="number" name="unit_number" value="<%= unitNumber %>">
+                  <input type="number" name="street_number" value="<%= streetNumber %>">
+                  <input type="text" name="street_name" value="<%= streetName %>">
+                  <input type="text" name="suburb" value="<%= suburb %>">
+                  <input type="text" name="state" value="<%= state %>">
+                  <input type="number" name="postcode" value="<%= postcode %>">
+                  <input type="text" name="country" value="<%= country %>">
                   <input type="submit" value="Update Address">
                 </form>
 
                 <% } else { %>
                   <p>No address is added to be updated</p>
                 <% } %>
+
+                
               </div>
             </div>
           </div>

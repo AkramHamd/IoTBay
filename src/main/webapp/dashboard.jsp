@@ -61,10 +61,14 @@
                   <a href="/view_logs.jsp">View logs</a>
                   <i class="material-icons" id="sidebar-item-arrow">chevron_right</i>
                 </div>
+                <div class="sidebar-items">
+                  <a href="/delete_account.jsp">Delete Account</a>
+                  <i class="material-icons" id="sidebar-item-arrow">chevron_right</i>
+                </div>
               </div>
 
-              <div>
-                <h2>Your details</h2>
+              <div style="width: 100%;">
+                <h2>Personal details</h2>
                 <br>
                 <br>
                 <div class="details-div-wrapper">
@@ -94,7 +98,7 @@
                   </div>
                 </div>
 
-                <% Address address = (Address) session.getAttribute("address"); %>
+                <% ArrayList<Address> customerAddresses = (ArrayList<Address>) session.getAttribute("customerAddresses"); %>
 
                 <br>
                 <br>
@@ -102,22 +106,54 @@
                 <br>
                 <br>
                 <br>
-                <h2>Your Address</h2>
+                <h2>Addresses</h2>
                 <br>
                 <br>
-                <div>
-                  <% if(address != null) { %>
-                    <p>Address ID: <%= address.getAddress_id() %></p>
-                    <p>Customer ID: <%= address.getCustomer_id() %></p>
-                    <p>Unit Number: <%= address.getUnit_number() %></p>
-                    <p>Street Number: <%= address.getStreet_number() %></p>
-                    <p>Name Name: <%= address.getStreet_name() %></p>
-                    <p>Suburb: <%= address.getSuburb() %></p>
-                    <p>State: <%= address.getState() %></p>
-                    <p>Postcode: <%= address.getPostcode() %></p>
-                    <p>Country: <%= address.getCountry() %></p>
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr);">
+                  <% if(customerAddresses != null && !customerAddresses.isEmpty()) { %>
+                    <% for(Address address : customerAddresses) { %>
+                    
+                        <div style="width: 350px; background-color: #fdfdfd; border: 1px solid var(--border-colour); border-radius: 10px; padding: 20px; margin-bottom: 20px;">
+                          <div class="details-div-wrapper" >
+                            <div class="details-div details-div-title">
+                              <p>Address ID:</p>
+                              <p>Customer ID:</p>
+                              <p>Unit Number:</p>
+                              <p>Street Number:</p>
+                              <p>Name Name:</p>
+                              <p>Suburb:</p>
+                              <p>State:</p>
+                              <p>Postcode:</p>
+                              <p>Country:</p>
+                            </div>
+                            <div class="details-div">
+                              <p><%= address.getAddress_id() %></p>
+                              <p><%= address.getCustomer_id() %></p>
+                              <p><%= address.getUnit_number() %></p>
+                              <p><%= address.getStreet_number() %></p>
+                              <p><%= address.getStreet_name() %></p>
+                              <p><%= address.getSuburb() %></p>
+                              <p><%= address.getState() %></p>
+                              <p><%= address.getPostcode() %></p>
+                              <p><%= address.getCountry() %></p>
+                            </div>
+                          </div>
+  
+                          <div style="display: flex; justify-content: space-between; gap: 10px; margin-top: 20px;">
+                            <button><a style="text-decoration: none; color: #000;" href="/update_address.jsp?address_id=<%= address.getAddress_id() %>&customer_id=<%= address.getCustomer_id() %>&unit_number=<%= address.getUnit_number() %>&street_number=<%= address.getStreet_number() %>&street_name=<%= address.getStreet_name() %>&suburb=<%= address.getSuburb() %>&state=<%= address.getState() %>&postcode=<%= address.getPostcode() %>&country=<%= address.getCountry() %>">Update Address</a></button>
+                            <form action="/DeleteAddressServlet" method="post">
+                              <input type="hidden" name="address_id" value="<%= address.getAddress_id() %>">
+                              <input type="submit" value="Delete address">
+                            </form>
+                          </div>
+                          
+                        </div>
+                    
+                      
+                        
+                    <% } %>
                   <% } else { %>
-                    <p>No address added</p>
+                      <p>No address added</p>
                   <% } %>
                 </div>
               </div>

@@ -128,4 +128,11 @@ public class CustomerDAO {
             return null;
         }
     }
+
+    public void deleteCustomer(int customer_id) throws SQLException {
+        String deleteCustomerSql = "DELETE FROM customers WHERE customer_id = ?";
+        PreparedStatement deleteCustomerStmt = connection.prepareStatement(deleteCustomerSql);
+        deleteCustomerStmt.setInt(1, customer_id);
+        deleteCustomerStmt.executeUpdate();
+    }
 }

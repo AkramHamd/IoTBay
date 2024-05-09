@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import uts.isd.model.Address;
 import uts.isd.model.dao.AddressDAO;
 
 public class AddAddressServlet extends HttpServlet {
@@ -29,10 +28,10 @@ public class AddAddressServlet extends HttpServlet {
         AddressDAO addressDAO = (AddressDAO) session.getAttribute("addressDAO");
 
         try {
-            Address address = addressDAO.addAddress(customer_id, unit_number, street_number, street_name, suburb, state, postcode, country);
+            int address_id = addressDAO.addAddress(customer_id, unit_number, street_number, street_name, suburb, state, postcode, country);
             
-            session.setAttribute("address", address);
-            response.sendRedirect("dashboard.jsp");
+            session.setAttribute("address_id", address_id);
+            response.sendRedirect("DashboardServlet");
         } catch (Exception e) {
             System.out.println(e);
         }

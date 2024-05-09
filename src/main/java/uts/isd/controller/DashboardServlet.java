@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import uts.isd.model.Log;
+import uts.isd.model.Address;
 import uts.isd.model.Customer;
+import uts.isd.model.dao.AddressDAO;
 import uts.isd.model.dao.CustomerDAO;
 import uts.isd.model.dao.LogDAO;
 
@@ -23,6 +25,7 @@ public class DashboardServlet extends HttpServlet {
 
         int customer_id = (int) session.getAttribute("authorisedCustomer_id");
         LogDAO logDAO = (LogDAO) session.getAttribute("logDAO");
+        AddressDAO addressDAO = (AddressDAO) session.getAttribute("addressDAO");
         CustomerDAO CustomerDAO = (CustomerDAO) session.getAttribute("customerDAO");
 
         System.out.println("inside dashboard servlet");
@@ -30,7 +33,10 @@ public class DashboardServlet extends HttpServlet {
         try {
             ArrayList<Log> customerLogs = logDAO.getLogs(customer_id);
             Customer customer = CustomerDAO.fetchCustomer(customer_id);
+            ArrayList<Address> customerAddresses = addressDAO.getAddressesByCustomerId(customer_id);
+            
             session.setAttribute("customerLogs", customerLogs);
+            session.setAttribute("customerAddresses", customerAddresses);
             session.setAttribute("customer", customer);
 
             response.sendRedirect("dashboard.jsp");

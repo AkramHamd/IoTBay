@@ -78,6 +78,24 @@
       <url-pattern>/DashboardServlet</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+      <servlet-name>DeleteAccountServlet</servlet-name>
+      <servlet-class>uts.isd.controller.DeleteAccountServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>DeleteAccountServlet</servlet-name>
+      <url-pattern>/DeleteAccountServlet</url-pattern>
+  </servlet-mapping> DeleteAddressServlet
+
+  <servlet>
+      <servlet-name>DeleteAddressServlet</servlet-name>
+      <servlet-class>uts.isd.controller.DeleteAddressServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>DeleteAddressServlet</servlet-name>
+      <url-pattern>/DeleteAddressServlet</url-pattern>
+  </servlet-mapping>
+
   <session-config>
     <session-timeout>30</session-timeout>
   </session-config>
