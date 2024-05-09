@@ -55,7 +55,27 @@ public class ShipmentDAO {
         }
     }
 
-
+    public List<Shipment> getShipmentsByUserId(int userId) throws SQLException {
+        String sql = "SELECT * FROM shipments WHERE customer_id = ?";
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, userId);
+            ResultSet rs = ps.executeQuery();
+            List<Shipment> shipments = new ArrayList<>();
+            while (rs.next()) {
+                Shipment shipment = new Shipment();
+                shipment.setShipment_Id(rs.getInt("shipment_id"));
+                shipment.setOrder_Id(rs.getInt("order_id"));
+                shipment.setCustomer_Id(rs.getInt("customer_id"));
+                shipment.setAddress_Id(rs.getInt("address_id"));
+                shipment.setCourier_Id(rs.getInt("courier_id"));
+                shipment.setDate_Shipped(rs.getDate("date_shipped"));
+                shipment.setDate_Delivered(rs.getDate("date_delivered"));
+                shipment.setTracking_Number(rs.getString("tracking_number"));
+                shipments.add(shipment);
+            }
+            return shipments;
+        }
+    }
     private Shipment extractShipmentFromResultSet(ResultSet rs) throws SQLException {
         int shipmentId = rs.getInt("shipment_Id");
         int orderId = rs.getInt("order_Id");
@@ -75,4 +95,19 @@ public class ShipmentDAO {
             stmt.executeUpdate();
         }
     }
+
+    public void createShipment(Shipment shipment) throws SQLException {
+        String query = "INSERT INTO shipment (order_Id, customer_Id, address_Id, courier_Id, date_Shipped, date_Delivered, tracking_number) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        try (PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, shipment.getOrder_Id());
+            stmt.setInt(2, shipment.getCustomer_Id());
+            stmt.setInt(3, shipment.getAddress_Id());
+            stmt.setInt(4, shipment.getCourier_Id());
+            stmt.setDate(5, shipment.getDate_Shipped());
+            stmt.setDate(6, shipment.getDate_Delivered());
+            stmt.setString(7, shipment.getTracking_Number());
+            stmt.executeUpdate();
+        }
+    }
+
 }

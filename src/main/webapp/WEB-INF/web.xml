@@ -14,16 +14,24 @@
         <url-pattern>/ListShipmentServlet</url-pattern>
     </servlet-mapping>
 
-  <servlet>
-      <servlet-name>DeleteShipmentServlet</servlet-name>
-      <servlet-class>uts.isd.controller.DeleteShipmentServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-      <servlet-name>DeleteShipmentServlet</servlet-name>
-      <url-pattern>/DeleteShipmentServlet</url-pattern>
-  </servlet-mapping>
+    <servlet>
+        <servlet-name>DeleteShipmentServlet</servlet-name>
+        <servlet-class>uts.isd.controller.DeleteShipmentServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteShipmentServlet</servlet-name>
+        <url-pattern>/DeleteShipmentServlet</url-pattern>
+    </servlet-mapping>
 
-    
+    <servlet>
+        <servlet-name>CreateShipmentServlet</servlet-name>
+        <servlet-class>uts.isd.controller.CreateShipmentServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CreateShipmentServlet</servlet-name>
+        <url-pattern>/CreateShipmentServlet</url-pattern>
+    </servlet-mapping>
+
     <servlet>
     <servlet-name>ConnServlet</servlet-name>
         <servlet-class>uts.isd.controller.ConnServlet</servlet-class>

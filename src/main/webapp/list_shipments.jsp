@@ -87,5 +87,8 @@
     </table>
 </c:if>
 
+<br>
+<a href="create_shipment.jsp">Create New Shipment</a>
+
 </body>
 </html>

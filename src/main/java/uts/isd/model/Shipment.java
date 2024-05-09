@@ -24,6 +24,10 @@ public class Shipment {
         this.tracking_Number = tracking_Number;
     }
 
+    public Shipment() {
+        //TODO Auto-generated constructor stub
+    }
+
     // Getters and Setters
     public int getShipment_Id() {
         return shipment_Id;
