@@ -77,7 +77,7 @@
 .sidebar-items a {
   text-decoration: none;
   font-weight: 600;
-  color: #212121;
+  color: #d22020;
 }
 
 .sidebar-items:hover {
@@ -85,7 +85,7 @@
 }
 
 #sidebar-item-arrow {
-  color: var(--font-colour);
+  color: #d22020;
   font-size: 36px;
 }
 
