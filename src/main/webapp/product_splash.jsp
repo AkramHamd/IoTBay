@@ -1,8 +1,24 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.Random"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="uts.isd.model.*"%>
 <%@page import="java.sql.*"%>  
 <%@page import="javax.sql.*" %>
+<%@page import="uts.isd.model.dao.ProductDAO"%>
+<%@page import="uts.isd.model.dao.DBConnector"%>
+    <% 
+
+    //Set up for the product fetching to display the products that are on the page.
+
+    //initiate a connection using DBConnector (connect to the db)
+    DBConnector conn = new DBConnector();
+    //open a connection
+    Connection con = conn.openConnection();
+    //use the connection to create a productDAO controller
+    ProductDAO productDAO = new ProductDAO(con);
+    //and use the controller to fetch a list of all of the products and store it in "products" for later use.
+    ArrayList<Product> products = productDAO.fetchProducts();
+    %>
 
 <html>
     <head>
@@ -20,7 +36,7 @@
     </head>
     
     <%-- Create a new user object using session data --%>
-    <% User user = (User) session.getAttribute("authUser"); %>
+    <%-- <% User user = (User) session.getAttribute("authUser"); %> --%>
 
     <body>
         <%@ include file="assets/nav.jsp" %>
@@ -68,10 +84,11 @@
 
 
             <div>
-                <% 
-                Arraylist<Product> products = userDAO.selectProducts; 
-                products.get(0).getProductName;
-                %>
+            <test></test>
+
+                 <% for(Product product : products) { %>
+                    <p><%= product.getProductName() %></p>
+                 <% } %>
             </div>
           </main>
     
