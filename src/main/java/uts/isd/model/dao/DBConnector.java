@@ -1,21 +1,16 @@
 package uts.isd.model.dao;
 
 import java.sql.Connection;
-
 import java.sql.DriverManager;
-
 import java.sql.SQLException;
-
 import java.util.Properties;
- 
 
-public class DBConnector extends DB{
+public class DBConnector extends DB {
 
-public DBConnector() throws ClassNotFoundException, SQLException {
+	public DBConnector() throws ClassNotFoundException, SQLException {
+	Class.forName(driver);
 
-Class.forName(driver);
-
-Properties dbProperties = new Properties();
+	Properties dbProperties = new Properties();
 		dbProperties.put("user", dbuser);
 		dbProperties.put("password", dbpass);
 		dbProperties.put("allowPublicKeyRetrieval", "true");
@@ -26,22 +21,15 @@ Properties dbProperties = new Properties();
 		} catch (SQLException e) {
 			System.out.println(e);
 		}
-}
+	}
 
- 
+	
 
-public Connection openConnection(){
+	public Connection openConnection(){
+		return this.conn;
+	}
 
-return this.conn;
-
-}
-
- 
-
-public void closeConnection() throws SQLException {
-
-this.conn.close();
-
-}
-
+	public void closeConnection() throws SQLException {
+		this.conn.close();
+	}
 }

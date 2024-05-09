@@ -9,23 +9,21 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
-import uts.isd.model.User;
+import uts.isd.model.Customer;
 import uts.isd.model.Product;
 import uts.isd.model.dao.DBConnector;
-import uts.isd.model.dao.UserDAO;
+import uts.isd.model.dao.CustomerDAO;
 
 public class DAOTest {
     private DBConnector connector;
     private Connection conn;
-    private UserDAO userDAO;
+    private CustomerDAO customerDAO;
 
     public DAOTest() throws ClassNotFoundException, SQLException {
         connector = new DBConnector();
         conn = connector.openConnection();
-        userDAO = new UserDAO(conn);
+        customerDAO = new CustomerDAO(conn);
     }
-
-
 
     @Test
     public void testConnection() throws SQLException {
@@ -34,12 +32,12 @@ public class DAOTest {
 
     @Test
     public void testSelectUsers() throws SQLException {
-        ArrayList<User> users = userDAO.fetchUsers();
+        ArrayList<Customer> users = customerDAO.fetchAllCustomers();
         assertTrue(users.size() > 0);
     }
     @Test
     public void testCreateUsers() throws SQLException {
-        userDAO.createUser("22@22", "hello", "lname", "password", "10/09/02", "0411111111");
+        customerDAO.addCustomer("test_given", "test_last", "test_give@email.comer", "123456", "0422 222 222", "1999-01-01", "1234", "false");	
     }
     //Feature 2 Tests
 
