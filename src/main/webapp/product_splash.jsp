@@ -72,7 +72,7 @@
             Connection con = conn.openConnection(); %>
             <% //use the connection to create a productDAO controller
             ProductDAO productDAO = new ProductDAO(con); %>
-            <% productDAO.setUpProduct(); %>
+            <%-- <% productDAO.setUpProduct(); %> --%>
             <%-- <% productDAO.setUpProduct(); %> --%>
             <% //and use the controller to fetch a list of all of the products and store it in "products" for later use.
             ArrayList<Product> products = productDAO.fetchProducts(); %>
@@ -83,18 +83,18 @@
             <div class="container-products">
                 <% 
                 for (Product product : products) { %>
-                    <jsp:include page="assets/product-card.jsp">
-                        <jsp:param name="imageURL" value="<%= product.getProductImg() %>"/>
-                        <jsp:param name="productName" value="<%= product.getProductName() %>"/>
-                        <jsp:param name="productDescription" value="<%= product.getProductDescription() %>"/>
-                        <jsp:param name="productPrice" value="<%= product.getProductPrice() %>"/>
-                    </jsp:include>
+                    
+                    <div class="product-card">
+                        <img src="<%= product.getProductImg() %>" alt="<%= product.getProductName() %>">
+                        <div class="product-details">
+                            <h3><%= product.getProductName() %></h3>
+                            <p class="price">$<%= product.getProductPrice() %></p>
+                            <a href="#" class="btn">Add to cart</a>
+                        </div>
+                    </div>
                 <% } %>
             </div>
-
-            
           </main>
-    
         <%@ include file="assets/footer.jsp" %>
     </body>
 </html>
