@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import uts.isd.model.User;
-import uts.isd.model.Product;
+// import uts.isd.model.Product;
 
 public class UserDAO {
 	private Connection con;

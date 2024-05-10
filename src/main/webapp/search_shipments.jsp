@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>List of Shipments</title>
+    <title>Search Shipments</title>
     <style>
         table {
             width: 100%;
@@ -22,26 +22,32 @@
         h1 {
             text-align: center;
         }
-        form {
-            margin: 0;
-        }
     </style>
 </head>
 <body>
 
-<h1>List of Shipments</h1>
+<h1>Search Shipments</h1>
 
-<%@ page import="java.util.List" %>
-<%@ page import="uts.isd.model.Shipment" %>
-<%
-    List<Shipment> shipments = (List<Shipment>) session.getAttribute("shipments");
-%>
+<form action="/SearchShipmentServlet" method="post">
+    <label for="userId">Search by User ID:</label>
+    <input type="number" name="userId" id="userId"><br><br>
 
-<c:if test="${empty shipments}">
-    <p>No shipments available.</p>
+    <label for="shipmentId">Search by Shipment ID:</label>
+    <input type="number" name="shipmentId" id="shipmentId"><br><br>
+
+    <label for="dateShipped">Search by Date Shipped (yyyy-mm-dd):</label>
+    <input type="date" name="dateShipped" id="dateShipped"><br><br>
+
+    <input type="submit" value="Search Shipments">
+</form>
+
+<hr>
+
+<c:if test="${empty searchResults}">
+    <p>No shipments found.</p>
 </c:if>
 
-<c:if test="${not empty shipments}">
+<c:if test="${not empty searchResults}">
     <table>
         <thead>
             <tr>
@@ -53,12 +59,10 @@
                 <th>Date Shipped</th>
                 <th>Date Delivered</th>
                 <th>Tracking Number</th>
-                <th>Update Tracking</th>
-                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
-            <c:forEach var="shipment" items="${shipments}">
+            <c:forEach var="shipment" items="${searchResults}">
                 <tr>
                     <td>${shipment.shipment_Id}</td>
                     <td>${shipment.order_Id}</td>
@@ -68,29 +72,11 @@
                     <td>${shipment.date_Shipped}</td>
                     <td>${shipment.date_Delivered}</td>
                     <td>${shipment.tracking_Number}</td>
-                    <td>
-                        <form action="<c:url value='/UpdateTrackingNumberServlet'/>" method="post">
-                            <input type="hidden" name="shipmentId" value="${shipment.shipment_Id}" />
-                            <input type="text" name="trackingNumber" value="${shipment.tracking_Number}" />
-                            <input type="submit" value="Update" />
-                        </form>
-                    </td>
-                    <td>
-                        <form action="/DeleteShipmentServlet" method="post">
-                            <input type="hidden" name="shipmentId" value="${shipment.shipment_Id}" />
-                            <input type="submit" value="Delete" />
-                        </form>
-                    </td>
                 </tr>
             </c:forEach>
         </tbody>
     </table>
 </c:if>
-
-<br>
-<a href="create_shipment.jsp">Create New Shipment</a>
-<br>
-<a href="search_shipments.jsp">Search Shipments</a>
 
 </body>
 </html>

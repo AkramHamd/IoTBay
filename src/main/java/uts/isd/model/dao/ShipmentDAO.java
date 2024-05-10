@@ -1,6 +1,7 @@
 package uts.isd.model.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -107,6 +108,41 @@ public class ShipmentDAO {
             stmt.setDate(6, shipment.getDate_Delivered());
             stmt.setString(7, shipment.getTracking_Number());
             stmt.executeUpdate();
+        }
+    }
+
+    public List<Shipment> searchShipments(Integer userId, Integer shipmentId, Date dateShipped) throws SQLException {
+        StringBuilder query = new StringBuilder("SELECT * FROM shipment WHERE 1=1");
+
+        if (userId != null) {
+            query.append(" AND customer_Id = ?");
+        }
+        if (shipmentId != null) {
+            query.append(" AND shipment_Id = ?");
+        }
+        if (dateShipped != null) {
+            query.append(" AND date_Shipped = ?");
+        }
+
+        try (PreparedStatement stmt = conn.prepareStatement(query.toString())) {
+            int paramIndex = 1;
+            if (userId != null) {
+                stmt.setInt(paramIndex++, userId);
+            }
+            if (shipmentId != null) {
+                stmt.setInt(paramIndex++, shipmentId);
+            }
+            if (dateShipped != null) {
+                stmt.setDate(paramIndex++, dateShipped);
+            }
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                List<Shipment> shipments = new ArrayList<>();
+                while (rs.next()) {
+                    shipments.add(extractShipmentFromResultSet(rs));
+                }
+                return shipments;
+            }
         }
     }
 
