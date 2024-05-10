@@ -1,57 +1,69 @@
 package uts.isd.model;
-import java.io.Serializable;
 
-public class User implements Serializable{
+public class User {
     
-    private int userID;
-    private String firstName;
-    private String lastName;
+    private int user_id;
+    private String given_name;
+    private String family_name;
     private String email;
-    private String password1;
-    private String passowrd2;
+    private String password;
     private String dob;
-    private String phoneNumber;
-    private int addressId;
+    private String phone;
+    private String created_at;
+    private String verification_code;
+    private String is_verified;
+    private String is_staff;
 
-    public User(){};
-
-    
-
-
-    public User(String firstName, String lastName, String email, String password1, String passowrd2) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public User(int user_id, String given_name, String family_name, String email, String password, String dob,
+            String phone, String created_at, String verification_code, String is_verified, String is_staff) {
+        this.user_id = user_id;
+        this.given_name = given_name;
+        this.family_name = family_name;
         this.email = email;
-        this.password1 = password1;
-        this.passowrd2 = passowrd2;
-    }
-    
-    public User(String firstName, String lastName, String email, String password1, String passowrd2, String dob, String phoneNumber, int addressId, int userID) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.password1 = password1;
-        this.passowrd2 = passowrd2;
+        this.password = password;
         this.dob = dob;
-        this.phoneNumber = phoneNumber;
-        this.addressId = addressId;
-        this.userID = userID;
+        this.phone = phone;
+        this.created_at = created_at;
+        this.verification_code = verification_code;
+        this.is_verified = is_verified;
+        this.is_staff = is_staff;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public User(String given_name, String family_name, String email, String password, String dob, String phone,
+            String verification_code, String is_verified, String is_staff) {
+        this.given_name = given_name;
+        this.family_name = family_name;
+        this.email = email;
+        this.password = password;
+        this.dob = dob;
+        this.phone = phone;
+        this.verification_code = verification_code;
+        this.is_verified = is_verified;
+        this.is_staff = is_staff;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public int getUser_id() {
+        return user_id;
     }
 
-    public String getLastName() {
-        return lastName;
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public String getGiven_name() {
+        return given_name;
+    }
+
+    public void setGiven_name(String given_name) {
+        this.given_name = given_name;
+    }
+
+    public String getFamily_name() {
+        return family_name;
+    }
+
+    public void setFamily_name(String family_name) {
+        this.family_name = family_name;
     }
 
     public String getEmail() {
@@ -62,20 +74,12 @@ public class User implements Serializable{
         this.email = email;
     }
 
-    public String getPassword1() {
-        return password1;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPassword1(String password1) {
-        this.password1 = password1;
-    }
-
-    public String getPassowrd2() {
-        return passowrd2;
-    }
-
-    public void setPassowrd2(String passowrd2) {
-        this.passowrd2 = passowrd2;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getDob() {
@@ -86,27 +90,43 @@ public class User implements Serializable{
         this.dob = dob;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
-    public int getAddressId() {
-        return addressId;
+    public String getCreated_at() {
+        return created_at;
     }
 
-    public void setAddressId(int addressId) {
-        this.addressId = addressId;
+    public void setCreated_at(String created_at) {
+        this.created_at = created_at;
     }
 
-    public int getUserID() {
-        return userID;
+    public String getVerification_code() {
+        return verification_code;
     }
 
-    public void setUserID(int userID) {
-        this.userID = userID;
-    }    
+    public void setVerification_code(String verification_code) {
+        this.verification_code = verification_code;
+    }
+
+    public String getIs_verified() {
+        return is_verified;
+    }
+
+    public void setIs_verified(String is_verified) {
+        this.is_verified = is_verified;
+    }
+
+    public String getIs_staff() {
+        return is_staff;
+    }
+
+    public void setIs_staff(String is_staff) {
+        this.is_staff = is_staff;
+    }
 }

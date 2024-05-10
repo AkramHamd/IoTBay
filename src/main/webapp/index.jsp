@@ -1,6 +1,4 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="java.util.Random"%>
-<%@page import="uts.isd.model.*"%>
 
 <!DOCTYPE html>
 <html>
@@ -10,24 +8,27 @@
         <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
         <link rel="manifest" href="/assets/favicon/site.webmanifest">
-        
-        <link rel="stylesheet" href="css/index.css">
-        <script type="text/javascript" src="js/index.js"></script>
+        <link rel="stylesheet" href="css/layout.css" type="text/css">
+        <link rel="stylesheet" href="css/index.css" type="text/css">
         <title>Index Page</title>
     </head>
 
-
     <body >
         <%@ include file="assets/nav.jsp" %>
-          <main class="container">
+
+        <main class="container">
             <h1>Home page still under construction</h1>
+
+            <p style="margin-top: 50px; margin-bottom: 50px;">You need to visit localhost:8080/index in order for the system to connect to the database and set all the DAOs</p>
+
                 
             <% if(user == null) { %>
                 <p>You are NOT authenticated</p>
             <% } else { %>
                 <p>You are authenticated</p>
             <% } %>
-          </main>
-          <%@ include file="assets/footer.jsp" %>
+        </main>
+
+        <%@ include file="assets/footer.jsp" %>
     </body>
 </html>

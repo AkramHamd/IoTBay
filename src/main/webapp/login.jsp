@@ -1,5 +1,4 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%> 
-<%@page import="java.util.Random"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,14 +6,13 @@
     <meta charset="UTF-8" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
-        <link rel="manifest" href="/assets/favicon/site.webmanifest">
-    <link rel="stylesheet" href="/css/login.css" />
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/login.css" type="text/css" />
     <title>IoTBay - Login</title>
   </head>
   
+  <% String login_emailPasswordErr = (String) session.getAttribute("login_emailPasswordErr"); %>
+
   <body>
     <div class="left-div">
       <div class="login-div">
@@ -27,8 +25,11 @@
           <p>Welcome back!</p>
           <p>Login to get the most from IoTBay</p>
         </div>
-        <form method="post" action="/dashboard.jsp">
+        <form method="post" action="/LoginServlet">
           <div class="input-div">
+            <% if(login_emailPasswordErr != null) { %>
+              <p><%=login_emailPasswordErr%></p>
+            <% } %>
             <input type="email" name="email" id="email" placeholder="Email" required/>
             <input
               type="password"
@@ -37,7 +38,6 @@
               placeholder="Password"
               required
             />
-            <a href="/forgot_password.jsp">Forgot password?</a>
           </div>
           <div class="submit-div">
             <input type="submit" value="Login" />
@@ -48,7 +48,7 @@
     </div>
 
     <div class="right-div">
-      <img src="/assets/wallpaper.jpeg" alt="mouse wallpaper" />
+      <img src="https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?q=80&w=2565&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="mouse wallpaper" />
     </div>
   </body>
 </html>
