@@ -17,28 +17,44 @@ public class LogDAO {
         connection.setAutoCommit(true);
     }
 
-    public void addLog(int customer_id, String type) throws SQLException {
-        String query = "INSERT INTO logs (customer_id, type) VALUES (?, ?)";
+    public void addLog(int user_id, String type) throws SQLException {
+        String query = "INSERT INTO logs (user_id, type) VALUES (?, ?)";
         PreparedStatement st = connection.prepareStatement(query);
-        st.setInt(1, customer_id);
+        st.setInt(1, user_id);
         st.setString(2, type);
         st.executeUpdate();
     }
 
-    //get logs by customer_id and return the Log object
-    public ArrayList<Log> getLogs(int customer_id) throws SQLException {
-    String query = "SELECT * FROM logs WHERE customer_id = ?";
+    //get logs by user id and return the Log object
+    public ArrayList<Log> getLogs(int user_id) throws SQLException {
+    String query = "SELECT * FROM logs WHERE user_id = ?";
     PreparedStatement st = connection.prepareStatement(query);
-    st.setInt(1, customer_id);
+    st.setInt(1, user_id);
     ResultSet rs = st.executeQuery();
 
     ArrayList<Log> logs = new ArrayList<>();
         while (rs.next()) {
             int log_id = rs.getInt("log_id");
-            int log_customer_id = rs.getInt("customer_id");
+            int log_user_id = rs.getInt("user_id");
             String type = rs.getString("type");
             String timestamp = rs.getString("timestamp");
-            logs.add(new Log(log_id, log_customer_id, type, timestamp));
+            logs.add(new Log(log_id, log_user_id, type, timestamp));
+        }
+        return logs;
+    }
+
+    public ArrayList<Log> getAllLogs() throws SQLException {
+        String query = "SELECT * FROM logs";
+        PreparedStatement statement = connection.prepareStatement(query);
+        ResultSet rs = statement.executeQuery();
+    
+        ArrayList<Log> logs = new ArrayList<>();
+        while (rs.next()) {
+            int log_id = rs.getInt("log_id");
+            int log_user_id = rs.getInt("user_id");
+            String type = rs.getString("type");
+            String timestamp = rs.getString("timestamp");
+            logs.add(new Log(log_id, log_user_id, type, timestamp));
         }
         return logs;
     }

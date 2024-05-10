@@ -1,6 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="uts.isd.model.*"%>
-<%@page import="uts.isd.model.Log"%>
+<%@page import="uts.isd.model.User"%>
 <%@page import="uts.isd.model.Address"%>
 <%@ page import="java.util.ArrayList" %>
 
@@ -27,6 +27,8 @@
         <h1>You are not authenticated</h1>
       </div>
     <% } else { %>
+
+      
       <main>
         <div class="container dashboard-div">
           <h1>Dashboard</h1>
@@ -39,31 +41,45 @@
 
               <%@ include file="assets/sidebarNav.jsp" %>
 
+              <% if(user != null && "true".equals(user.getIs_staff())) { %>
+
+              
+
               <div>
-                <h2>Update details</h2>
+                <h2>View all users</h2>
                 <br>
                 <br>
-                <br>
+ 
+                <% ArrayList<User> allUsers = (ArrayList<User>) session.getAttribute("allUsers"); %>
 
-                <%
-                  String dateTimeStr = user.getDob();
-                  String trimmedDateStr = dateTimeStr.substring(0, 10);
-                %>
+                <div>
+                  <% if(allUsers != null) { %>
+                    <% for (User singleUser : allUsers) { %>
+                      <div style="display: flex; gap: 30px; background-color: #fdfdfd; border: 1px solid var(--border-colour); border-radius: 10px; padding: 20px;">
+                        <div style="display: flex; flex-direction: column; gap: 10px;">
+                          <p style="font-weight: 600;">User ID:</p>
+                          <p style="font-weight: 600;">Name:</p>
 
-                <form action="/UpdateUserServlet" method="post" style="display: flex; flex-direction: column; gap: 20px;">                  
-                    <input type="text" name="given_name" value="<%= user.getGiven_name()%>">
-                    <input type="text" name="family_name" value="<%= user.getFamily_name()%>">
-                    <input type="text" name="email" value="<%= user.getEmail()%>">
-                    <input type="text" name="password" value="<%= user.getPassword()%>">
-                    <input type="text" name="phone" value="<%= user.getPhone()%>">
-                    <input type="date" name="dob" value="<%= trimmedDateStr %>">
-                    <input type="submit" value="Update Details">
-                </form>
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 10px;">
+                          <p><%= singleUser.getUser_id() %></p>
+                          <p><%= singleUser.getGiven_name() %></p>
+                        </div>
+                      </div>
+                      <br>
+                    <% } %>
+                  <% } %>
+                </div>
               </div>
+              <% } else { %>
+                <h1>You are not a staff</h1>
+              <% } %>
             </div>
           </div>
         </div>
       </main>
+      
+
     <% } %>
 
     <%@ include file="assets/footer.jsp" %>

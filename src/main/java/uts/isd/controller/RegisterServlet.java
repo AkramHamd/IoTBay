@@ -2,7 +2,6 @@ package uts.isd.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Properties;
 import java.util.Random;
 
@@ -16,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import uts.isd.model.dao.CustomerDAO;
+import uts.isd.model.dao.UserDAO;
 import uts.isd.model.dao.LogDAO;
 import javax.mail.Authenticator;
 import javax.mail.PasswordAuthentication;
@@ -39,8 +38,9 @@ public class RegisterServlet extends HttpServlet {
         String password = request.getParameter("password");
         String phone = request.getParameter("phone");
         String dob = request.getParameter("dob");
+        String is_staff = request.getParameter("is_staff");
 
-        CustomerDAO customerDAO = (CustomerDAO) session.getAttribute("customerDAO");
+        UserDAO userDAO = (UserDAO) session.getAttribute("userDAO");
         LogDAO logDAO = (LogDAO) session.getAttribute("logDAO");
 
         if (given_name.length() <= 0) {
@@ -69,14 +69,14 @@ public class RegisterServlet extends HttpServlet {
 
         } else {
             try {
-                if (customerDAO.emailExists(email)) {
+                if (userDAO.emailExists(email)) {
                     session.setAttribute("register_email_exists", "Email already exists");
                     request.getRequestDispatcher("register.jsp").include(request, response);
                 } else {
-                    int customer_id = customerDAO.addCustomer(given_name, family_name, email, password, phone, dob, verificationCode, "false");
-                    logDAO.addLog(customer_id, "register");
-                    session.setAttribute("authorisedCustomer_id", customer_id);
-                    sendRegistrationEmail(email);
+                    int user_id = userDAO.createUser(given_name, family_name, email, password, phone, dob, verificationCode, "false", is_staff);
+                    logDAO.addLog(user_id, "register");
+                    session.setAttribute("user_id", user_id);
+                    sendRegistrationEmail(given_name, email);
 
                     response.sendRedirect("DashboardServlet");
                 }
@@ -87,7 +87,7 @@ public class RegisterServlet extends HttpServlet {
     }
 
     // Method to send email
-    public void sendRegistrationEmail(String toEmail) {
+    public void sendRegistrationEmail(String given_name, String toEmail) {
         final String fromEmail = "iotbay35@gmail.com";
         final String password = "ryyg tski sebc cvxc";
     
@@ -110,7 +110,7 @@ public class RegisterServlet extends HttpServlet {
             msg.setFrom(new InternetAddress(fromEmail));
             msg.addRecipient(Message.RecipientType.TO, new InternetAddress(toEmail));
             msg.setSubject("Registration Confirmation");
-            msg.setText("Thank you for registering! \n\n Your verification code is: " + verificationCode + "\n\nPlease enter this code on your dashboard to verify your account.");
+            msg.setText("Hi " + given_name + "\n\nThank you for registering! \n\n Your verification code is: " + verificationCode + "\n\nPlease enter this code on your dashboard to verify your account.");
     
             Transport.send(msg);
         } catch (MessagingException e) {

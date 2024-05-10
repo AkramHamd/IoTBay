@@ -17,10 +17,10 @@ public class AddressDAO {
         connection.setAutoCommit(true);
     }
 
-    public Integer addAddress(int customer_id, int unit_number, int street_number, String street_name, String suburb, String state, int postcode, String country) throws SQLException {
-        String query = "INSERT INTO addresses (customer_id, unit_number, street_number, street_name, suburb, state, postcode, country) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    public Integer createAddress(int user_id, int unit_number, int street_number, String street_name, String suburb, String state, int postcode, String country) throws SQLException {
+        String query = "INSERT INTO addresses (user_id, unit_number, street_number, street_name, suburb, state, postcode, country) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement st = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-        st.setInt(1, customer_id);
+        st.setInt(1, user_id);
         st.setInt(2, unit_number);
         st.setInt(3, street_number);
         st.setString(4, street_name);
@@ -38,14 +38,14 @@ public class AddressDAO {
         return null;
     }
 
-    public Address getAddressById(int addressId) throws SQLException {
+    public Address readAddress(int addressId) throws SQLException {
         String query = "SELECT * FROM addresses WHERE address_id = ?";
-        PreparedStatement st = connection.prepareStatement(query);
-        st.setInt(1, addressId);
-        ResultSet rs = st.executeQuery();
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setInt(1, addressId);
+        ResultSet rs = statement.executeQuery();
     
         if (rs.next()) {
-            int customerId = rs.getInt("customer_id");
+            int user_id = rs.getInt("user_id");
             int unitNumber = rs.getInt("unit_number");
             int streetNumber = rs.getInt("street_number");
             String streetName = rs.getString("street_name");
@@ -54,41 +54,20 @@ public class AddressDAO {
             int postcode = rs.getInt("postcode");
             String country = rs.getString("country");
     
-            return new Address(addressId, customerId, unitNumber, streetNumber, streetName, suburb, state, postcode, country);
+            return new Address(addressId, user_id, unitNumber, streetNumber, streetName, suburb, state, postcode, country);
         }
     
         return null;
     }
 
-    public Address getAddressByCustomerId(int customerId) throws SQLException {
-        String query = "SELECT * FROM addresses WHERE customer_id = ?";
-        PreparedStatement st = connection.prepareStatement(query);
-        st.setInt(1, customerId);
-        ResultSet rs = st.executeQuery();
-    
-        if (rs.next()) {
-            int addressId = rs.getInt("address_id");
-            int unitNumber = rs.getInt("unit_number");
-            int streetNumber = rs.getInt("street_number");
-            String streetName = rs.getString("street_name");
-            String suburb = rs.getString("suburb");
-            String state = rs.getString("state");
-            int postcode = rs.getInt("postcode");
-            String country = rs.getString("country");
-    
-            return new Address(addressId, customerId, unitNumber, streetNumber, streetName, suburb, state, postcode, country);
-        }
-    
-        return null;
-    }
-
-    public ArrayList<Address> getAddressesByCustomerId(int customerId) throws SQLException {
-    String query = "SELECT * FROM addresses WHERE customer_id = ?";
-    PreparedStatement st = connection.prepareStatement(query);
-    st.setInt(1, customerId);
-    ResultSet rs = st.executeQuery();
+    public ArrayList<Address> readAddresses(int user_id) throws SQLException {
+    String query = "SELECT * FROM addresses WHERE user_id = ?";
+    PreparedStatement statement = connection.prepareStatement(query);
+    statement.setInt(1, user_id);
+    ResultSet rs = statement.executeQuery();
 
     ArrayList<Address> addresses = new ArrayList<>();
+
     while (rs.next()) {
         int addressId = rs.getInt("address_id");
         int unitNumber = rs.getInt("unit_number");
@@ -99,7 +78,7 @@ public class AddressDAO {
         int postcode = rs.getInt("postcode");
         String country = rs.getString("country");
 
-        addresses.add(new Address(addressId, customerId, unitNumber, streetNumber, streetName, suburb, state, postcode, country));
+        addresses.add(new Address(addressId, user_id, unitNumber, streetNumber, streetName, suburb, state, postcode, country));
     }
         return addresses;
     }

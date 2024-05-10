@@ -22,7 +22,7 @@
   <body>
     <%@ include file="assets/nav.jsp" %>
 
-    <% if(customer == null) { %>
+    <% if(user == null) { %>
       <div class="container dashboard-div">
         <h1>You are not authenticated</h1>
       </div>
@@ -34,43 +34,15 @@
         <div class="container main-wrapper">
          
           <div class="main-div">
-            <div class="welcome-div">
-                <h1>Hi welcome back, <%= customer.getGiven_name()%></h1>
-            </div>
 
             <div class="main-container">
 
-              <div class="sidebar-div">
-                <div class="sidebar-items">
-                  <a href="/dashboard.jsp">Your Details</a>
-                  <i class="material-icons" id="sidebar-item-arrow">chevron_right</i>
-                </div>
-                <div class="sidebar-items">
-                  <a href="/update_details.jsp">Update Details</a>
-                  <i class="material-icons" id="sidebar-item-arrow">chevron_right</i>
-                </div>
-                <div class="sidebar-items">
-                  <a href="/add_address.jsp">Add Address</a>
-                  <i class="material-icons" id="sidebar-item-arrow">chevron_right</i>
-                </div>
-                <div class="sidebar-items">
-                  <a href="/update_address.jsp">Update Address</a>
-                  <i class="material-icons" id="sidebar-item-arrow">chevron_right</i>
-                </div>
-                <div class="sidebar-items">
-                  <a href="/view_logs.jsp">View logs</a>
-                  <i class="material-icons" id="sidebar-item-arrow">chevron_right</i>
-                </div>
-                <div class="sidebar-items">
-                  <a href="/delete_account.jsp" style="color: #d22020;">Delete Account</a>
-                  <i class="material-icons" id="sidebar-item-arrow" style="color: #d22020;">chevron_right</i>
-                </div>
-              </div>
+              <%@ include file="assets/sidebarNav.jsp" %>
 
               <div>
                 <h2>Delete account</h2>
                 <br>
-                <p>This will account your account and anything associated with this account BUT we will keep your logs history for privacy reasons :)</p>
+                <p>This will account your account and anything associated with this account BUT we will keep your logs history for security reasons :)</p>
                 <br>
                 <br>
                 <br>
@@ -78,7 +50,7 @@
                 <p>Are you sure you want to delete your account? This can not be reversed</p>
                 <br>
 
-                <form action="/DeleteAccountServlet" method="post">
+                <form action="/DeleteUserServlet" method="post">
                   <input type="submit" value="Delete account">
                 </form>
               </div>

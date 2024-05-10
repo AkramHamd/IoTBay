@@ -4,7 +4,7 @@ import java.io.Serializable;
 public class Address implements Serializable{
     
     private int address_id;
-    private int customer_id;
+    private int user_id;
     private int unit_number;
     private int street_number;
     private String street_name;
@@ -13,10 +13,10 @@ public class Address implements Serializable{
     private int postcode;
     private String country;
     
-    public Address(int address_id, int customer_id, int unit_number, int street_number, String street_name,
+    public Address(int address_id, int user_id, int unit_number, int street_number, String street_name,
             String suburb, String state, int postcode, String country) {
         this.address_id = address_id;
-        this.customer_id = customer_id;
+        this.user_id = user_id;
         this.unit_number = unit_number;
         this.street_number = street_number;
         this.street_name = street_name;
@@ -26,9 +26,9 @@ public class Address implements Serializable{
         this.country = country;
     }
 
-    public Address(int customer_id, int unit_number, int street_number, String street_name, String suburb, String state,
+    public Address(int user_id, int unit_number, int street_number, String street_name, String suburb, String state,
             int postcode, String country) {
-        this.customer_id = customer_id;
+        this.user_id = user_id;
         this.unit_number = unit_number;
         this.street_number = street_number;
         this.street_name = street_name;
@@ -46,12 +46,12 @@ public class Address implements Serializable{
         this.address_id = address_id;
     }
 
-    public int getCustomer_id() {
-        return customer_id;
+    public int getUser_id() {
+        return user_id;
     }
 
-    public void setCustomer_id(int customer_id) {
-        this.customer_id = customer_id;
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 
     public int getUnit_number() {

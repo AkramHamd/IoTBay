@@ -12,9 +12,9 @@ import javax.servlet.http.HttpSession;
 
 import uts.isd.model.Log;
 import uts.isd.model.Address;
-import uts.isd.model.Customer;
+import uts.isd.model.User;
 import uts.isd.model.dao.AddressDAO;
-import uts.isd.model.dao.CustomerDAO;
+import uts.isd.model.dao.UserDAO;
 import uts.isd.model.dao.LogDAO;
 
 public class DashboardServlet extends HttpServlet {
@@ -23,26 +23,30 @@ public class DashboardServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
 
-        int customer_id = (int) session.getAttribute("authorisedCustomer_id");
+        int user_id = (int) session.getAttribute("user_id");
+        
         LogDAO logDAO = (LogDAO) session.getAttribute("logDAO");
         AddressDAO addressDAO = (AddressDAO) session.getAttribute("addressDAO");
-        CustomerDAO CustomerDAO = (CustomerDAO) session.getAttribute("customerDAO");
+        UserDAO userDAO = (UserDAO) session.getAttribute("userDAO");
 
-        System.out.println("inside dashboard servlet");
+        System.out.println("Inside DashboardServlet");
 
         try {
-            ArrayList<Log> customerLogs = logDAO.getLogs(customer_id);
-            Customer customer = CustomerDAO.fetchCustomer(customer_id);
-            ArrayList<Address> customerAddresses = addressDAO.getAddressesByCustomerId(customer_id);
+            User user = userDAO.readUser(user_id);
+            ArrayList<User> allUsers = userDAO.readAllUsers();
+            ArrayList<Log> logs = logDAO.getLogs(user_id);
+            ArrayList<Log> allLogs = logDAO.getAllLogs();
+            ArrayList<Address> addresses = addressDAO.readAddresses(user_id);
             
-            session.setAttribute("customerLogs", customerLogs);
-            session.setAttribute("customerAddresses", customerAddresses);
-            session.setAttribute("customer", customer);
+            session.setAttribute("user", user);
+            session.setAttribute("allUsers", allUsers);
+            session.setAttribute("logs", logs);
+            session.setAttribute("allLogs", allLogs);
+            session.setAttribute("addresses", addresses);
 
             response.sendRedirect("dashboard.jsp");
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        
     }
 }

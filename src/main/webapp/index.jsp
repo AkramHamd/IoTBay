@@ -18,8 +18,11 @@
 
         <main class="container">
             <h1>Home page still under construction</h1>
+
+            <p style="margin-top: 50px; margin-bottom: 50px;">You need to visit localhost:8080/index in order for the system to connect to the database and set all the DAOs</p>
+
                 
-            <% if(customer == null) { %>
+            <% if(user == null) { %>
                 <p>You are NOT authenticated</p>
             <% } else { %>
                 <p>You are authenticated</p>

@@ -1,5 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="uts.isd.model.Customer"%>
+<%@page import="uts.isd.model.User"%>
 
 <nav>
   <div class="container navbar">
@@ -12,9 +12,9 @@
       Cart
     </div>
     <div class="user-div">
-      <% Customer customer = (Customer) session.getAttribute("customer"); %>
+      <% User user = (User) session.getAttribute("user"); %>
 
-      <% if(customer == null) { %>
+      <% if(user == null) { %>
         <a href="/login.jsp">Login</a>
         <a href="/register.jsp">Register</a>
       <% } else { %>
