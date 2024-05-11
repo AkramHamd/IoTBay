@@ -10,7 +10,6 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        
         <link rel="stylesheet" href="css/style.css">
         <script type="text/javascript" src="js/index.js"></script>
         <title>IoTBay</title>
@@ -83,15 +82,19 @@
             <div class="container-products">
                 <% 
                 for (Product product : products) { %>
-                    
-                    <div class="product-card">
-                        <img src="<%= product.getProductImg() %>" alt="<%= product.getProductName() %>">
-                        <div class="product-details">
-                            <h3><%= product.getProductName() %></h3>
-                            <p class="price">$<%= product.getProductPrice() %></p>
-                            <a href="#" class="btn">Add to cart</a>
-                        </div>
-                    </div>
+                    <%-- <form action="product_details.jsp?<%= product.getProductId() %>" method="get"> --%>
+                        <%-- <input type="hidden" id="productId" value="<%= product.getProductId() %>"> --%>
+                        <a href="product_details.jsp?id=<%= product.getProductId() %>" class="product-card-a">
+                            <div class="product-card">
+                                <img src="<%= product.getProductImg() %>" alt="<%= product.getProductName() %>">
+                                <div class="product-details">
+                                    <h3><%= product.getProductName() %></h3>
+                                    <p class="price">$<%= product.getProductPrice() %></p>
+                                    <a href="#" class="btn">Add to cart</a>
+                                </div>
+                            </div>
+                        </a>
+                    <%-- </form> --%>
                 <% } %>
             </div>
           </main>

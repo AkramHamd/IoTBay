@@ -1,5 +1,6 @@
 package uts.unit;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -53,6 +54,13 @@ public class DAOTest {
         // System.out.println(products.get(4).getProductId());
         // System.out.println(products.get(4).getProductName());
         // System.out.println("---------");
+    }
+
+    @Test
+    public void testSpecificProduct() throws SQLException {
+        Product gnest = productDAO.selectSpecificProduct(2);
+        // System.out.println("Expecting 'Nest' but got: " + gnest.getProductName());
+        assertEquals(gnest.getProductName(), "Nest");
     }
 
     //create product

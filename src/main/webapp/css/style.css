@@ -60,6 +60,9 @@ nav {
 
 
 /* main css */
+  .product-card-a:hover {
+    text-decoration-line: none;
+  }
   .product-card {
       border: 1px solid #ddd;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -123,7 +126,29 @@ nav {
     justify-content: center; /* Center horizontally */
 }
 
-
+.product-details-container {
+  margin-left: 20vw;
+  margin-right: 20vw;
+  margin-top: 5vh;
+}
+.product-details-container img {
+  width: 30vw;
+  height: 30vw;
+  object-fit: cover;
+}
+.product-details-container-upper-flex {
+  display: inline-flex;
+}
+.product-details-container-lower-flex {
+  margin-top: 10vh;
+}
+.product-details-heading {
+  margin-left: 5vw;
+}
+.product-details-heading h1 {
+  font-weight: 900;
+  font-size: 7rem;
+}
 
   footer {
     margin-top: 200px;

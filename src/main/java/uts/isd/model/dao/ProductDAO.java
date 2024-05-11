@@ -12,6 +12,7 @@ import uts.isd.model.Product;
 public class ProductDAO {
 	private Connection con;
 	private PreparedStatement productFetchReadSt;
+	// private PreparedStatement productSelectSpecificStatement;
 
 	public ProductDAO(Connection connection) throws SQLException {
 		//initiates connection to db
@@ -20,12 +21,12 @@ public class ProductDAO {
 		connection.setAutoCommit(true);
 		//preparing predetermined statement
 		productFetchReadSt = connection.prepareStatement("SELECT product_id, product_name, product_brand, product_description, product_img, product_price, product_special_price, product_on_special, product_stock, product_order_qty FROM PRODUCT");
+		
 	}
 
 	//product fetch
 	public ArrayList<Product> fetchProducts() throws SQLException {
 		ResultSet rs = productFetchReadSt.executeQuery();
-
 		ArrayList<Product> products = new ArrayList<Product>();
 		while (rs.next()) { //loop through every row in the rs variable
 			Integer product_ID = rs.getInt(1);
@@ -55,6 +56,33 @@ public class ProductDAO {
 			products.add(p);
 		}
 		return products;
+	}
+
+	//select specific product
+	public Product selectSpecificProduct(Integer product_ID) throws SQLException {
+		// Integer product_ID = Integer.parseInt(product_IDs);
+		PreparedStatement st = con.prepareStatement("SELECT * FROM product WHERE product_id=?");
+    st.setInt(1, product_ID); // Set product_ID as parameter
+    ResultSet rs = st.executeQuery();
+	if (rs.next()) { // Check if result set is not empty
+        Integer productId = rs.getInt("product_id");
+        String productName = rs.getString("product_name");
+        String productBrand = rs.getString("product_brand");
+        String productDescription = rs.getString("product_description");
+        String productImage = rs.getString("product_img");
+        Double productPrice = rs.getDouble("product_price");
+        Double specialPrice = rs.getDouble("product_special_price");
+        Boolean productOnSpecial = rs.getBoolean("product_on_special");
+        Integer productStock = rs.getInt("product_stock");
+		Integer productOnOrder = rs.getInt("product_order_qty");
+
+        // Create and return Product object
+        return new Product(productId, productName, productBrand, productDescription, productImage,
+                productPrice, specialPrice, productOnSpecial, productStock, productOnOrder);
+		} 
+		else {
+			return null;
+		}
 	}
 
 	//create product
@@ -122,10 +150,8 @@ public class ProductDAO {
             false,
             5,
             1);
-			for(Product product : fetchProducts()) {
-				System.out.println("Product: " + product.getProductName());
-			}
-			
+		for(Product product : fetchProducts()) {
+			System.out.println("Product: " + product.getProductName());
+		}
 	}
-	
 }
