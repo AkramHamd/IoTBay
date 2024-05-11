@@ -7,6 +7,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+   <link rel="stylesheet" href="/css/dashboard.css"/>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
@@ -20,7 +21,7 @@
   </head>
 
   <body>
-    <%@ include file="assets/nav.jsp" %>
+    <%-- <%@ include file="assets/nav.jsp" %> --%>
 
     <% if(user == null) { %>
       <div class="container dashboard-div">

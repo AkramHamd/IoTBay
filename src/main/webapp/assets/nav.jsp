@@ -3,6 +3,7 @@
 
 <nav>
   <div class="container navbar">
+    <a href="/index.jsp"><img src="/assets/logo.png" alt="logo" class="logo"/></a>
     <a href="/index.jsp"><img src="/assets/logo.png" alt="logo" class="logo" /></a>
     <div class="search-div">
       <input type="text" placeholder="Search millions of things . . ." />
