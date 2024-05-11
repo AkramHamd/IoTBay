@@ -43,17 +43,34 @@
 
               <% if(user != null && "true".equals(user.getIs_staff())) { %>
 
-              
+              <% String view_all_logsDateEmpty = (String) session.getAttribute("view_all_logsDateEmpty"); %>
 
+              <% ArrayList<Log> searchedAllLogs = (ArrayList<Log>) session.getAttribute("searchedAllLogs"); %>
+
+            <div>
+              <h2>View all Logs</h2>
+              <br>
+              <br>
+              <form action="SearchAllLogsServlet" method="post">
+                <% if(view_all_logsDateEmpty != null) { %>
+                  <p style="color: red;"><%=view_all_logsDateEmpty%></p>
+                <% } %>
+                <label for="date">Search for logs </label>
+                <input type="date" name="date">
+                <input type="submit" value="Search">
+              </form>
+              <br>
+              <br>
+              <br>
+              <br>
               <div>
-                <h2>View Logs</h2>
-                <br>
-                <br>
- 
-                <% ArrayList<Log> allLogs = (ArrayList<Log>) session.getAttribute("allLogs"); %>
-
-                <div>
-                  <% for (Log log : allLogs) { %>
+                <% if (searchedAllLogs != null) { %>
+                  <h3>Searched logs</h3>
+                  <br>
+                  <% if (searchedAllLogs.size() == 0) { %>
+                    <p>No logs found for that date</p>
+                  <% } %>
+                  <% for (Log log : searchedAllLogs) { %>
                     <div style="display: flex; gap: 30px; background-color: #fdfdfd; border: 1px solid var(--border-colour); border-radius: 10px; padding: 20px;">
                       <div style="display: flex; flex-direction: column; gap: 10px;">
                         <p style="font-weight: 600;">Log ID:</p>
@@ -69,6 +86,41 @@
                       </div>
                     </div>
                     <br>
+                    <% } %>
+
+                    <br>
+                    <br>
+                    <form action="ClearSearchAllLogsServlet" method="post">  
+                      <input type="hidden" name="user_id" value="<%= user.getUser_id() %>">
+                      <input type="submit" value="Clear search">
+                    </form>
+                  <br>
+                <% } %>
+              </div>
+ 
+                <% ArrayList<Log> allLogs = (ArrayList<Log>) session.getAttribute("allLogs"); %>
+
+                <div>
+                  <% if(searchedAllLogs == null) { %>
+                    <h3>All your logs</h3>
+                    <br>
+                    <% for (Log log : allLogs) { %>
+                      <div style="display: flex; gap: 30px; background-color: #fdfdfd; border: 1px solid var(--border-colour); border-radius: 10px; padding: 20px;">
+                        <div style="display: flex; flex-direction: column; gap: 10px;">
+                          <p style="font-weight: 600;">Log ID:</p>
+                          <p style="font-weight: 600;">User ID:</p>
+                          <p style="font-weight: 600;">Type:</p>
+                          <p style="font-weight: 600;">Timestamp:</p>
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 10px;">
+                          <p><%= log.getLog_id() %></p>
+                          <p><%= log.getUser_id() %></p>
+                          <p><%= log.getType() %></p>
+                          <p><%= log.getTimestamp() %></p>
+                        </div>
+                      </div>
+                      <br>
+                    <% } %>
                   <% } %>
                 </div>
               </div>
