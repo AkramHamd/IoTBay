@@ -1,41 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="java.util.List" %>
+<%@ page import="uts.isd.model.Shipment" %>
+<%@ page import="uts.isd.model.User" %>
 <!DOCTYPE html>
 <html>
 <head>
     <title>List of Shipments</title>
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        table, th, td {
-            border: 1px solid black;
-        }
-        th, td {
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-        h1 {
-            text-align: center;
-        }
-        form {
-            margin: 0;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>
 
-<h1>List of Shipments</h1>
-
-<%@ page import="java.util.List" %>
-<%@ page import="uts.isd.model.Shipment" %>
 <%
+    User user = (User) session.getAttribute("user");
+    if (user == null) {
+        //response.sendRedirect("login.jsp"); 
+        //return; 
+    }
+
     List<Shipment> shipments = (List<Shipment>) session.getAttribute("shipments");
 %>
+
+<h1>List of Shipments</h1>
 
 <c:if test="${empty shipments}">
     <p>No shipments available.</p>
