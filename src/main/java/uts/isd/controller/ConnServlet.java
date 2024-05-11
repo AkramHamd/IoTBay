@@ -10,23 +10,31 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import uts.isd.model.dao.DBConnector;
+import uts.isd.model.dao.ShipmentDAO;
 import uts.isd.model.dao.AddressDAO;
 import uts.isd.model.dao.UserDAO;
 import uts.isd.model.dao.DBConnector;
-import uts.isd.model.dao.UserDAO;
+import uts.isd.model.dao.LogDAO;
 
 public class ConnServlet extends HttpServlet{
     private DBConnector db;
-    private UserDAO userDAO;
+    private ShipmentDAO shipmentDAO;
     private Connection conn;
-    //runs whenever the server is first runn
+    private UserDAO userDAO;
+    private LogDAO logDAO;
+    private AddressDAO addressDAO;
+    private Connection connection;
+    
     @Override
     public void init() {
         try {
             db = new DBConnector();
-        }
-        catch (ClassNotFoundException | SQLException ex) {
-            System.out.println(ex);
+            conn = db.openConnection();
+            shipmentDAO = new ShipmentDAO(conn);
+            userDAO = new UserDAO(conn); 
+        } catch (ClassNotFoundException | SQLException ex) {
+            System.out.println("Database connection established.");
         }
     }
     
@@ -34,15 +42,24 @@ public class ConnServlet extends HttpServlet{
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
-        conn = db.openConnection();
+        session.setAttribute("shipmentDAO", shipmentDAO);
+        session.setAttribute("userDAO", userDAO); 
+        
+        connection = db.openConnection();
 
         try {
-            userDAO = new UserDAO(conn);
+            userDAO = new UserDAO(connection);
+            logDAO = new LogDAO(connection);
+            addressDAO = new AddressDAO(connection);
         } catch (SQLException e) {
             System.out.print(e);
         }
 
         session.setAttribute("userDAO", userDAO);
+        session.setAttribute("logDAO", logDAO);
+        session.setAttribute("addressDAO", addressDAO);
+        System.out.println("All DAOs have been set in session.");
+        request.getRequestDispatcher("index.jsp").include(request, response);
     }
 
     @Override

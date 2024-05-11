@@ -62,7 +62,7 @@
                 <tr>
                     <td>${shipment.shipment_Id}</td>
                     <td>${shipment.order_Id}</td>
-                    <td>${shipment.customer_Id}</td>
+                    <td>${shipment.user_id}</td>
                     <td>${shipment.address_Id}</td>
                     <td>${shipment.courier_Id}</td>
                     <td>${shipment.date_Shipped}</td>

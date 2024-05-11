@@ -5,7 +5,7 @@ import java.sql.Date;
 public class Shipment {
     private int shipment_Id;
     private int order_Id;
-    private int customer_Id;
+    private int user_id;
     private int address_Id;
     private int courier_Id;
     private Date date_Shipped;
@@ -13,10 +13,10 @@ public class Shipment {
     private String tracking_Number;
 
     // Constructor
-    public Shipment(int shipment_Id, int order_Id, int customer_Id, int address_Id, int courier_Id, Date date_Shipped, Date date_Delivered, String tracking_Number) {
+    public Shipment(int shipment_Id, int order_Id, int user_id, int address_Id, int courier_Id, Date date_Shipped, Date date_Delivered, String tracking_Number) {
         this.shipment_Id = shipment_Id;
         this.order_Id = order_Id;
-        this.customer_Id = customer_Id;
+        this.user_id = user_id;
         this.address_Id = address_Id;
         this.courier_Id = courier_Id;
         this.date_Shipped = date_Shipped;
@@ -45,12 +45,12 @@ public class Shipment {
         this.order_Id = order_Id;
     }
 
-    public int getCustomer_Id() {
-        return customer_Id;
+    public int getuser_id() {
+        return user_id;
     }
 
-    public void setCustomer_Id(int customer_Id) {
-        this.customer_Id = customer_Id;
+    public void setuser_id(int user_id) {
+        this.user_id = user_id;
     }
 
     public int getAddress_Id() {
