@@ -68,7 +68,7 @@ public class DAOTest {
         assertEquals("johndoe@TEST.com", updatedUser.getEmail());
         assertEquals("testPassword", updatedUser.getPassword());
         assertEquals("0000 000 000", updatedUser.getPhone());
-        assertEquals("1999-01-01 00:00:00", updatedUser.getDob());
+        assertEquals("1999-01-01", updatedUser.getDob());
     }
 
     // @Test

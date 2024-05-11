@@ -96,6 +96,42 @@
       <url-pattern>/DeleteAddressServlet</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+      <servlet-name>SearchLogsServlet</servlet-name>
+      <servlet-class>uts.isd.controller.SearchLogsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>SearchLogsServlet</servlet-name>
+      <url-pattern>/SearchLogsServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+      <servlet-name>SearchAllLogsServlet</servlet-name>
+      <servlet-class>uts.isd.controller.SearchAllLogsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>SearchAllLogsServlet</servlet-name>
+      <url-pattern>/SearchAllLogsServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+      <servlet-name>ClearSearchLogsServlet</servlet-name>
+      <servlet-class>uts.isd.controller.ClearSearchLogsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>ClearSearchLogsServlet</servlet-name>
+      <url-pattern>/ClearSearchLogsServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+      <servlet-name>ClearSearchAllLogsServlet</servlet-name>
+      <servlet-class>uts.isd.controller.ClearSearchAllLogsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>ClearSearchAllLogsServlet</servlet-name>
+      <url-pattern>/ClearSearchAllLogsServlet</url-pattern>
+  </servlet-mapping>
+
   <session-config>
     <session-timeout>30</session-timeout>
   </session-config>

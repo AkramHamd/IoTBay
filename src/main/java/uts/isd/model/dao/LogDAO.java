@@ -58,4 +58,41 @@ public class LogDAO {
         }
         return logs;
     }
+
+    public ArrayList<Log> searchLogs(int user_id, String date) throws SQLException {
+        //search logs by user id and date
+        String query = "SELECT * FROM logs WHERE user_id = ? AND DATE(timestamp) = ?";
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setInt(1, user_id);
+        statement.setString(2, date);
+        ResultSet rs = statement.executeQuery();
+
+        ArrayList<Log> logs = new ArrayList<>();
+        while (rs.next()) {
+            int log_id = rs.getInt("log_id");
+            int log_user_id = rs.getInt("user_id");
+            String type = rs.getString("type");
+            String timestamp = rs.getString("timestamp");
+            logs.add(new Log(log_id, log_user_id, type, timestamp));
+        }
+        return logs;
+    }
+
+    public ArrayList<Log> searchAllLogs(String date) throws SQLException {
+        //search logs by user id and date
+        String query = "SELECT * FROM logs WHERE DATE(timestamp) = ?";
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setString(1, date);
+        ResultSet rs = statement.executeQuery();
+
+        ArrayList<Log> allLogs = new ArrayList<>();
+        while (rs.next()) {
+            int log_id = rs.getInt("log_id");
+            int log_user_id = rs.getInt("user_id");
+            String type = rs.getString("type");
+            String timestamp = rs.getString("timestamp");
+            allLogs.add(new Log(log_id, log_user_id, type, timestamp));
+        }
+        return allLogs;
+    }
 }
