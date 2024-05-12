@@ -24,8 +24,9 @@
     <h1>You are not authenticated</h1>
   </div>
 <% } else { %>
-
-    <c:if test="${empty userShipments}">
+    <%-- <%  List<Shipment> userShipments = (List<Shipment>) session.getAttribute("userShipments"); %> --%>
+   
+   <c:if test="${empty userShipments}">
         <p>No shipments available for this user.</p>
     </c:if>
 
