@@ -25,7 +25,7 @@
   </div>
 <% } else { %>
     <%-- <%  List<Shipment> userShipments = (List<Shipment>) session.getAttribute("userShipments"); %> --%>
-   
+   <h1>My Shipments</h1>
    <c:if test="${empty userShipments}">
         <p>No shipments available for this user.</p>
     </c:if>
