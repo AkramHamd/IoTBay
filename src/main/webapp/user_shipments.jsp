@@ -24,7 +24,7 @@
     <h1>You are not authenticated</h1>
   </div>
 <% } else { %>
-    <%-- <%  List<Shipment> userShipments = (List<Shipment>) session.getAttribute("userShipments"); %> --%>
+    <%  List<Shipment> userShipments = (List<Shipment>) session.getAttribute("userShipments"); %>
    <h1>My Shipments</h1>
    <c:if test="${empty userShipments}">
         <p>No shipments available for this user.</p>
@@ -64,9 +64,7 @@
     </c:if>
 
     <div class="center-links">
-        <a href="create_shipment.jsp">Create New Shipment</a>
-        <br>
-        <a href="search_shipments.jsp">Search Shipments</a>
+        <a href="user_search_shipments.jsp">Search Shipments</a>
     </div>
 
 

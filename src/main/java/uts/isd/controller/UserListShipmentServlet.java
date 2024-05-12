@@ -42,7 +42,7 @@ public class UserListShipmentServlet extends HttpServlet {
             List<Shipment> userShipments = shipmentDAO.getShipmentsByUserId(user.getUser_id());
             System.out.println(userShipments.size());
             // Set the user's shipments as request attribute
-            request.setAttribute("userShipments", userShipments);
+            session.setAttribute("userShipments", userShipments);
     
             // Forward to the JSP view to display the user's shipments
             request.getRequestDispatcher("/user_shipments.jsp").forward(request, response);
