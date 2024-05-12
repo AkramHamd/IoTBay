@@ -16,6 +16,10 @@ public class ShipmentDAO {
         this.conn = conn;
     }
 
+    public ShipmentDAO() {
+        //TODO Auto-generated constructor stub
+    }
+
     public List<Shipment> getAllShipments() throws SQLException {
         List<Shipment> shipments = new ArrayList<>();
         String query = "SELECT * FROM shipment";
@@ -57,7 +61,7 @@ public class ShipmentDAO {
     }
 
     public List<Shipment> getShipmentsByUserId(int userId) throws SQLException {
-        String sql = "SELECT * FROM shipments WHERE user_id = ?";
+        String sql = "SELECT * FROM shipment WHERE user_id = ?";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, userId);
             ResultSet rs = ps.executeQuery();
@@ -144,6 +148,30 @@ public class ShipmentDAO {
                 return shipments;
             }
         }
+    }
+    public ArrayList<Shipment> searchShipmentsByUserIdAndDate(int userId, Date searchDate) throws SQLException {
+        ArrayList<Shipment> searchedShipments = new ArrayList<>();
+        String query = "SELECT * FROM shipment WHERE user_id = ? AND date_shipped = ?";
+        PreparedStatement statement = conn.prepareStatement(query);
+        statement.setInt(1, userId);
+        statement.setDate(2, searchDate);
+        ResultSet rs = statement.executeQuery();
+    
+        while (rs.next()) {
+            int shipmentId = rs.getInt("shipment_id");
+            int orderId = rs.getInt("order_id");
+            int addressId = rs.getInt("address_id");
+            int courierId = rs.getInt("courier_id");
+            Date dateShipped = rs.getDate("date_shipped");
+            Date dateDelivered = rs.getDate("date_delivered");
+            String trackingNumber = rs.getString("tracking_number");
+    
+            // Create a new Shipment object and add it to the list
+            Shipment shipment = new Shipment(shipmentId, orderId, userId, addressId, courierId, dateShipped, dateDelivered, trackingNumber);
+            searchedShipments.add(shipment);
+        }
+    
+        return searchedShipments;
     }
 
 }

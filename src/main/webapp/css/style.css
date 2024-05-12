@@ -183,3 +183,10 @@ nav {
   input[type="submit"]:hover, input[type="button"]:hover {
     background-color: #a81818;
   }
+
+
+  .center-links {
+    text-align: center;
+  }
+  
+  

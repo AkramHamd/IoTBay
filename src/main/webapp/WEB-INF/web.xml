@@ -162,6 +162,17 @@
         <url-pattern>/SearchShipmentServlet</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>UserListShipmentServlet</servlet-name>
+        <servlet-class>uts.isd.controller.UserListShipmentServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserListShipmentServlet</servlet-name>
+        <url-pattern>/UserListShipmentServlet</url-pattern>
+    </servlet-mapping>
+
+
+
     <session-config>
         <session-timeout>30</session-timeout>
     </session-config>
