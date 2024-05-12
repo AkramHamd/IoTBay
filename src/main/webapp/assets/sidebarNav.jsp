@@ -15,6 +15,10 @@
     <i class="material-icons" id="sidebar-item-arrow">chevron_right</i>
   </div>
   <div class="sidebar-items">
+    <a href="/UserListShipmentServlet">View My Shipments</a>
+    <i class="material-icons" id="sidebar-item-arrow">chevron_right</i>
+  </div>
+  <div class="sidebar-items">
     <a href="/view_logs.jsp">View Logs</a>
     <i class="material-icons" id="sidebar-item-arrow">chevron_right</i>
   </div>
@@ -24,6 +28,10 @@
   </div>
   <div class="sidebar-items">
     <a href="/view_all_logs.jsp">View All Logs</a>
+    <i class="material-icons" id="sidebar-item-arrow">chevron_right</i>
+  </div>
+  <div class="sidebar-items">
+    <a href="/list_shipments.jsp">View All Shipments</a>
     <i class="material-icons" id="sidebar-item-arrow">chevron_right</i>
   </div>
   <div class="sidebar-items">

@@ -32,7 +32,7 @@ public class ConnServlet extends HttpServlet{
             db = new DBConnector();
             conn = db.openConnection();
             shipmentDAO = new ShipmentDAO(conn);
-            userDAO = new UserDAO(conn); 
+            userDAO = new UserDAO(conn);
         } catch (ClassNotFoundException | SQLException ex) {
             System.out.println("Database connection established.");
         }
