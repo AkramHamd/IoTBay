@@ -15,7 +15,7 @@ import uts.isd.model.Product;
 import uts.isd.model.dao.DBConnector;
 import uts.isd.model.dao.CustomerDAO;
 import uts.isd.model.dao.ProductDAO;
-
+// testing git
 public class DAOTest {
     private DBConnector connector;
     private Connection conn;
