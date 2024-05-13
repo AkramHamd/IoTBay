@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
 
 import uts.isd.model.User;
+import uts.isd.model.Product;
 import uts.isd.model.dao.DBConnector;
 import uts.isd.model.dao.UserDAO;
 
@@ -39,6 +40,12 @@ public class DAOTest {
     }
     @Test
     public void testCreateUsers() throws SQLException {
-        userDAO.createUser("22@22", "hello", "password");
+        userDAO.createUser("22@22", "hello", "lname", "password", "10/09/02", "0411111111");
+    }
+    //Feature 2 Tests
+    @Test
+    public void testSelectProducts() throws SQLException {
+        ArrayList<Product> products = userDAO.fetchProducts();
+        assertTrue(products.size() > 0);
     }
 }
