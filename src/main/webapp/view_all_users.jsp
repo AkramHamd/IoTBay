@@ -20,6 +20,7 @@
   </head>
 
   <body>
+
     <%@ include file="assets/nav.jsp" %>
 
     <% if(user == null) { %>
@@ -43,19 +44,15 @@
 
               <% if(user != null && "true".equals(user.getIs_staff())) { %>
 
-              
-
               <div>
-                <h2>View all users</h2>
-                <br>
-                <br>
+                <h2 style="margin-bottom: 50px;">View all users</h2>
  
                 <% ArrayList<User> allUsers = (ArrayList<User>) session.getAttribute("allUsers"); %>
 
                 <div>
                   <% if(allUsers != null) { %>
                     <% for (User singleUser : allUsers) { %>
-                      <div style="display: flex; gap: 30px; background-color: #fdfdfd; border: 1px solid var(--border-colour); border-radius: 10px; padding: 20px;">
+                      <div style="display: flex; gap: 30px; background-color: #fdfdfd; border: 1px solid var(--border-colour); border-radius: 10px; padding: 20px; margin-bottom: 10px;">
                         <div style="display: flex; flex-direction: column; gap: 10px;">
                           <p style="font-weight: 600;">User ID:</p>
                           <p style="font-weight: 600;">Name:</p>
@@ -66,7 +63,6 @@
                           <p><%= singleUser.getGiven_name() %></p>
                         </div>
                       </div>
-                      <br>
                     <% } %>
                   <% } %>
                 </div>
@@ -83,5 +79,6 @@
     <% } %>
 
     <%@ include file="assets/footer.jsp" %>
+
   </body>
 </html>

@@ -20,6 +20,7 @@
   </head>
 
   <body>
+
     <%@ include file="assets/nav.jsp" %>
 
     <% if(user == null) { %>
@@ -40,9 +41,7 @@
               <%@ include file="assets/sidebarNav.jsp" %>
 
               <div>
-                <h2>Update address</h2>
-                <br>
-                <br>
+                <h2 style="margin-bottom: 50px;">Update address</h2>
 
                 <%
                 String addressIdParam = request.getParameter("address_id");
@@ -97,5 +96,6 @@
     <% } %>
 
     <%@ include file="assets/footer.jsp" %>
+
   </body>
 </html>
