@@ -1,3 +1,6 @@
+# Once the repo is cloned, change the db password to whatever your local database password is.
+
+
 # IoTBay Project!
 
 ### Description
