@@ -31,6 +31,9 @@
     <div class="container log-out-div">
       <h1>You're now logged out!</h1>
     </div>
+    <div class="container log-out-div">
+      <p>Please visit localhost:8080/index to establish connection with database and set all the DAOs</p>
+    </div>
     <div class="container" style="display: flex; gap: 20px; margin-top: 100px;">
       <a href="/index.jsp" style="background-color: #d22020; color: #ffffff; text-decoration: none; padding: 10px 20px; border-radius: 25px;">Go to Homepage</a>
     </div>

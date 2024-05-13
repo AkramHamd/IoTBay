@@ -40,25 +40,37 @@
               <%@ include file="assets/sidebarNav.jsp" %>
 
               <div>
-                <h2>Update details</h2>
+                <h2>Search logs</h2>
+                <br>
+                <br>
+                <label for="date">Search for logs </label>
+                <input type="date" name="date">
                 <br>
                 <br>
                 <br>
+                <br>
+ 
+                <% ArrayList<Log> logs = (ArrayList<Log>) session.getAttribute("logs"); %>
 
-                <%
-                  String dateTimeStr = user.getDob();
-                  String trimmedDateStr = dateTimeStr.substring(0, 10);
-                %>
-
-                <form action="/UpdateUserServlet" method="post" style="display: flex; flex-direction: column; gap: 20px;">                  
-                    <input type="text" name="given_name" value="<%= user.getGiven_name()%>">
-                    <input type="text" name="family_name" value="<%= user.getFamily_name()%>">
-                    <input type="text" name="email" value="<%= user.getEmail()%>">
-                    <input type="text" name="password" value="<%= user.getPassword()%>">
-                    <input type="text" name="phone" value="<%= user.getPhone()%>">
-                    <input type="date" name="dob" value="<%= trimmedDateStr %>">
-                    <input type="submit" value="Update Details">
-                </form>
+                <div>
+                  <% for (Log log : logs) { %>
+                    <div style="display: flex; gap: 30px; background-color: #fdfdfd; border: 1px solid var(--border-colour); border-radius: 10px; padding: 20px;">
+                      <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <p style="font-weight: 600;">Log ID:</p>
+                        <p style="font-weight: 600;">User ID:</p>
+                        <p style="font-weight: 600;">Type:</p>
+                        <p style="font-weight: 600;">Timestamp:</p>
+                      </div>
+                      <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <p><%= log.getLog_id() %></p>
+                        <p><%= log.getUser_id() %></p>
+                        <p><%= log.getType() %></p>
+                        <p><%= log.getTimestamp() %></p>
+                      </div>
+                    </div>
+                    <br>
+                  <% } %>
+                </div>
               </div>
             </div>
           </div>

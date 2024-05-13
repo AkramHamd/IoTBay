@@ -4,25 +4,25 @@ import java.io.Serializable;
 public class Log implements Serializable{
     
     private int log_id;
-    private int customer_id;
+    private int user_id;
     private String type;
     private String timestamp;
 
-    public Log(int log_id, int customer_id, String type, String timestamp) {
+    public Log(int log_id, int user_id, String type, String timestamp) {
         this.log_id = log_id;
-        this.customer_id = customer_id;
+        this.user_id = user_id;
         this.type = type;
         this.timestamp = timestamp;
     }
 
-    public Log(int customer_id, String type, String timestamp) {
-        this.customer_id = customer_id;
+    public Log(int user_id, String type, String timestamp) {
+        this.user_id = user_id;
         this.type = type;
         this.timestamp = timestamp;
     }
 
-    public Log(int customer_id, String type) {
-        this.customer_id = customer_id;
+    public Log(int user_id, String type) {
+        this.user_id = user_id;
         this.type = type;
     }
 
@@ -34,12 +34,12 @@ public class Log implements Serializable{
         this.log_id = log_id;
     }
 
-    public int getCustomer_id() {
-        return customer_id;
+    public int getUser_id() {
+        return user_id;
     }
 
-    public void setCustomer_id(int customer_id) {
-        this.customer_id = customer_id;
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 
     public String getType() {

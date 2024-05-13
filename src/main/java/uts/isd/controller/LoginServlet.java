@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import uts.isd.model.dao.CustomerDAO;
+import uts.isd.model.dao.UserDAO;
 import uts.isd.model.dao.LogDAO;
 
 public class LoginServlet extends HttpServlet {
@@ -21,16 +21,18 @@ public class LoginServlet extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         
-        CustomerDAO customerDAO = (CustomerDAO) session.getAttribute("customerDAO");
+        UserDAO userDAO = (UserDAO) session.getAttribute("userDAO");
         LogDAO logDAO = (LogDAO) session.getAttribute("logDAO");
     
         try {
-            Integer customer_id = customerDAO.validateCustomer(email, password);
+            Integer user_id = userDAO.validateUser(email, password);
 
-            if (customer_id != null) {
-                logDAO.addLog(customer_id, "login");
-                session.setAttribute("authorisedCustomer_id", customer_id);
+            if (user_id != null) {
+                logDAO.addLog(user_id, "login");
+                session.setAttribute("user_id", user_id);
+
                 response.sendRedirect("DashboardServlet");
+
             } else {
                 session.setAttribute("login_emailPasswordErr", "Invalid email or password");
                 request.getRequestDispatcher("login.jsp").include(request, response);

@@ -27,6 +27,8 @@
         <h1>You are not authenticated</h1>
       </div>
     <% } else { %>
+
+      
       <main>
         <div class="container dashboard-div">
           <h1>Dashboard</h1>
@@ -39,70 +41,70 @@
 
               <%@ include file="assets/sidebarNav.jsp" %>
 
-              <% String view_logsDateEmpty = (String) session.getAttribute("view_logsDateEmpty"); %>
+              <% if(user != null && "true".equals(user.getIs_staff())) { %>
 
+              <% String view_all_logsDateEmpty = (String) session.getAttribute("view_all_logsDateEmpty"); %>
+
+              <% ArrayList<Log> searchedAllLogs = (ArrayList<Log>) session.getAttribute("searchedAllLogs"); %>
+
+            <div>
+              <h2>View all Logs</h2>
+              <br>
+              <br>
+              <form action="SearchAllLogsServlet" method="post">
+                <% if(view_all_logsDateEmpty != null) { %>
+                  <p style="color: red;"><%=view_all_logsDateEmpty%></p>
+                <% } %>
+                <label for="date">Search for logs </label>
+                <input type="date" name="date">
+                <input type="submit" value="Search">
+              </form>
+              <br>
+              <br>
+              <br>
+              <br>
               <div>
-                <h2>View Logs</h2>
-                <br>
-                <br>
-                <form action="SearchLogsServlet" method="post">
-                  <% if(view_logsDateEmpty != null) { %>
-                    <p style="color: red;"><%=view_logsDateEmpty%></p>
+                <% if (searchedAllLogs != null) { %>
+                  <h3>Searched logs</h3>
+                  <br>
+                  <% if (searchedAllLogs.size() == 0) { %>
+                    <p>No logs found for that date</p>
                   <% } %>
-                  <label for="date">Search for logs </label>
-                  <input type="hidden" name="user_id" value="<%= user.getUser_id() %>">
-                  <input type="date" name="date">
-                  <input type="submit" value="Search">
-                </form>
-                <br>
-                <br>
-                <br>
-                <br>
-
-                <% ArrayList<Log> searchedLogs = (ArrayList<Log>) session.getAttribute("searchedLogs"); %>
-
-                <div>
-                  <% if (searchedLogs != null) { %>
-                    <h3>Searched logs</h3>
-                    <br>
-                    <% if (searchedLogs.size() == 0) { %>
-                      <p>No logs found for that date</p>
-                    <% } %>
-                    <% for (Log log : searchedLogs) { %>
-                      <div style="display: flex; gap: 30px; background-color: #fdfdfd; border: 1px solid var(--border-colour); border-radius: 10px; padding: 20px;">
-                        <div style="display: flex; flex-direction: column; gap: 10px;">
-                          <p style="font-weight: 600;">Log ID:</p>
-                          <p style="font-weight: 600;">User ID:</p>
-                          <p style="font-weight: 600;">Type:</p>
-                          <p style="font-weight: 600;">Timestamp:</p>
-                        </div>
-                        <div style="display: flex; flex-direction: column; gap: 10px;">
-                          <p><%= log.getLog_id() %></p>
-                          <p><%= log.getUser_id() %></p>
-                          <p><%= log.getType() %></p>
-                          <p><%= log.getTimestamp() %></p>
-                        </div>
+                  <% for (Log log : searchedAllLogs) { %>
+                    <div style="display: flex; gap: 30px; background-color: #fdfdfd; border: 1px solid var(--border-colour); border-radius: 10px; padding: 20px;">
+                      <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <p style="font-weight: 600;">Log ID:</p>
+                        <p style="font-weight: 600;">User ID:</p>
+                        <p style="font-weight: 600;">Type:</p>
+                        <p style="font-weight: 600;">Timestamp:</p>
                       </div>
-                      <br>
-                      <% } %>
-
-                      <br>
-                      <br>
-                      <form action="ClearSearchLogsServlet" method="post">  
-                        <input type="hidden" name="user_id" value="<%= user.getUser_id() %>">
-                        <input type="submit" value="Clear search">
-                      </form>
+                      <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <p><%= log.getLog_id() %></p>
+                        <p><%= log.getUser_id() %></p>
+                        <p><%= log.getType() %></p>
+                        <p><%= log.getTimestamp() %></p>
+                      </div>
+                    </div>
                     <br>
-                  <% } %>
-                </div>
+                    <% } %>
 
-                <% ArrayList<Log> logs = (ArrayList<Log>) session.getAttribute("logs"); %>
+                    <br>
+                    <br>
+                    <form action="ClearSearchAllLogsServlet" method="post">  
+                      <input type="hidden" name="user_id" value="<%= user.getUser_id() %>">
+                      <input type="submit" value="Clear search">
+                    </form>
+                  <br>
+                <% } %>
+              </div>
+ 
+                <% ArrayList<Log> allLogs = (ArrayList<Log>) session.getAttribute("allLogs"); %>
 
                 <div>
-                  <% if(searchedLogs == null) { %>
+                  <% if(searchedAllLogs == null) { %>
                     <h3>All your logs</h3>
                     <br>
-                    <% for (Log log : logs) { %>
+                    <% for (Log log : allLogs) { %>
                       <div style="display: flex; gap: 30px; background-color: #fdfdfd; border: 1px solid var(--border-colour); border-radius: 10px; padding: 20px;">
                         <div style="display: flex; flex-direction: column; gap: 10px;">
                           <p style="font-weight: 600;">Log ID:</p>
@@ -122,10 +124,15 @@
                   <% } %>
                 </div>
               </div>
+              <% } else { %>
+                <h1>You are not a staff</h1>
+              <% } %>
             </div>
           </div>
         </div>
       </main>
+      
+
     <% } %>
 
     <%@ include file="assets/footer.jsp" %>

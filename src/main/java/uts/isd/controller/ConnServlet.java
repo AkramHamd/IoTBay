@@ -11,13 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import uts.isd.model.dao.AddressDAO;
-import uts.isd.model.dao.CustomerDAO;
+import uts.isd.model.dao.UserDAO;
 import uts.isd.model.dao.DBConnector;
 import uts.isd.model.dao.LogDAO;
 
 public class ConnServlet extends HttpServlet{
     private DBConnector db;
-    private CustomerDAO customerDAO;
+    private UserDAO userDAO;
     private LogDAO logDAO;
     private AddressDAO addressDAO;
     private Connection connection;
@@ -26,6 +26,7 @@ public class ConnServlet extends HttpServlet{
     public void init() {
         try {
             db = new DBConnector();
+            System.out.println("Database connection established.");
         }
         catch (ClassNotFoundException | SQLException ex) {
             System.out.println(ex);
@@ -40,17 +41,17 @@ public class ConnServlet extends HttpServlet{
         connection = db.openConnection();
 
         try {
-            customerDAO = new CustomerDAO(connection);
+            userDAO = new UserDAO(connection);
             logDAO = new LogDAO(connection);
             addressDAO = new AddressDAO(connection);
         } catch (SQLException e) {
             System.out.print(e);
         }
 
+        session.setAttribute("userDAO", userDAO);
         session.setAttribute("logDAO", logDAO);
-        session.setAttribute("customerDAO", customerDAO);
         session.setAttribute("addressDAO", addressDAO);
-        System.out.println("Conn Servlet");
+        System.out.println("All DAOs have been set in session.");
         request.getRequestDispatcher("index.jsp").include(request, response);
     }
 

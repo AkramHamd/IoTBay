@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import uts.isd.model.Address;
 import uts.isd.model.dao.AddressDAO;
 
 public class AddAddressServlet extends HttpServlet {
@@ -17,7 +16,7 @@ public class AddAddressServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         
-        int customer_id = Integer.parseInt(request.getParameter("customer_id"));
+        int user_id = Integer.parseInt(request.getParameter("user_id"));
         int unit_number = Integer.parseInt(request.getParameter("unit_number"));
         int street_number = Integer.parseInt(request.getParameter("street_number"));
         String street_name = request.getParameter("street_name");
@@ -29,10 +28,10 @@ public class AddAddressServlet extends HttpServlet {
         AddressDAO addressDAO = (AddressDAO) session.getAttribute("addressDAO");
 
         try {
-            Address address = addressDAO.addAddress(customer_id, unit_number, street_number, street_name, suburb, state, postcode, country);
+            int address_id = addressDAO.createAddress(user_id, unit_number, street_number, street_name, suburb, state, postcode, country);
             
-            session.setAttribute("address", address);
-            response.sendRedirect("dashboard.jsp");
+            session.setAttribute("address_id", address_id);
+            response.sendRedirect("DashboardServlet");
         } catch (Exception e) {
             System.out.println(e);
         }

@@ -40,24 +40,18 @@
               <%@ include file="assets/sidebarNav.jsp" %>
 
               <div>
-                <h2>Update details</h2>
+                <h2>Delete account</h2>
+                <br>
+                <p>This will account your account and anything associated with this account BUT we will keep your logs history for security reasons :)</p>
                 <br>
                 <br>
+                <br>
+                <br>
+                <p>Are you sure you want to delete your account? This can not be reversed</p>
                 <br>
 
-                <%
-                  String dateTimeStr = user.getDob();
-                  String trimmedDateStr = dateTimeStr.substring(0, 10);
-                %>
-
-                <form action="/UpdateUserServlet" method="post" style="display: flex; flex-direction: column; gap: 20px;">                  
-                    <input type="text" name="given_name" value="<%= user.getGiven_name()%>">
-                    <input type="text" name="family_name" value="<%= user.getFamily_name()%>">
-                    <input type="text" name="email" value="<%= user.getEmail()%>">
-                    <input type="text" name="password" value="<%= user.getPassword()%>">
-                    <input type="text" name="phone" value="<%= user.getPhone()%>">
-                    <input type="date" name="dob" value="<%= trimmedDateStr %>">
-                    <input type="submit" value="Update Details">
+                <form action="/DeleteUserServlet" method="post">
+                  <input type="submit" value="Delete account">
                 </form>
               </div>
             </div>

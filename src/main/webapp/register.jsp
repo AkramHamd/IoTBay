@@ -92,7 +92,12 @@
             <% } %>
             <input type="date" name="dob" id="dob" >
 
+            <div>
+              <label for="is_staff">Create staff account? </label>
+              <input type="checkbox" name="is_staff" value="true">
+            </div>
           </div>
+          
           <div class="submit-div">
             <input type="submit" value="Register" />
             <p>Don't have an account? <a href="/login.jsp">Login</a></p>
