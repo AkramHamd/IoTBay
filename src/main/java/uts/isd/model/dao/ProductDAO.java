@@ -89,6 +89,35 @@ public class ProductDAO {
 			return null;
 		}
 	}
+	//select specific product
+	public ArrayList<Product> selectArrayProduct(ArrayList<Integer> productIDList) throws SQLException {
+		ArrayList<Product> products = new ArrayList<>();
+		for(Integer product_ID : productIDList) {
+			PreparedStatement st = con.prepareStatement("SELECT * FROM product WHERE product_id=?");
+			st.setInt(1, product_ID); // Set product_ID as parameter
+			ResultSet rs = st.executeQuery();
+			if (rs.next()) { // Check if result set is not empty
+				Integer productId = rs.getInt("product_id");
+				String productName = rs.getString("product_name");
+				String productBrand = rs.getString("product_brand");
+				String productDescription = rs.getString("product_description");
+				String productImage = rs.getString("product_img");
+				Double productPrice = rs.getDouble("product_price");
+				Double specialPrice = rs.getDouble("product_special_price");
+				Boolean productOnSpecial = rs.getBoolean("product_on_special");
+				Integer productStock = rs.getInt("product_stock");
+				Integer productOnOrder = rs.getInt("product_order_qty");
+				String productShortDesc = rs.getString("product_short_description");
+				Product p = new Product(productId, productName, productBrand, productDescription, productImage,
+				productPrice, specialPrice, productOnSpecial, productStock, productOnOrder, productShortDesc);
+				products.add(p);
+			} 
+			else {
+				products.add(null);
+			}
+		}
+		return products;
+	}
 
 	//create product
 	public void createProduct(

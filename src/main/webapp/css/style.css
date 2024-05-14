@@ -51,7 +51,9 @@ nav {
   
   .search-icon,
   .cart-icon {
-    width: 25px;
+    width: 25px !important;
+    height: auto;
+    /* object-fit: contain; */
   }
   
   .user-icon {
@@ -90,7 +92,7 @@ nav {
 }
 
 .product-card p {
-    margin: 0;
+    margin-top: 5%;
     font-size: 0.9em;
     color: #777;
 }
@@ -121,7 +123,6 @@ nav {
   margin-right: 10%;
   width: auto;
   text-align: center;
-  display: flex;
   flex-wrap: wrap;
   justify-content: center; /* Center horizontally */
 }
@@ -148,6 +149,7 @@ margin-left: 5vw;
 .product-details-heading h1 {
 font-weight: 900;
 font-size: 7rem;
+margin-bottom: 5%;
 }
 .createProductForm {
   display: flex;

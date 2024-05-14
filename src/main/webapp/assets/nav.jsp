@@ -3,11 +3,11 @@
 
 <nav>
   <div class="container navbar">
-    <a href="/index.jsp"><img src="/assets/logo.png" alt="logo" class="logo" /></a>
-    <div class="search-div">
-      <input type="text" placeholder="Search millions of things . . ." />
-      <img src="/assets/search-icon.png" alt="search icon" class="search-icon" />
-    </div>
+    <a href="/index"><img src="/assets/logo.png" alt="logo" class="logo" /></a>
+    <form class="search-div" method="post" action="/ProductSearchServlet">
+      <input type="text" name="searchQuery" placeholder="Search millions of things . . ." />
+      <input type="image" src="/assets/search-icon.png" alt="search icon" class="search-icon" />
+    </form>
     <div class="cart-div">
       Cart
     </div>

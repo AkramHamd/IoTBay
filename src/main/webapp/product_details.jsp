@@ -48,8 +48,11 @@
                     <img src="<%= product.getProductImg() %>">
                     <div class="product-details-heading">
                         <h1><%= product.getProductName() %> </h1>
+                        <p><%= product.getProductShortDesc() %></p>
                     </div>
+                    
                 </div>
+                
                 <div class="product-details-container-lower-flex">
                     <p><%= product.getProductDescription() %></p>
                 </div>

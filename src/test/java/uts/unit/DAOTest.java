@@ -123,23 +123,18 @@ public class DAOTest {
     public void testSelectProducts() throws SQLException {
         ArrayList<Product> products = productDAO.fetchProducts();
         assertTrue(products.size() > 0);
-        // System.out.println("---------");
-        // System.out.println(products.get(4).getProductId());
-        // System.out.println(products.get(4).getProductName());
-        // System.out.println("---------");
     }
 
     @Test
     public void testSpecificProduct() throws SQLException {
         Product gnest = productDAO.selectSpecificProduct(2);
-        // System.out.println("Expecting 'Nest' but got: " + gnest.getProductName());
         assertEquals(gnest.getProductName(), "Nest");
     }
 
     //create product
     @Test
     public void testCreateProducts() throws SQLException {
-        productDAO.createProduct("MVN Test product", "Testers", "This is a test description", null, 1.23d, 0.00d, false, 30, 10);
+        productDAO.createProduct("MVN Test product", "Testers", "This is a test description", null, 1.23d, 0.00d, false, 30, 10, "adsa");
     }
 
     //delete product
@@ -148,10 +143,8 @@ public class DAOTest {
         ArrayList<Product> products;
         products = productDAO.fetchProducts();
         Integer productOriginalSize = products.size();
-        // System.out.println("Old list size: " + products.size());
         productDAO.deleteProduct(products.get(products.size()-1).getProductId());
         products = productDAO.fetchProducts();
-        // System.out.println("New list size: " + products.size());
         assertTrue(products.size() < productOriginalSize);
         for(Product product : productDAO.fetchProducts()) {
             if(product.getProductName() == "MVN Test product") {
@@ -160,11 +153,4 @@ public class DAOTest {
             System.out.println(product.getProductId());
         }
     }
-
-    // @Test
-    // public void testDeleteAddress() throws SQLException {
-    //     addressDAO.deleteAddress(25);
-    // }
-
-    // Tests to here (testCreateUser) to (testDeleteAddress) are written by Ahmad)
 }
