@@ -51,7 +51,7 @@
 
     // @Test
     // public void testReadUser() throws SQLException {
-    //     User user = userDAO.readUser(81);
+    //     User user = userDAO.readUser(40);
     //     assertNotNull(user);
     // }
 
@@ -63,9 +63,9 @@
 
     // @Test
     // public void testUpdateUser() throws SQLException {
-    //     userDAO.updateUser(81, "John", "Doe", "johndoe@TEST.com", "testPassword" ,"0000 000 000", "1999-01-01");	
+    //     userDAO.updateUser(40, "John", "Doe", "johndoe@TEST.com", "testPassword" ,"0000 000 000", "1999-01-01");	
     
-    //     User updatedUser = userDAO.readUser(81);
+    //     User updatedUser = userDAO.readUser(40);
     //     assertEquals("John", updatedUser.getGiven_name());
     //     assertEquals("Doe", updatedUser.getFamily_name());
     //     assertEquals("johndoe@TEST.com", updatedUser.getEmail());
@@ -81,12 +81,12 @@
 
     // @Test
     // public void testAddLog() throws SQLException {
-    //     logDAO.addLog(81, "test");
+    //     logDAO.addLog(40, "test");
     // }
 
     // @Test
     // public void testGetLogs() throws SQLException {
-    //     ArrayList<Log> logs = logDAO.getLogs(81);
+    //     ArrayList<Log> logs = logDAO.getLogs(40);
     //     assertTrue(logs.size() > 0);
     // }
 
@@ -98,25 +98,25 @@
 
     // @Test
     // public void testCreateAddress() throws SQLException {
-    //     int addressId = addressDAO.createAddress(81, 1, 1, "Test St", "Test Suburb", "NSW", 2000, "Australia");
+    //     int addressId = addressDAO.createAddress(40, 1, 1, "Test St", "Test Suburb", "NSW", 2000, "Australia");
     //     assertNotNull(addressId);
     // }
 
     // @Test
     // public void testReadAddress() throws SQLException {
-    //     Address address = addressDAO.readAddress(26);
+    //     Address address = addressDAO.readAddress(10);
     //     assertNotNull(address);
     // }
 
     // @Test
     // public void testReadAddresses() throws SQLException {
-    //     ArrayList<Address> addresses = addressDAO.readAddresses(81);
+    //     ArrayList<Address> addresses = addressDAO.readAddresses(40);
     //     assertTrue(addresses.size() > 0);
     // }
 
     // @Test
     // public void testUpdateAddress() throws SQLException {
-    //     addressDAO.updateAddress(26, 1, 1, "Test St", "Test Suburb", "NSW", 2000, "Australia");
+    //     addressDAO.updateAddress(10, 1, 1, "Test St", "Test Suburb", "NSW", 2000, "Australia");
     // }
 
 //     // @Test

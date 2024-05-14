@@ -20,6 +20,7 @@
   </head>
 
   <body>
+
     <%@ include file="assets/nav.jsp" %>
 
     <% if(user == null) { %>
@@ -40,10 +41,7 @@
               <%@ include file="assets/sidebarNav.jsp" %>
 
               <div>
-                <h2>Update details</h2>
-                <br>
-                <br>
-                <br>
+                <h2 style="margin-bottom: 50px;">Update details</h2>
 
                 <%
                   String dateTimeStr = user.getDob();
@@ -67,5 +65,6 @@
     <% } %>
 
     <%@ include file="assets/footer.jsp" %>
+
   </body>
 </html>
