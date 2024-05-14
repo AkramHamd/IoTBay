@@ -103,7 +103,35 @@ public class ProductDAO {
 		Integer product_order_qty,
         String productShortDesc
 		) throws SQLException {
-		PreparedStatement st = con.prepareStatement("INSERT INTO Product(product_name, product_brand, product_description, product_img, product_price, product_special_price, product_on_special, product_stock, product_order_qty, product_Short_Desc) VALUES(?,?,?,?,?,?,?,?,?,?)");
+		PreparedStatement st = con.prepareStatement("INSERT INTO Product(product_name, product_brand, product_description, product_img, product_price, product_special_price, product_on_special, product_stock, product_order_qty, product_Short_Description) VALUES(?,?,?,?,?,?,?,?,?,?)");
+		st.setString(1, product_name); //replacing ? with variables
+		st.setString(2, product_brand);
+		st.setString(3, product_description);
+		st.setString(4, product_img);
+		st.setDouble(5, product_price);
+		st.setDouble(6, product_special_price);
+		st.setBoolean(7, product_on_special);
+		st.setInt(8, product_stock);
+		st.setInt(9, product_order_qty);
+        st.setString(10, productShortDesc);
+
+		st.executeUpdate(); // executes the query
+	}
+
+	//update product
+	public void updateProduct(
+		String product_name,
+		String product_brand,
+		String product_description,
+		String product_img,
+		Double product_price,
+		Double product_special_price,
+		Boolean product_on_special,
+		Integer product_stock,
+		Integer product_order_qty,
+        String productShortDesc
+		) throws SQLException {
+		PreparedStatement st = con.prepareStatement("INSERT INTO Product(product_name, product_brand, product_description, product_img, product_price, product_special_price, product_on_special, product_stock, product_order_qty, product_Short_Description) VALUES(?,?,?,?,?,?,?,?,?,?)");
 		st.setString(1, product_name); //replacing ? with variables
 		st.setString(2, product_brand);
 		st.setString(3, product_description);

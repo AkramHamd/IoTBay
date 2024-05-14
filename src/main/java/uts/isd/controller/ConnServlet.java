@@ -14,12 +14,14 @@ import uts.isd.model.dao.AddressDAO;
 import uts.isd.model.dao.UserDAO;
 import uts.isd.model.dao.DBConnector;
 import uts.isd.model.dao.LogDAO;
+import uts.isd.model.dao.ProductDAO;
 
 public class ConnServlet extends HttpServlet{
     private DBConnector db;
     private UserDAO userDAO;
     private LogDAO logDAO;
     private AddressDAO addressDAO;
+    private ProductDAO productDAO;
     private Connection connection;
     
     @Override
@@ -44,6 +46,7 @@ public class ConnServlet extends HttpServlet{
             userDAO = new UserDAO(connection);
             logDAO = new LogDAO(connection);
             addressDAO = new AddressDAO(connection);
+            productDAO = new ProductDAO(connection);
         } catch (SQLException e) {
             System.out.print(e);
         }
@@ -51,6 +54,7 @@ public class ConnServlet extends HttpServlet{
         session.setAttribute("userDAO", userDAO);
         session.setAttribute("logDAO", logDAO);
         session.setAttribute("addressDAO", addressDAO);
+        session.setAttribute("productDAO", productDAO);
         System.out.println("All DAOs have been set in session.");
         request.getRequestDispatcher("index.jsp").include(request, response);
     }

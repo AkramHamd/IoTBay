@@ -149,8 +149,41 @@ margin-left: 5vw;
 font-weight: 900;
 font-size: 7rem;
 }
+.createProductForm {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.createProductForm span {
+  font-size: 0.8rem;
+  color:#858585;
+  margin-top: 5px;
+}
+.form-inline {
+  display: inline-flex;
+  justify-content: space-around;
+}
 
+.staff-product-view {
+  display: inline-flex;
+  justify-content: space-around;
+  padding-top: 1%;
+  width: 100%;
+}
 
+.staff-product-view p, a {
+  width: 100%;
+}
+
+.product-staff-container {
+  width: 100%;
+  padding-left: 100px;
+}
+
+.heading-view p{
+  text-decoration: underline;
+  font-weight: bolder;
+}
 
 
 

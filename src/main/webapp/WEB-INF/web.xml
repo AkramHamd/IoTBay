@@ -132,6 +132,16 @@
       <url-pattern>/ClearSearchAllLogsServlet</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+      <servlet-name>CreateProductServlet</servlet-name>
+      <servlet-class>uts.isd.controller.CreateProductServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>CreateProductServlet</servlet-name>
+      <url-pattern>/CreateProductServlet</url-pattern>
+  </servlet-mapping>
+  
+
   <session-config>
     <session-timeout>30</session-timeout>
   </session-config>

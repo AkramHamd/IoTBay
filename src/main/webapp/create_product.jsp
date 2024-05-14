@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
     <link rel="stylesheet" href="css/layout.css">
     <link rel="stylesheet" href="css/dashboard.css" />
+    <link rel="stylesheet" href="css/style.css" />
     <title>IoTBay - Dashboard</title>
   </head>
 
@@ -43,11 +44,38 @@
                 <div>
                   <p style="font-size: 30px;">Create a Product</p>
                 </div>
-
-                <br>
-                <br>
-                <br>
-                <br>
+                 <form action="/CreateProductServlet" method="post" class="createProductForm">
+                 <br>
+                 <p>Product Name</p>
+                 <span>Omit brand from product name</span>
+                  <input type="text" name="product_name" placeholder="E.g. Nest-Mini">
+                  <p>Product Brand</p>
+                  <input type="text" name="product_brand" placeholder="E.g. Google">
+                  <p>Product Description</p>
+                  <input type="text" name="product_description" placeholder="Long description including product features">
+                  <p>Product Image URL</p>
+                  <input type="text" name="product_img" placeholder="Provide either a local URL e.g. assets/imgs/---.png or an internet URL">
+                  <p>Product Price</p>
+                  <input type="number" name="product_price">
+                  <p>Product Price when it is on Special</p>
+                  <input type="number" name="product_special_price">
+                  <p>Is the Product on Special?</p>
+                  <div class="form-inline">
+                    <label for="product_on_special_true">True</label>
+                    <input type="radio" name="product_on_special" value="true">
+                  </div>
+                <div class="form-inline">
+                    <label for="product_on_special_false">False</label>
+                    <input type="radio" name="product_on_special" value="false">
+                </div>
+                  <p>Product Stock</p>
+                  <input type="number" name="product_stock">
+                  <p>Amount of stock on order from supplier</p>
+                  <input type="text" name="product_order_qty">
+                  <p>Short description for the product</p>
+                  <input type="text" name="product_short_description">
+                  <input type="submit" value="Create Product">
+                </form>
               </div>
             </div>
           </div>
