@@ -1,6 +1,5 @@
 package uts.isd.model;
 import java.io.Serializable;
-
 public class Product implements Serializable{
     
     private int productId;
@@ -13,10 +12,12 @@ public class Product implements Serializable{
     private boolean productOnSpecial;
     private int productStock;
     private int productOrderQty;
-    
+    private String productShortDesc;
+
+    public Product(){};
     public Product(int productId, String productName, String productBrand, String productDescription, String productImg,
             double productPrice, double productSpecialPrice, boolean productOnSpecial, int productStock,
-            int productOrderQty) {
+            int productOrderQty, String productShortDesc) {
         this.productId = productId;
         this.productName = productName;
         this.productBrand = productBrand;
@@ -27,6 +28,7 @@ public class Product implements Serializable{
         this.productOnSpecial = productOnSpecial;
         this.productStock = productStock;
         this.productOrderQty = productOrderQty;
+        this.productShortDesc = productShortDesc;
     }
 
     public int getProductId() {
@@ -111,6 +113,14 @@ public class Product implements Serializable{
 
     public void setProductOrderQty(int productOrderQty) {
         this.productOrderQty = productOrderQty;
+    }
+
+    public String getProductShortDesc() {
+        return this.productShortDesc;
+    }
+
+    public void setProductShortDesc(String productShortDesc) {
+        this.productShortDesc = productShortDesc;
     }
 
     
