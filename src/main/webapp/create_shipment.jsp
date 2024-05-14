@@ -1,14 +1,28 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
     <title>Create Shipment</title>
-    <link rel="stylesheet" type="text/css" href="/css/style.css">
-
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/list_shipments.css">
 </head>
 <body>
 
-<h1>Create New Shipment</h1>
+<%@ include file="assets/nav.jsp" %>
+
+<%
+    if (user == null) {
+%>
+        <h1>You're Not authenticated</h1>
+<%
+    } else {
+        if (!"true".equals(user.getIs_staff())) {
+%>
+            <h1>You're NOT a staff member.</h1>
+<%
+        } else {
+%>
+
+<h1>Create New Shipment (Staff Access)</h1>
 
 <form action="/CreateShipmentServlet" method="post">
     <label for="orderId">Order ID:</label>
@@ -34,6 +48,13 @@
 
     <input type="submit" value="Create Shipment">
 </form>
+
+<%
+        }
+    }
+%>
+
+<%@ include file="assets/footer.jsp" %>
 
 </body>
 </html>

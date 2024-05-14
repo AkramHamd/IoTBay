@@ -11,8 +11,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="/css/style.css">
-    <link rel="stylesheet" href="css/dashboard.css"> 
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/list_shipments.css">
     <title>My Shipments</title>   
 </head>
 <body>

@@ -31,7 +31,7 @@
     <i class="material-icons" id="sidebar-item-arrow">chevron_right</i>
   </div>
   <div class="sidebar-items">
-    <a href="/list_shipments.jsp">View All Shipments</a>
+    <a href="/list_shipments.jsp">Shipments Management (Staff)</a>
     <i class="material-icons" id="sidebar-item-arrow">chevron_right</i>
   </div>
   <div class="sidebar-items">

@@ -43,8 +43,15 @@ table {
     background-color: #a81818;
   }
 
-
+  .container {
+    width: 80%;
+    margin: 0 auto;
+  }
+  
+  h1 {
+    text-align: center;
+    margin: 20px 0;
+  }
   .center-links {
     text-align: center;
   }
-  

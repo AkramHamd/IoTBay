@@ -1,15 +1,29 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
     <title>Search Shipments</title>
-    <link rel="stylesheet" type="text/css" href="/css/style.css">
-
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/list_shipments.css">
 </head>
 <body>
 
-<h1>Search Shipments</h1>
+<%@ include file="assets/nav.jsp" %>
+
+<%
+    if (user == null) {
+%>
+        <h1>You're Not authenticated</h1>
+<%
+    } else {
+        if (!"true".equals(user.getIs_staff())) {
+%>
+            <h1>You're NOT a staff member.</h1>
+<%
+        } else {
+%>
+
+<h1>Search Shipments (Staff Access)</h1>
 
 <form action="/SearchShipmentServlet" method="post">
     <label for="userId">Search by User ID:</label>
@@ -60,6 +74,13 @@
         </tbody>
     </table>
 </c:if>
+
+<%
+        }
+    }
+%>
+
+<%@ include file="assets/footer.jsp" %>
 
 </body>
 </html>
