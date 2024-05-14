@@ -19,30 +19,35 @@ nav {
     border-bottom: 2px solid var(--primary);
   }
   
-  .navbar {
+  .container-navbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 40px 0;
+    padding: 2vh 10vw 2vh 10vw;
+    width: 100vw;
+    height: 8rem;
   }
   
   .logo {
-    width: 200px;
+    width: 15vw;
+    height: auto;
   }
   
   .search-div {
-    width: 550px;
-    display: flex;
+    width: 40vw;
+    display: inline-flex;
     border: 1px solid var(--border-colour);
     border-radius: 25px;
     padding: 10px 20px;
     gap: 10px;
+    justify-content: space-between;
   }
   
   .search-div input {
     flex: 1;
     border: none;
     font-size: 14px;
+    width: 35vw;
   }
   
   .search-div input:focus {

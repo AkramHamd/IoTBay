@@ -34,6 +34,7 @@ public class DAOTest {
         userDAO = new UserDAO(conn);
         logDAO = new LogDAO(conn);
         addressDAO = new AddressDAO(conn);
+        productDAO = new ProductDAO(conn);
     }
 
     @Test
@@ -119,16 +120,33 @@ public class DAOTest {
         addressDAO.updateAddress(26, 1, 1, "Test St", "Test Suburb", "NSW", 2000, "Australia");
     }
 
+
+
+    //---------- product tests ----------//
+
+    //select/fetch all products
     @Test
     public void testSelectProducts() throws SQLException {
         ArrayList<Product> products = productDAO.fetchProducts();
         assertTrue(products.size() > 0);
     }
 
+    //test specific retrieval utilising select from previous test
     @Test
-    public void testSpecificProduct() throws SQLException {
-        Product gnest = productDAO.selectSpecificProduct(2);
-        assertEquals(gnest.getProductName(), "Nest");
+    public void testSpecificProduct() throws SQLException {   
+        ArrayList<Product> products = productDAO.fetchProducts();
+        Product tester = productDAO.selectSpecificProduct(products.get(0).getProductId());
+        assertEquals(tester.getProductName(), products.get(0).getProductName());
+    }
+
+    //select using specific array
+    @Test
+    public void testArrayProduct() throws SQLException {
+        ArrayList<Integer> products = new ArrayList<>();
+        products.add(1);
+        products.add(2);
+        ArrayList<Product> tester = productDAO.selectArrayProduct(products);
+        assertEquals(tester.get(1).getProductId(), 2);
     }
 
     //create product
@@ -150,7 +168,6 @@ public class DAOTest {
             if(product.getProductName() == "MVN Test product") {
                 productDAO.deleteProduct(product.getProductId());
             }
-            System.out.println(product.getProductId());
         }
     }
 }
