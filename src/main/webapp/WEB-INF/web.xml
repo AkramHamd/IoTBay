@@ -113,14 +113,109 @@
         <url-pattern>/ClearSearchLogsServlet</url-pattern>
     </servlet-mapping>
 
+  <servlet>
+      <servlet-name>ClearSearchAllLogsServlet</servlet-name>
+      <servlet-class>uts.isd.controller.ClearSearchAllLogsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>ClearSearchAllLogsServlet</servlet-name>
+      <url-pattern>/ClearSearchAllLogsServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+      <servlet-name>CreateProductServlet</servlet-name>
+      <servlet-class>uts.isd.controller.CreateProductServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>CreateProductServlet</servlet-name>
+      <url-pattern>/CreateProductServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+      <servlet-name>UpdateProductServlet</servlet-name>
+      <servlet-class>uts.isd.controller.UpdateProductServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>UpdateProductServlet</servlet-name>
+      <url-pattern>/UpdateProductServlet</url-pattern>
+  </servlet-mapping>
+
+   <servlet>
+      <servlet-name>DeleteProductServlet</servlet-name>
+      <servlet-class>uts.isd.controller.DeleteProductServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>DeleteProductServlet</servlet-name>
+      <url-pattern>/DeleteProductServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+      <servlet-name>ProductSearchServlet</servlet-name>
+      <servlet-class>uts.isd.controller.ProductSearchServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>ProductSearchServlet</servlet-name>
+      <url-pattern>/ProductSearchServlet</url-pattern>
+  </servlet-mapping>
+
+    <session-config>
+        <session-timeout>30</session-timeout>
+    </session-config>
+
     <servlet>
-        <servlet-name>ClearSearchAllLogsServlet</servlet-name>
-        <servlet-class>uts.isd.controller.ClearSearchAllLogsServlet</servlet-class>
+        <servlet-name>ListShipmentServlet</servlet-name>
+        <servlet-class>uts.isd.controller.ListShipmentServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>ClearSearchAllLogsServlet</servlet-name>
-        <url-pattern>/ClearSearchAllLogsServlet</url-pattern>
+        <servlet-name>ListShipmentServlet</servlet-name>
+        <url-pattern>/ListShipmentServlet</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>DeleteShipmentServlet</servlet-name>
+        <servlet-class>uts.isd.controller.DeleteShipmentServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteShipmentServlet</servlet-name>
+        <url-pattern>/DeleteShipmentServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>CreateShipmentServlet</servlet-name>
+        <servlet-class>uts.isd.controller.CreateShipmentServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CreateShipmentServlet</servlet-name>
+        <url-pattern>/CreateShipmentServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>SearchShipmentServlet</servlet-name>
+        <servlet-class>uts.isd.controller.SearchShipmentServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SearchShipmentServlet</servlet-name>
+        <url-pattern>/SearchShipmentServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>UserListShipmentServlet</servlet-name>
+        <servlet-class>uts.isd.controller.UserListShipmentServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserListShipmentServlet</servlet-name>
+        <url-pattern>/UserListShipmentServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>UserSearchShipmentServlet</servlet-name>
+        <servlet-class>uts.isd.controller.UserSearchShipmentServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserSearchShipmentServlet</servlet-name>
+        <url-pattern>/UserSearchShipmentServlet</url-pattern>
+    </servlet-mapping>
+
 
     <session-config>
         <session-timeout>30</session-timeout>

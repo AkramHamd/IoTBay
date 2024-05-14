@@ -38,4 +38,20 @@
     <a href="/view_all_users.jsp">View All Users</a>
     <i class="material-icons" id="sidebar-item-arrow">chevron_right</i>
   </div>
+  <div class="sidebar-items">
+    <a href="/create_product.jsp">Create Product</a>
+    <i class="material-icons" id="sidebar-item-arrow">chevron_right</i>
+  </div>
+  <div class="sidebar-items">
+    <a href="/update_product.jsp">Update Product</a>
+    <i class="material-icons" id="sidebar-item-arrow">chevron_right</i>
+  </div>
+  <div class="sidebar-items">
+    <a href="/staff_product_view.jsp">View Active Products</a>
+    <i class="material-icons" id="sidebar-item-arrow">chevron_right</i>
+  </div>
+  <div class="sidebar-items">
+    <a href="/delete_product.jsp">Delete Product</a>
+    <i class="material-icons" id="sidebar-item-arrow">chevron_right</i>
+  </div>
 </div>

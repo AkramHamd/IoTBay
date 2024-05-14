@@ -2,12 +2,18 @@
 <%@page import="uts.isd.model.User"%>
 
 <nav>
-  <div class="container navbar">
-    <a href="/index.jsp"><img src="/assets/logo.png" alt="logo" class="logo" /></a>
-    <div class="search-div">
-      <input type="text" placeholder="Search millions of things . . ." />
-      <img src="/assets/search-icon.png" alt="search icon" class="search-icon" />
+  <div class="container-navbar">
+    <div>
+      <a href="/index"><img src="/assets/logo.png" alt="logo" class="logo" style="width: 20rem;"/></a>
     </div>
+    <form class="search-div" method="post" action="/ProductSearchServlet">
+    <div style="align-self: center;">
+      <input type="text" name="searchQuery" placeholder="Search millions of things . . ." />
+    </div>
+    <div>
+      <input type="image" src="/assets/search-icon.png" alt="search icon" class="search-icon" />
+    </div>
+    </form>
     <div class="cart-div">
       Cart
     </div>

@@ -23,12 +23,12 @@
 // import uts.isd.model.dao.LogDAO;
 // import uts.isd.model.dao.UserDAO;
 
-// public class DAOTest {
-//     private DBConnector connector;
-//     private Connection conn;
-//     private UserDAO userDAO;
-//     private LogDAO logDAO;
-//     private AddressDAO addressDAO;
+public class DAOTest {
+    private DBConnector connector;
+    private Connection conn;
+    private UserDAO userDAO;
+    private LogDAO logDAO;
+    private AddressDAO addressDAO;
 
 //     public DAOTest() throws ClassNotFoundException, SQLException {
 //         connector = new DBConnector();
@@ -114,63 +114,54 @@
     //     assertTrue(addresses.size() > 0);
     // }
 
-    // @Test
-    // public void testUpdateAddress() throws SQLException {
-    //     addressDAO.updateAddress(10, 1, 1, "Test St", "Test Suburb", "NSW", 2000, "Australia");
-    // }
-
-//     // @Test
-//     // public void testDeleteAddress() throws SQLException {
-//     //     addressDAO.deleteAddress(25);
-//     // }
-
-   
-//     // @Test
-//     // public void testSelectShipments() throws SQLException {
-//     //     Object shipmentDAO;
-//     //     List<Shipment> shipments = shipmentDAO.getAllShipments();
-//     //     assertTrue(shipments.size() >= 0);
-//     // }
 
 
-// //     // @Test
-// //     // public void testGetShipmentById() throws SQLException {
-// //     //     // ID de envío a buscar
-// //     //     int shipmentId = 1;
-        
-// //     //     // Llama al método para obtener el envío por su ID
-// //     //     Shipment retrievedShipment = shipmentDAO.getShipmentById(shipmentId);
-        
-// //     //     // Verifica que el envío recuperado no sea nulo
-// //     //     assertNotNull(retrievedShipment);
-        
-// //     //     // Verifica que el ID del envío recuperado sea igual al ID esperado
-// //     //     assertEquals(shipmentId, retrievedShipment.getShipment_Id());
-        
-// //     //     // Imprime los detalles del envío recuperado para depuración
-// //     //     System.out.println("Shipment details:");
-// //     //     System.out.println("Shipment ID: " + retrievedShipment.getShipment_Id());
-// //     //     System.out.println("Order ID: " + retrievedShipment.getOrder_Id());
-// //     //     System.out.println("Customer ID: " + retrievedShipment.getCustomer_Id());
-// //     //     System.out.println("Address ID: " + retrievedShipment.getAddress_Id());
-// //     //     System.out.println("Courier ID: " + retrievedShipment.getCourier_Id());
-// //     //     System.out.println("Date Shipped: " + retrievedShipment.getDate_Delivered());
-// //     //     System.out.println("Date Delivered: " + retrievedShipment.getDate_Delivered());
-// //     //     System.out.println("Tracking Number: " + retrievedShipment.getTracking_Number());
-// //     // }
+    //---------- product tests ----------//
 
+    //select/fetch all products
+    @Test
+    public void testSelectProducts() throws SQLException {
+        ArrayList<Product> products = productDAO.fetchProducts();
+        assertTrue(products.size() > 0);
+    }
 
-//     // public void createShipment(Shipment shipment) throws SQLException {
-//     //     String query = "INSERT INTO Shipment (order_Id, customer_Id, address_Id, courier_Id, date_Shipped, date_Delivered, tracking_Number) VALUES (?, ?, ?, ?, ?, ?, ?)";
-//     //     try (PreparedStatement stmt = conn.prepareStatement(query)) {
-//     //         stmt.setInt(1, shipment.getOrder_Id());
-//     //         stmt.setInt(2, shipment.getCustomer_Id());
-//     //         stmt.setInt(3, shipment.getAddress_Id());
-//     //         stmt.setInt(4, shipment.getCourier_Id());
-//     //         stmt.setDate(5, shipment.getDate_Shipped());
-//     //         stmt.setDate(6, shipment.getDate_Delivered());
-//     //         stmt.setString(7, shipment.getTracking_Number());
-//     //         stmt.executeUpdate();
-//     //     }
-//     // }
-// }
+    //test specific retrieval utilising select from previous test
+    @Test
+    public void testSpecificProduct() throws SQLException {   
+        ArrayList<Product> products = productDAO.fetchProducts();
+        Product tester = productDAO.selectSpecificProduct(products.get(0).getProductId());
+        assertEquals(tester.getProductName(), products.get(0).getProductName());
+    }
+
+    //select using specific array
+    @Test
+    public void testArrayProduct() throws SQLException {
+        ArrayList<Integer> products = new ArrayList<>();
+        products.add(1);
+        products.add(2);
+        ArrayList<Product> tester = productDAO.selectArrayProduct(products);
+        assertEquals(tester.get(1).getProductId(), 2);
+    }
+
+    //create product
+    @Test
+    public void testCreateProducts() throws SQLException {
+        productDAO.createProduct("MVN Test product", "Testers", "This is a test description", null, 1.23d, 0.00d, false, 30, 10, "adsa");
+    }
+
+    //delete product
+    @Test
+    public void testDeleteProducts() throws SQLException {
+        ArrayList<Product> products;
+        products = productDAO.fetchProducts();
+        Integer productOriginalSize = products.size();
+        productDAO.deleteProduct(products.get(products.size()-1).getProductId());
+        products = productDAO.fetchProducts();
+        assertTrue(products.size() < productOriginalSize);
+        for(Product product : productDAO.fetchProducts()) {
+            if(product.getProductName() == "MVN Test product") {
+                productDAO.deleteProduct(product.getProductId());
+            }
+        }
+    }
+}
