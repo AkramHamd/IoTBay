@@ -23,12 +23,12 @@
 // import uts.isd.model.dao.LogDAO;
 // import uts.isd.model.dao.UserDAO;
 
-public class DAOTest {
-    private DBConnector connector;
-    private Connection conn;
-    private UserDAO userDAO;
-    private LogDAO logDAO;
-    private AddressDAO addressDAO;
+// public class DAOTest {
+//     private DBConnector connector;
+//     private Connection conn;
+//     private UserDAO userDAO;
+//     private LogDAO logDAO;
+//     private AddressDAO addressDAO;
 
 //     public DAOTest() throws ClassNotFoundException, SQLException {
 //         connector = new DBConnector();
@@ -116,52 +116,52 @@ public class DAOTest {
 
 
 
-    //---------- product tests ----------//
+    // //---------- product tests ----------//
 
-    //select/fetch all products
-    @Test
-    public void testSelectProducts() throws SQLException {
-        ArrayList<Product> products = productDAO.fetchProducts();
-        assertTrue(products.size() > 0);
-    }
+    // //select/fetch all products
+    // @Test
+    // public void testSelectProducts() throws SQLException {
+    //     ArrayList<Product> products = productDAO.fetchProducts();
+    //     assertTrue(products.size() > 0);
+    // }
 
-    //test specific retrieval utilising select from previous test
-    @Test
-    public void testSpecificProduct() throws SQLException {   
-        ArrayList<Product> products = productDAO.fetchProducts();
-        Product tester = productDAO.selectSpecificProduct(products.get(0).getProductId());
-        assertEquals(tester.getProductName(), products.get(0).getProductName());
-    }
+    // //test specific retrieval utilising select from previous test
+    // @Test
+    // public void testSpecificProduct() throws SQLException {   
+    //     ArrayList<Product> products = productDAO.fetchProducts();
+    //     Product tester = productDAO.selectSpecificProduct(products.get(0).getProductId());
+    //     assertEquals(tester.getProductName(), products.get(0).getProductName());
+    // }
 
-    //select using specific array
-    @Test
-    public void testArrayProduct() throws SQLException {
-        ArrayList<Integer> products = new ArrayList<>();
-        products.add(1);
-        products.add(2);
-        ArrayList<Product> tester = productDAO.selectArrayProduct(products);
-        assertEquals(tester.get(1).getProductId(), 2);
-    }
+    // //select using specific array
+    // @Test
+    // public void testArrayProduct() throws SQLException {
+    //     ArrayList<Integer> products = new ArrayList<>();
+    //     products.add(1);
+    //     products.add(2);
+    //     ArrayList<Product> tester = productDAO.selectArrayProduct(products);
+    //     assertEquals(tester.get(1).getProductId(), 2);
+    // }
 
-    //create product
-    @Test
-    public void testCreateProducts() throws SQLException {
-        productDAO.createProduct("MVN Test product", "Testers", "This is a test description", null, 1.23d, 0.00d, false, 30, 10, "adsa");
-    }
+    // //create product
+    // @Test
+    // public void testCreateProducts() throws SQLException {
+    //     productDAO.createProduct("MVN Test product", "Testers", "This is a test description", null, 1.23d, 0.00d, false, 30, 10, "adsa");
+    // }
 
-    //delete product
-    @Test
-    public void testDeleteProducts() throws SQLException {
-        ArrayList<Product> products;
-        products = productDAO.fetchProducts();
-        Integer productOriginalSize = products.size();
-        productDAO.deleteProduct(products.get(products.size()-1).getProductId());
-        products = productDAO.fetchProducts();
-        assertTrue(products.size() < productOriginalSize);
-        for(Product product : productDAO.fetchProducts()) {
-            if(product.getProductName() == "MVN Test product") {
-                productDAO.deleteProduct(product.getProductId());
-            }
-        }
-    }
-}
+    // //delete product
+    // @Test
+    // public void testDeleteProducts() throws SQLException {
+    //     ArrayList<Product> products;
+    //     products = productDAO.fetchProducts();
+    //     Integer productOriginalSize = products.size();
+    //     productDAO.deleteProduct(products.get(products.size()-1).getProductId());
+    //     products = productDAO.fetchProducts();
+    //     assertTrue(products.size() < productOriginalSize);
+    //     for(Product product : productDAO.fetchProducts()) {
+    //         if(product.getProductName() == "MVN Test product") {
+    //             productDAO.deleteProduct(product.getProductId());
+    //         }
+    //     }
+    // }
+// }

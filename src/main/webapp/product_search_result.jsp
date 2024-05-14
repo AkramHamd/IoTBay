@@ -1,3 +1,11 @@
+<%                                                      
+
+//          Created for ISD 41025 Assignment Two        //
+//          This file is a part of feature Two          //
+//          Authored by Bradley Madgwick 14249522       //
+
+                                                        %>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.Random"%>
 <%@page import="java.util.ArrayList"%>
