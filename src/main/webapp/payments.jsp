@@ -53,6 +53,9 @@
             </tbody>
         </table>
     </div>
+    <div class="container text-center" style="margin-top: 60px;">
+        <a href="/dashboard.jsp" class="btn btn-primary">Close</a>
+    </div>
 </main>
 
 <%@ include file="assets/footer.jsp" %>

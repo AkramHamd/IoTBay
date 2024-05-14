@@ -93,11 +93,14 @@
             </div>
             <input name="orderId" type="hidden" value=<%=session.getAttribute("orderId")%> />
             <div class="row">
-                <div class="col-xs-3">
-                    <button type="submit" class="btn btn-primary">Cancel</button>
+                <div class="col-xs-1">
+                    <a href="/dashboard.jsp" class="btn btn-primary">Cancel</a>
+                </div>
+                <div class="col-xs-2">
+                    <button type="submit" class="btn btn-primary">Pay</button>
                 </div>
                 <div class="col-xs-3">
-                    <button type="submit" class="btn btn-primary pull-right">Pay</button>
+                    <a href="/payments" class="btn btn-primary pull-right">See Payment History</a>
                 </div>
             </div>
         </form>
