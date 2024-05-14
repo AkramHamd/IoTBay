@@ -1,5 +1,7 @@
 package uts.isd.controller;
 
+import uts.isd.model.dao.*;
+
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -20,6 +22,9 @@ public class ConnServlet extends HttpServlet{
     private UserDAO userDAO;
     private LogDAO logDAO;
     private AddressDAO addressDAO;
+    // added DAO
+    private PaymentMethodDAO paymentMethodDAO;
+    private PaymentDAO paymentdDAO;
     private Connection connection;
     
     @Override
@@ -44,6 +49,8 @@ public class ConnServlet extends HttpServlet{
             userDAO = new UserDAO(connection);
             logDAO = new LogDAO(connection);
             addressDAO = new AddressDAO(connection);
+            paymentMethodDAO = new PaymentMethodDAO(connection);
+            paymentdDAO = new PaymentDAO(connection);
         } catch (SQLException e) {
             System.out.print(e);
         }
@@ -51,6 +58,8 @@ public class ConnServlet extends HttpServlet{
         session.setAttribute("userDAO", userDAO);
         session.setAttribute("logDAO", logDAO);
         session.setAttribute("addressDAO", addressDAO);
+        session.setAttribute("paymentMethodDAO", paymentMethodDAO);
+        session.setAttribute("paymentDAO", paymentdDAO);
         System.out.println("All DAOs have been set in session.");
         request.getRequestDispatcher("index.jsp").include(request, response);
     }

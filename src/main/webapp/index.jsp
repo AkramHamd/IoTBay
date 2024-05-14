@@ -29,6 +29,19 @@
             <% } %>
         </main>
 
+        
+        <form method="post" action="/pay">
+            <div class="input-div">
+                <input name="orderId" type="hidden" value=100 />
+
+
+            </div>
+            <div class="submit-div">
+                <input type="submit" value="Pay" />
+
+            </div>
+        </form>
+
         <%@ include file="assets/footer.jsp" %>
     </body>
 </html>

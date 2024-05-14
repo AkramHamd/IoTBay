@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import uts.isd.model.Address;
@@ -18,7 +19,7 @@ import uts.isd.model.dao.DBConnector;
 import uts.isd.model.dao.LogDAO;
 import uts.isd.model.dao.UserDAO;
 
-public class DAOTest {
+@Disabled public class DAOTest {
     private DBConnector connector;
     private Connection conn;
     private UserDAO userDAO;

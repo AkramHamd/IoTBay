@@ -1,23 +1,31 @@
 package uts.isd.model;
-import java.io.Serializable;
 
-public class Payment implements Serializable{
-    
+import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+public class Payment implements Serializable {
+
     private int paymentId;
+
+    private int customer_id;
     private int orderId;
-    private String paymentMethod;
+    private int paymentMethodId;
     private String paymentDate;
-    private double amount;
+    private String amount;
     private String currency;
-    
-    public Payment(int paymentId, int orderId, String paymentMethod, String paymentDate, double amount,
-            String currency) {
-        this.paymentId = paymentId;
+
+    public Payment(int orderId, int customer_id, int paymentMethod, String amount, String paymentDate) {
         this.orderId = orderId;
-        this.paymentMethod = paymentMethod;
-        this.paymentDate = paymentDate;
+        this.customer_id = customer_id;
+        this.paymentMethodId = paymentMethod;
         this.amount = amount;
-        this.currency = currency;
+        this.paymentDate = paymentDate;
+    }
+
+    public Payment(int paymentId, int orderId, int customer_id, int paymentMethod, String amount, String paymentDate) {
+        this(orderId, customer_id, paymentMethod, amount, paymentDate);
+        this.paymentId = paymentId;
     }
 
     public int getPaymentId() {
@@ -32,16 +40,20 @@ public class Payment implements Serializable{
         return orderId;
     }
 
+    public int getCustomerId() {
+        return customer_id;
+    }
+
     public void setOrderId(int orderId) {
         this.orderId = orderId;
     }
 
-    public String getPaymentMethod() {
-        return paymentMethod;
+    public int getPaymentMethodId() {
+        return paymentMethodId;
     }
 
-    public void setPaymentMethod(String paymentMethod) {
-        this.paymentMethod = paymentMethod;
+    public String getAmount() {
+        return amount;
     }
 
     public String getPaymentDate() {
@@ -50,14 +62,6 @@ public class Payment implements Serializable{
 
     public void setPaymentDate(String paymentDate) {
         this.paymentDate = paymentDate;
-    }
-
-    public double getAmount() {
-        return amount;
-    }
-
-    public void setAmount(double amount) {
-        this.amount = amount;
     }
 
     public String getCurrency() {

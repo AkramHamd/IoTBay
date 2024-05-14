@@ -19,6 +19,7 @@ public class UserDAO {
     }
 
     public Integer createUser(String given_name, String family_name, String email, String password, String phone, String dob, String verification_code, String is_verified, String is_staff) throws SQLException {
+       
         String query = "INSERT INTO users (given_name, family_name, email, password, phone, dob, verification_code, is_verified, is_staff) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement st = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
         st.setString(1, given_name);

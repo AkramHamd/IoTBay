@@ -8,16 +8,16 @@ CREATE TABLE `Courier` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
--- IoTBay.Customer definition
+-- IoTBay.User definition
 
-CREATE TABLE `Customer` (
-  `Customer_ID` int NOT NULL AUTO_INCREMENT COMMENT 'Customer''s unique ID, beginning at "CU-1000". Increase by one for each cutomer',
-  `Given_Name` varchar(15) NOT NULL COMMENT 'Customer''s  given name',
-  `Family_Name` varchar(15) NOT NULL COMMENT 'Customer''s family name',
-  `Email` varchar(30) NOT NULL COMMENT 'Customer''s email in the format, max 15 characters, @, max 15 characters (to prevent false emails.',
-  `Password` varchar(20) NOT NULL COMMENT 'Customer''s secure password',
-  `DOB` date NOT NULL COMMENT 'Customer''s date of birth',
-  `Phone_Number` varchar(10) NOT NULL COMMENT 'Customer''s phone number',
+CREATE TABLE `User` (
+  `Customer_ID` int NOT NULL AUTO_INCREMENT COMMENT 'User''s unique ID, beginning at "CU-1000". Increase by one for each cutomer',
+  `Given_Name` varchar(15) NOT NULL COMMENT 'User''s  given name',
+  `Family_Name` varchar(15) NOT NULL COMMENT 'User''s family name',
+  `Email` varchar(30) NOT NULL COMMENT 'User''s email in the format, max 15 characters, @, max 15 characters (to prevent false emails.',
+  `Password` varchar(20) NOT NULL COMMENT 'User''s secure password',
+  `DOB` date NOT NULL COMMENT 'User''s date of birth',
+  `Phone_Number` varchar(10) NOT NULL COMMENT 'User''s phone number',
   PRIMARY KEY (`Customer_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -50,7 +50,7 @@ CREATE TABLE `Address` (
   `Country_Name` varchar(20) NOT NULL,
   PRIMARY KEY (`Address_ID`),
   KEY `Address_Customer_FK` (`Customer_ID`),
-  CONSTRAINT `Address_Customer_FK` FOREIGN KEY (`Customer_ID`) REFERENCES `Customer` (`Customer_ID`)
+  CONSTRAINT `Address_Customer_FK` FOREIGN KEY (`Customer_ID`) REFERENCES `User` (`Customer_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
@@ -63,5 +63,30 @@ CREATE TABLE `Order` (
   `Status` varchar(256) DEFAULT NULL,
   PRIMARY KEY (`Order_ID`),
   KEY `Order_Customer_FK` (`Customer_ID`),
-  CONSTRAINT `Order_Customer_FK` FOREIGN KEY (`Customer_ID`) REFERENCES `Customer` (`Customer_ID`)
+  CONSTRAINT `Order_Customer_FK` FOREIGN KEY (`Customer_ID`) REFERENCES `User` (`Customer_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `paymentmethod` (
+  `paymentMethod_id` int NOT NULL AUTO_INCREMENT,
+  `Customer_ID` int NOT NULL,
+  `Number` varchar(100),
+  `Name` varchar(100),
+  `Expiry` varchar(20),
+  `CVV` varchar(10),
+  PRIMARY KEY (`paymentMethod_id`),
+  KEY `Order_Customer_FK` (`Customer_ID`),
+  CONSTRAINT `Order_Customer_FK` FOREIGN KEY (`Customer_ID`) REFERENCES `customers` (`Customer_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+CREATE TABLE `Payment` (
+  `payment_id` int NOT NULL AUTO_INCREMENT,
+  `order_id` int NOT NULL,
+  `Customer_ID` int NOT NULL,
+  `paymentMethod_id` int NOT NULL,
+  `Amount` varchar(100) NOT NULL,
+  `Created_On` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`payment_id`),
+  CONSTRAINT `PaymentMethod_FK` FOREIGN KEY (`paymentMethod_id`) REFERENCES `paymentmethod` (`paymentMethod_id`),
+  CONSTRAINT `Customer_FK` FOREIGN KEY (`Customer_ID`) REFERENCES `customers` (`Customer_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
