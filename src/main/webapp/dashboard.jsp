@@ -29,6 +29,7 @@
   </head>
 
   <body>
+
     <%@ include file="assets/nav.jsp" %>
 
     <% if(user == null) { %>
@@ -51,17 +52,11 @@
 
               <div>
                 <div>
-                  <p style="font-size: 30px;">Hi welcome back, <%= user.getGiven_name()%></p>
+                  <p style="font-size: 30px; margin-bottom: 100px;">Hi welcome back, <%= user.getGiven_name()%></p>
                 </div>
 
-                <br>
-                <br>
-                <br>
-                <br>
+                <h2 style="margin-bottom: 50px;">Personal details</h2>
 
-                <h2>Personal details</h2>
-                <br>
-                <br>
                 <div class="details-div-wrapper">
                   <div class="details-div details-div-title">
                     <p>Customer ID:</p>
@@ -93,16 +88,9 @@
 
                 <% ArrayList<Address> addresses = (ArrayList<Address>) session.getAttribute("addresses"); %>
 
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <h2>Addresses</h2>
-                <br>
-                <br>
-                <div style="display: grid; grid-template-columns: repeat(4, 1fr);">
+                <h2 style="margin-top: 100px; margin-bottom: 50px;">Addresses</h2>
+
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
                   <% if(addresses != null && !addresses.isEmpty()) { %>
                     <% for(Address address : addresses) { %>
                     
@@ -157,5 +145,6 @@
     <% } %>
 
     <%@ include file="assets/footer.jsp" %>
+    
   </body>
 </html>

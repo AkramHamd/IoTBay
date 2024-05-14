@@ -1,67 +1,127 @@
--- IoTBay.Courier definition
+-- Updated 
 
-CREATE TABLE `Courier` (
-  `CourierID` int NOT NULL,
-  `CourierName` varchar(255) NOT NULL,
-  `CourierFees` float NOT NULL,
-  PRIMARY KEY (`CourierID`)
+CREATE DATABASE `iotbay` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+
+CREATE TABLE `accesslog` (
+  `Log_ID` int NOT NULL AUTO_INCREMENT,
+  `Customer_ID` int DEFAULT NULL,
+  `Access_Date` date DEFAULT NULL,
+  `Access_Time` time DEFAULT NULL,
+  `Access_Success` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`Log_ID`),
+  KEY `Customer_ID` (`Customer_ID`),
+  CONSTRAINT `accesslog_ibfk_1` FOREIGN KEY (`Customer_ID`) REFERENCES `customer` (`Customer_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-
--- IoTBay.Customer definition
-
-CREATE TABLE `Customer` (
-  `Customer_ID` int NOT NULL AUTO_INCREMENT COMMENT 'Customer''s unique ID, beginning at "CU-1000". Increase by one for each cutomer',
-  `Given_Name` varchar(15) NOT NULL COMMENT 'Customer''s  given name',
-  `Family_Name` varchar(15) NOT NULL COMMENT 'Customer''s family name',
-  `Email` varchar(30) NOT NULL COMMENT 'Customer''s email in the format, max 15 characters, @, max 15 characters (to prevent false emails.',
-  `Password` varchar(20) NOT NULL COMMENT 'Customer''s secure password',
-  `DOB` date NOT NULL COMMENT 'Customer''s date of birth',
-  `Phone_Number` varchar(10) NOT NULL COMMENT 'Customer''s phone number',
-  PRIMARY KEY (`Customer_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-
--- IoTBay.Staff definition
-
-CREATE TABLE `Staff` (
-  `Staff_ID` int NOT NULL AUTO_INCREMENT,
-  `Given_Name` varchar(15) NOT NULL,
-  `Family_Name` varchar(15) NOT NULL,
-  `Email` varchar(30) NOT NULL,
-  `Password` varchar(20) NOT NULL,
-  `DOB` date NOT NULL,
-  `Admin_Role` int NOT NULL,
-  PRIMARY KEY (`Staff_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-
--- IoTBay.Address definition
-
-CREATE TABLE `Address` (
+CREATE TABLE `address` (
   `Address_ID` int NOT NULL AUTO_INCREMENT,
-  `Customer_ID` int NOT NULL,
-  `Unit_Number` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `Street_Number` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `Street_Name` varchar(60) NOT NULL,
-  `City_Name` varchar(40) NOT NULL,
-  `State_Name` varchar(20) NOT NULL,
-  `Post_Code` int NOT NULL,
-  `Country_Name` varchar(20) NOT NULL,
+  `Customer_ID` int DEFAULT NULL,
+  `Unit_Number` varchar(10) DEFAULT NULL,
+  `Street_Number` varchar(10) DEFAULT NULL,
+  `Street_Name` varchar(60) DEFAULT NULL,
+  `City_Name` varchar(40) DEFAULT NULL,
+  `State_Name` varchar(20) DEFAULT NULL,
+  `Post_Code` int DEFAULT NULL,
+  `Country_Name` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`Address_ID`),
-  KEY `Address_Customer_FK` (`Customer_ID`),
-  CONSTRAINT `Address_Customer_FK` FOREIGN KEY (`Customer_ID`) REFERENCES `Customer` (`Customer_ID`)
+  KEY `Customer_ID` (`Customer_ID`),
+  CONSTRAINT `address_ibfk_1` FOREIGN KEY (`Customer_ID`) REFERENCES `customer` (`Customer_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `courier` (
+  `Courier_ID` int NOT NULL AUTO_INCREMENT,
+  `Courier_Name` varchar(20) DEFAULT NULL,
+  `Courier_Fees` varchar(256) DEFAULT NULL,
+  PRIMARY KEY (`Courier_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+CREATE TABLE `customer` (
+  `Customer_ID` int NOT NULL AUTO_INCREMENT,
+  `firstname` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `lastname` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `Email` varchar(30) DEFAULT NULL,
+  `Password` varchar(20) DEFAULT NULL,
+  `DOB` date DEFAULT NULL,
+  `phone` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `Admin_Role` int DEFAULT NULL,
+  PRIMARY KEY (`Customer_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- IoTBay.`Order` definition
+CREATE TABLE `orderlineitem` (
+  `OrderLineItem_ID` int NOT NULL AUTO_INCREMENT,
+  `Order_ID` int DEFAULT NULL,
+  `Product_ID` int DEFAULT NULL,
+  `Quantity` int DEFAULT NULL,
+  `OrderLineItem_Price` int DEFAULT NULL,
+  PRIMARY KEY (`OrderLineItem_ID`),
+  KEY `Order_ID` (`Order_ID`),
+  KEY `Product_ID` (`Product_ID`),
+  CONSTRAINT `orderlineitem_ibfk_1` FOREIGN KEY (`Order_ID`) REFERENCES `ordertable` (`Order_ID`),
+  CONSTRAINT `orderlineitem_ibfk_2` FOREIGN KEY (`Product_ID`) REFERENCES `product` (`Product_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE `Order` (
+CREATE TABLE `ordertable` (
   `Order_ID` int NOT NULL AUTO_INCREMENT,
-  `Customer_ID` int NOT NULL,
-  `Order_Date` date NOT NULL,
+  `Customer_ID` int DEFAULT NULL,
+  `Order_Date` date DEFAULT NULL,
   `Status` varchar(256) DEFAULT NULL,
   PRIMARY KEY (`Order_ID`),
-  KEY `Order_Customer_FK` (`Customer_ID`),
-  CONSTRAINT `Order_Customer_FK` FOREIGN KEY (`Customer_ID`) REFERENCES `Customer` (`Customer_ID`)
+  KEY `Customer_ID` (`Customer_ID`),
+  CONSTRAINT `ordertable_ibfk_1` FOREIGN KEY (`Customer_ID`) REFERENCES `customer` (`Customer_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `payment` (
+  `Payment_ID` int NOT NULL AUTO_INCREMENT,
+  `Payment_Method` varchar(20) DEFAULT NULL,
+  `Payment_Date` date DEFAULT NULL,
+  `Amount` int DEFAULT NULL,
+  `Currency` varchar(3) DEFAULT NULL,
+  PRIMARY KEY (`Payment_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `paymentlog` (
+  `Payment_Log_ID` int NOT NULL AUTO_INCREMENT,
+  `Payment_ID` int DEFAULT NULL,
+  `Customer_ID` int DEFAULT NULL,
+  `Log_Date` date DEFAULT NULL,
+  `Log_Time` time DEFAULT NULL,
+  PRIMARY KEY (`Payment_Log_ID`),
+  KEY `Payment_ID` (`Payment_ID`),
+  KEY `Customer_ID` (`Customer_ID`),
+  CONSTRAINT `paymentlog_ibfk_1` FOREIGN KEY (`Payment_ID`) REFERENCES `payment` (`Payment_ID`),
+  CONSTRAINT `paymentlog_ibfk_2` FOREIGN KEY (`Customer_ID`) REFERENCES `customer` (`Customer_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `product` (
+  `Product_ID` int NOT NULL AUTO_INCREMENT,
+  `Product_Name` varchar(30) DEFAULT NULL,
+  `Product_Brand` varchar(30) DEFAULT NULL,
+  `Product_Description` varchar(1024) DEFAULT NULL,
+  `Product_IMG` blob,
+  `Product_Price` int DEFAULT NULL,
+  `Product_Special_Price` int DEFAULT NULL,
+  `Product_On_Special` tinyint(1) DEFAULT NULL,
+  `Product_Stock` int DEFAULT NULL,
+  `Product_Order_Qty` int DEFAULT NULL,
+  PRIMARY KEY (`Product_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `shipment` (
+  `Shipment_ID` int NOT NULL AUTO_INCREMENT,
+  `Order_Id` int DEFAULT NULL,
+  `Customer_ID` int DEFAULT NULL,
+  `Address_ID` int DEFAULT NULL,
+  `Courier_ID` int DEFAULT NULL,
+  `Date_Shipped` date DEFAULT NULL,
+  `Date_Delivered` date DEFAULT NULL,
+  `Tracking_Number` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`Shipment_ID`),
+  KEY `Order_ID` (`Order_Id`),
+  KEY `Customer_ID` (`Customer_ID`),
+  KEY `Address_ID` (`Address_ID`),
+  KEY `Courier_ID` (`Courier_ID`),
+  CONSTRAINT `shipment_ibfk_1` FOREIGN KEY (`Order_Id`) REFERENCES `ordertable` (`Order_ID`),
+  CONSTRAINT `shipment_ibfk_2` FOREIGN KEY (`Customer_ID`) REFERENCES `customer` (`Customer_ID`),
+  CONSTRAINT `shipment_ibfk_3` FOREIGN KEY (`Address_ID`) REFERENCES `address` (`Address_ID`),
+  CONSTRAINT `shipment_ibfk_4` FOREIGN KEY (`Courier_ID`) REFERENCES `courier` (`Courier_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;

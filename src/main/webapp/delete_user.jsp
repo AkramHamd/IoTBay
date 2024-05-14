@@ -48,16 +48,12 @@
 
               <%@ include file="assets/sidebarNav.jsp" %>
 
-              <div>
-                <h2>Delete account</h2>
-                <br>
-                <p>This will account your account and anything associated with this account BUT we will keep your logs history for security reasons :)</p>
-                <br>
-                <br>
-                <br>
-                <br>
-                <p>Are you sure you want to delete your account? This can not be reversed</p>
-                <br>
+              <div style="flex: 1;">
+                <h2 style="margin-bottom: 50px;">Delete account</h2>
+
+                <p style="margin-bottom: 50px;">This will account your account and anything associated with this account BUT we will keep your logs history for security reasons :)</p>
+
+                <p style="margin-bottom: 50px;">Are you sure you want to delete your account? This can not be reversed</p>
 
                 <form action="/DeleteUserServlet" method="post">
                   <input type="submit" value="Delete account">

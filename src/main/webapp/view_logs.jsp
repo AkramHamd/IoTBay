@@ -29,6 +29,7 @@
   </head>
 
   <body>
+    
     <%@ include file="assets/nav.jsp" %>
 
     <% if(user == null) { %>
@@ -51,10 +52,9 @@
               <% String view_logsDateEmpty = (String) session.getAttribute("view_logsDateEmpty"); %>
 
               <div>
-                <h2>View Logs</h2>
-                <br>
-                <br>
-                <form action="SearchLogsServlet" method="post">
+                <h2 style="margin-bottom: 50px;">View Logs</h2>
+
+                <form action="SearchLogsServlet" method="post" style="margin-bottom: 50px;">
                   <% if(view_logsDateEmpty != null) { %>
                     <p style="color: red;"><%=view_logsDateEmpty%></p>
                   <% } %>
@@ -63,22 +63,18 @@
                   <input type="date" name="date">
                   <input type="submit" value="Search">
                 </form>
-                <br>
-                <br>
-                <br>
-                <br>
 
                 <% ArrayList<Log> searchedLogs = (ArrayList<Log>) session.getAttribute("searchedLogs"); %>
 
                 <div>
                   <% if (searchedLogs != null) { %>
-                    <h3>Searched logs</h3>
-                    <br>
+                    <h3 style="margin-bottom: 25px;">Searched logs</h3>
+
                     <% if (searchedLogs.size() == 0) { %>
                       <p>No logs found for that date</p>
                     <% } %>
                     <% for (Log log : searchedLogs) { %>
-                      <div style="display: flex; gap: 30px; background-color: #fdfdfd; border: 1px solid var(--border-colour); border-radius: 10px; padding: 20px;">
+                      <div style="display: flex; gap: 30px; background-color: #fdfdfd; border: 1px solid var(--border-colour); border-radius: 10px; padding: 20px; margin-bottom: 10px;">
                         <div style="display: flex; flex-direction: column; gap: 10px;">
                           <p style="font-weight: 600;">Log ID:</p>
                           <p style="font-weight: 600;">User ID:</p>
@@ -92,16 +88,13 @@
                           <p><%= log.getTimestamp() %></p>
                         </div>
                       </div>
-                      <br>
                       <% } %>
 
-                      <br>
-                      <br>
                       <form action="ClearSearchLogsServlet" method="post">  
                         <input type="hidden" name="user_id" value="<%= user.getUser_id() %>">
                         <input type="submit" value="Clear search">
                       </form>
-                    <br>
+
                   <% } %>
                 </div>
 
@@ -109,10 +102,10 @@
 
                 <div>
                   <% if(searchedLogs == null) { %>
-                    <h3>All your logs</h3>
-                    <br>
+                    <h3 style="margin-bottom: 25px;">All your logs</h3>
+
                     <% for (Log log : logs) { %>
-                      <div style="display: flex; gap: 30px; background-color: #fdfdfd; border: 1px solid var(--border-colour); border-radius: 10px; padding: 20px;">
+                      <div style="display: flex; gap: 30px; background-color: #fdfdfd; border: 1px solid var(--border-colour); border-radius: 10px; padding: 20px; margin-bottom: 10px;">
                         <div style="display: flex; flex-direction: column; gap: 10px;">
                           <p style="font-weight: 600;">Log ID:</p>
                           <p style="font-weight: 600;">User ID:</p>
@@ -126,7 +119,7 @@
                           <p><%= log.getTimestamp() %></p>
                         </div>
                       </div>
-                      <br>
+
                     <% } %>
                   <% } %>
                 </div>
@@ -138,5 +131,6 @@
     <% } %>
 
     <%@ include file="assets/footer.jsp" %>
+
   </body>
 </html>

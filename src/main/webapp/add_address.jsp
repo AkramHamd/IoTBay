@@ -29,6 +29,7 @@
   </head>
 
   <body>
+
     <%@ include file="assets/nav.jsp" %>
 
     <% if(user == null) { %>
@@ -49,9 +50,7 @@
               <%@ include file="assets/sidebarNav.jsp" %>
 
               <div>
-                <h2>Add address</h2>
-                <br>
-                <br>
+                <h2 style="margin-bottom: 50px;">Add address</h2>
   
                 <% Address address = (Address) session.getAttribute("address"); %>
 
@@ -75,5 +74,6 @@
     <% } %>
 
     <%@ include file="assets/footer.jsp" %>
+
   </body>
 </html>
