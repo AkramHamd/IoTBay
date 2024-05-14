@@ -140,6 +140,24 @@
       <servlet-name>CreateProductServlet</servlet-name>
       <url-pattern>/CreateProductServlet</url-pattern>
   </servlet-mapping>
+
+  <servlet>
+      <servlet-name>UpdateProductServlet</servlet-name>
+      <servlet-class>uts.isd.controller.UpdateProductServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>UpdateProductServlet</servlet-name>
+      <url-pattern>/UpdateProductServlet</url-pattern>
+  </servlet-mapping>
+
+   <servlet>
+      <servlet-name>DeleteProductServlet</servlet-name>
+      <servlet-class>uts.isd.controller.DeleteProductServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>DeleteProductServlet</servlet-name>
+      <url-pattern>/DeleteProductServlet</url-pattern>
+  </servlet-mapping>
   
 
   <session-config>

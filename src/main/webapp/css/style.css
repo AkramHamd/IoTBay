@@ -184,7 +184,17 @@ font-size: 7rem;
   text-decoration: underline;
   font-weight: bolder;
 }
-
+.delete-product-table {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.delete-product-table p{
+  margin-right: 5%;
+}
+.container-delete-product {
+  width: 80%;
+}
 
 
   footer {
