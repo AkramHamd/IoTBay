@@ -21,7 +21,7 @@
 </head>
 
 <%-- Create a new user object using session data --%>
-<% User user = (User) session.getAttribute("authUser"); %>
+
 
 <body>
 <%@ include file="assets/nav.jsp" %>
