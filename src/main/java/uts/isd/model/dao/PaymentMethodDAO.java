@@ -8,10 +8,13 @@ public class PaymentMethodDAO {
 
     private Connection connection;
 
+    
+
     public PaymentMethodDAO(Connection connection) throws SQLException {
         this.connection = connection;
         connection.setAutoCommit(true);
     }
+    // retrieve the payment method by the customer id
 
     public PaymentMethod getByCustomer(int customer_id) {
         String query = "select * from paymentmethod where user_id=?";
@@ -22,6 +25,8 @@ public class PaymentMethodDAO {
 
             ResultSet rs = st.executeQuery();
             if (rs.next()) {
+
+                // Create and return a new PaymentMethod object
 
                 return new PaymentMethod(
                         rs.getInt("paymentMethod_id"),
@@ -39,7 +44,12 @@ public class PaymentMethodDAO {
         return null;
     }
 
+    // add a new payment method method
+
     public PaymentMethod add(PaymentMethod paymentMethod) {
+
+        // SQL to insert a new payment method into the DB
+
         String query = "INSERT INTO paymentmethod (user_id, Number, Name, Expiry, CVV) VALUES (?, ?, ?, ?, ?)";
         PreparedStatement st = null;
         try {
@@ -59,6 +69,9 @@ public class PaymentMethodDAO {
                 selectStatement.setInt(1, paymentMethodId);
                 ResultSet selectResultSet = selectStatement.executeQuery();
                 if (selectResultSet.next()) {
+
+                    // create a payment method object based on the data
+                    
                     return new PaymentMethod(
                             selectResultSet.getInt("paymentMethod_id"),
                             selectResultSet.getInt("user_id"),

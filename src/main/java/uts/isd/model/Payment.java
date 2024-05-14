@@ -14,6 +14,8 @@ public class Payment implements Serializable {
     private String paymentDate;
     private String amount;
     private String currency;
+    
+//constructer for creating a new payment
 
     public Payment(int orderId, int customer_id, int paymentMethod, String amount, String paymentDate) {
         this.orderId = orderId;
@@ -22,6 +24,8 @@ public class Payment implements Serializable {
         this.amount = amount;
         this.paymentDate = paymentDate;
     }
+    
+    //existing payment id
 
     public Payment(int paymentId, int orderId, int customer_id, int paymentMethod, String amount, String paymentDate) {
         this(orderId, customer_id, paymentMethod, amount, paymentDate);
