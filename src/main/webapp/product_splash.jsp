@@ -11,7 +11,7 @@
         <link rel="stylesheet" href="css/style.css">
         <script type="text/javascript" src="js/index.js"></script>
         <title>IoTBay</title>
-        <%-- jquery for enabling bootstrap --%>
+        <%-- jquery for enabling bootstrap t --%>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <%-- enabling bootstrap --%>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
