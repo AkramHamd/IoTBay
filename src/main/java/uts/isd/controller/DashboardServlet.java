@@ -3,10 +3,7 @@ package uts.isd.controller;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-<<<<<<< HEAD
-=======
 import java.util.List;
->>>>>>> e3f6c0e0c9a1f3b2b14e9d152239d5a510716db7
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
