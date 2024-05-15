@@ -1,90 +1,95 @@
 package uts.isd.model;
-import java.io.Serializable;
 
-public class Shipment implements Serializable{
-    
-    private int shipmentId;
-    private int orderId;
-    private int customerId;
-    private int addressId;
-    private int courierId;
-    private String dateShipped;
-    private String dateDelivered;
-    private String trackingNumber;
-    
-    public Shipment(int shipmentId, int orderId, int customerId, int addressId, int courierId, String dateShipped,
-            String dateDelivered, String trackingNumber) {
-        this.shipmentId = shipmentId;
-        this.orderId = orderId;
-        this.customerId = customerId;
-        this.addressId = addressId;
-        this.courierId = courierId;
-        this.dateShipped = dateShipped;
-        this.dateDelivered = dateDelivered;
-        this.trackingNumber = trackingNumber;
+import java.sql.Date;
+
+public class Shipment {
+    private int shipment_Id;
+    private int order_Id;
+    private int user_id;
+    private int address_Id;
+    private int courier_Id;
+    private Date date_Shipped;
+    private Date date_Delivered;
+    private String tracking_Number;
+
+    // Constructor
+    public Shipment(int shipment_Id, int order_Id, int user_id, int address_Id, int courier_Id, Date date_Shipped, Date date_Delivered, String tracking_Number) {
+        this.shipment_Id = shipment_Id;
+        this.order_Id = order_Id;
+        this.user_id = user_id;
+        this.address_Id = address_Id;
+        this.courier_Id = courier_Id;
+        this.date_Shipped = date_Shipped;
+        this.date_Delivered = date_Delivered;
+        this.tracking_Number = tracking_Number;
     }
 
-    public int getShipmentId() {
-        return shipmentId;
+    public Shipment() {
+        //TODO Auto-generated constructor stub
     }
 
-    public void setShipmentId(int shipmentId) {
-        this.shipmentId = shipmentId;
+    // Getters and Setters
+    public int getShipment_Id() {
+        return shipment_Id;
     }
 
-    public int getOrderId() {
-        return orderId;
+    public void setShipment_Id(int shipment_Id) {
+        this.shipment_Id = shipment_Id;
     }
 
-    public void setOrderId(int orderId) {
-        this.orderId = orderId;
+    public int getOrder_Id() {
+        return order_Id;
     }
 
-    public int getCustomerId() {
-        return customerId;
+    public void setOrder_Id(int order_Id) {
+        this.order_Id = order_Id;
     }
 
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
+    public int getuser_id() {
+        return user_id;
     }
 
-    public int getAddressId() {
-        return addressId;
+    public void setuser_id(int user_id) {
+        this.user_id = user_id;
     }
 
-    public void setAddressId(int addressId) {
-        this.addressId = addressId;
+    public int getAddress_Id() {
+        return address_Id;
     }
 
-    public int getCourierId() {
-        return courierId;
+    public void setAddress_Id(int address_Id) {
+        this.address_Id = address_Id;
     }
 
-    public void setCourierId(int courierId) {
-        this.courierId = courierId;
+    public int getCourier_Id() {
+        return courier_Id;
     }
 
-    public String getDateShipped() {
-        return dateShipped;
+    public void setCourier_Id(int courier_Id) {
+        this.courier_Id = courier_Id;
     }
 
-    public void setDateShipped(String dateShipped) {
-        this.dateShipped = dateShipped;
+    public Date getDate_Shipped() {
+        return date_Shipped;
     }
 
-    public String getDateDelivered() {
-        return dateDelivered;
+    public void setDate_Shipped(Date date_Shipped) {
+        this.date_Shipped = date_Shipped;
     }
 
-    public void setDateDelivered(String dateDelivered) {
-        this.dateDelivered = dateDelivered;
+    public Date getDate_Delivered() {
+        return date_Delivered;
     }
 
-    public String getTrackingNumber() {
-        return trackingNumber;
+    public void setDate_Delivered(Date date_Delivered) {
+        this.date_Delivered = date_Delivered;
     }
 
-    public void setTrackingNumber(String trackingNumber) {
-        this.trackingNumber = trackingNumber;
+    public String getTracking_Number() {
+        return tracking_Number;
+    }
+
+    public void setTracking_Number(String tracking_Number) {
+        this.tracking_Number = tracking_Number;
     }
 }

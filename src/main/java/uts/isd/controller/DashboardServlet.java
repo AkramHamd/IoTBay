@@ -3,6 +3,10 @@ package uts.isd.controller;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+<<<<<<< HEAD
+=======
+import java.util.List;
+>>>>>>> e3f6c0e0c9a1f3b2b14e9d152239d5a510716db7
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -13,9 +17,12 @@ import javax.servlet.http.HttpSession;
 import uts.isd.model.Log;
 import uts.isd.model.Address;
 import uts.isd.model.User;
+
+import uts.isd.model.Shipment;
 import uts.isd.model.dao.AddressDAO;
 import uts.isd.model.dao.UserDAO;
 import uts.isd.model.dao.LogDAO;
+import uts.isd.model.dao.ShipmentDAO;
 
 public class DashboardServlet extends HttpServlet {
     
@@ -28,7 +35,7 @@ public class DashboardServlet extends HttpServlet {
         LogDAO logDAO = (LogDAO) session.getAttribute("logDAO");
         AddressDAO addressDAO = (AddressDAO) session.getAttribute("addressDAO");
         UserDAO userDAO = (UserDAO) session.getAttribute("userDAO");
-
+        ShipmentDAO shipmentDAO = (ShipmentDAO) session.getAttribute("shipmentDAO");
         System.out.println("Inside DashboardServlet");
 
         try {
@@ -37,12 +44,16 @@ public class DashboardServlet extends HttpServlet {
             ArrayList<Log> logs = logDAO.getLogs(user_id);
             ArrayList<Log> allLogs = logDAO.getAllLogs();
             ArrayList<Address> addresses = addressDAO.readAddresses(user_id);
+            List<Shipment> shipments = shipmentDAO.getShipmentsByUserId(user_id);
+            List<Shipment> allshipments = shipmentDAO.getAllShipments();
             
             session.setAttribute("user", user);
             session.setAttribute("allUsers", allUsers);
             session.setAttribute("logs", logs);
             session.setAttribute("allLogs", allLogs);
             session.setAttribute("addresses", addresses);
+            session.setAttribute("shipments", shipments);
+            session.setAttribute("allshipments", allshipments);
 
             response.sendRedirect("dashboard.jsp");
         } catch (SQLException e) {

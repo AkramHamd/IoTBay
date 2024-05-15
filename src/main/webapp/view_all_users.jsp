@@ -7,19 +7,29 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" href="css/layout.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="css/dashboard.css" type="text/css">
+
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
     <link rel="manifest" href="/assets/favicon/site.webmanifest">
+    <script type="text/javascript" src="js/index.js"></script>
+    <%-- jquery for enabling bootstrap --%>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <%-- enabling bootstrap --%>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-    <link rel="stylesheet" href="css/layout.css">
-    <link rel="stylesheet" href="css/dashboard.css" />
-    <title>IoTBay - Dashboard</title>
+
+    <title>IoTBay - View All Users</title>
   </head>
 
   <body>
+
     <%@ include file="assets/nav.jsp" %>
 
     <% if(user == null) { %>
@@ -43,19 +53,15 @@
 
               <% if(user != null && "true".equals(user.getIs_staff())) { %>
 
-              
-
               <div>
-                <h2>View all users</h2>
-                <br>
-                <br>
+                <h2 style="margin-bottom: 50px;">View all users</h2>
  
                 <% ArrayList<User> allUsers = (ArrayList<User>) session.getAttribute("allUsers"); %>
 
                 <div>
                   <% if(allUsers != null) { %>
                     <% for (User singleUser : allUsers) { %>
-                      <div style="display: flex; gap: 30px; background-color: #fdfdfd; border: 1px solid var(--border-colour); border-radius: 10px; padding: 20px;">
+                      <div style="display: flex; gap: 30px; background-color: #fdfdfd; border: 1px solid var(--border-colour); border-radius: 10px; padding: 20px; margin-bottom: 10px;">
                         <div style="display: flex; flex-direction: column; gap: 10px;">
                           <p style="font-weight: 600;">User ID:</p>
                           <p style="font-weight: 600;">Name:</p>
@@ -66,7 +72,6 @@
                           <p><%= singleUser.getGiven_name() %></p>
                         </div>
                       </div>
-                      <br>
                     <% } %>
                   <% } %>
                 </div>

@@ -7,6 +7,7 @@
 <%@page import="uts.isd.model.dao.ProductDAO"%>
 <%@page import="uts.isd.model.dao.DBConnector"%>
 
+<!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -25,16 +26,13 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-        <title>IoTBay Product Details</title>
+        <title>IoTBay Search Result</title>
     </head>
-    
-    <%-- Create a new user object using session data --%>
-    <%-- <% User user = (User) session.getAttribute("authUser"); %> --%>
 
-    <body>
+    <body >
         <%@ include file="assets/nav.jsp" %>
-          <main>
-            <div class="product-details-container">
+        <main>
+            <div>
             <% 
             //Set up for the product fetching to display the products that are on the page.
             %>
@@ -45,26 +43,28 @@
             <% //use the connection to create a productDAO controller
             ProductDAO productDAO = new ProductDAO(con); %>
             <% 
-            String productIdString = request.getParameter("id"); 
-            Integer productId = Integer.parseInt(productIdString);
+            ArrayList<Integer> productsID = (ArrayList<Integer>) session.getAttribute("searchIDResult");
+            ArrayList<Product> products = productDAO.selectArrayProduct(productsID);
             %>
-            <% 
-            //and use the controller to fetch a list of all of the products and store it in "products" for later use.
-            Product product = productDAO.selectSpecificProduct(productId); %>
-                <div class="product-details-container-upper-flex">
-                    <img src="<%= product.getProductImg() %>">
-                    <div class="product-details-heading">
-                        <h1><%= product.getProductName() %> </h1>
-                        <p><%= product.getProductShortDesc() %></p>
-                    </div>
-                    
-                </div>
-                
-                <div class="product-details-container-lower-flex">
-                    <p><%= product.getProductDescription() %></p>
-                </div>
             </div>
-          </main>
+            <div class="container-products">
+                <% 
+                for (Product product : products) { %>
+                        <a href="product_details.jsp?id=<%= product.getProductId() %>" class="product-card-a">
+                            <div class="product-card">
+                                <img src="<%= product.getProductImg() %>" alt="<%= product.getProductName() %>">
+                                <div class="product-details">
+                                    <h3><%= product.getProductName() %></h3>
+                                    <p><%= product.getProductBrand() %> </p>
+                                    <p><%= product.getProductShortDesc() %> </p>
+                                    <p class="price">$<%= product.getProductPrice() %></p>
+                                    <a href="#" class="btn">Add to cart</a>
+                                </div>
+                            </div>
+                        </a>
+                <% } %>
+            </div>
+        </main>
         <%@ include file="assets/footer.jsp" %>
     </body>
 </html>

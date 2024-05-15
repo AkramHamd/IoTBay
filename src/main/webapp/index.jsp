@@ -12,20 +12,22 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <link rel="stylesheet" href="css/layout.css" type="text/css">
+        <link rel="stylesheet" href="css/style.css">
+
         <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
         <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
         <link rel="manifest" href="/assets/favicon/site.webmanifest">
-        <link rel="stylesheet" href="css/layout.css" type="text/css">
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="css/style.css">
         <script type="text/javascript" src="js/index.js"></script>
-        <title>IoTBay</title>
         <%-- jquery for enabling bootstrap --%>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <%-- enabling bootstrap --%>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+        <title>IoTBay</title>
     </head>
 
     <body >

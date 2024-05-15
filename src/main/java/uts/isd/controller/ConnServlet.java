@@ -10,29 +10,35 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import uts.isd.model.dao.DBConnector;
+import uts.isd.model.dao.ShipmentDAO;
 import uts.isd.model.dao.AddressDAO;
 import uts.isd.model.dao.UserDAO;
 import uts.isd.model.dao.DBConnector;
 import uts.isd.model.dao.LogDAO;
+import uts.isd.model.dao.ProductDAO;
 import uts.isd.model.dao.OrderTableDAO;
 
 public class ConnServlet extends HttpServlet{
     private DBConnector db;
+    private ShipmentDAO shipmentDAO;
+    private Connection conn;
     private UserDAO userDAO;
     private LogDAO logDAO;
     private AddressDAO addressDAO;
+    private ProductDAO productDAO;
     private OrderTableDAO OrderTableDAO;
-
     private Connection connection;
     
     @Override
     public void init() {
         try {
             db = new DBConnector();
+            conn = db.openConnection();
+            shipmentDAO = new ShipmentDAO(conn);
+            userDAO = new UserDAO(conn);
+        } catch (ClassNotFoundException | SQLException ex) {
             System.out.println("Database connection established.");
-        }
-        catch (ClassNotFoundException | SQLException ex) {
-            System.out.println(ex);
         }
     }
     
@@ -40,6 +46,8 @@ public class ConnServlet extends HttpServlet{
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
+        session.setAttribute("shipmentDAO", shipmentDAO);
+        session.setAttribute("userDAO", userDAO); 
         
         connection = db.openConnection();
 
@@ -48,6 +56,7 @@ public class ConnServlet extends HttpServlet{
             logDAO = new LogDAO(connection);
             addressDAO = new AddressDAO(connection);
             OrderTableDAO = new OrderTableDAO(connection);
+            productDAO = new ProductDAO(connection);
         } catch (SQLException e) {
             System.out.print(e);
         }
@@ -56,6 +65,7 @@ public class ConnServlet extends HttpServlet{
         session.setAttribute("logDAO", logDAO);
         session.setAttribute("addressDAO", addressDAO);
         session.setAttribute("OrderTableDAO", OrderTableDAO);
+        session.setAttribute("productDAO", productDAO);
         System.out.println("All DAOs have been set in session.");
         request.getRequestDispatcher("index.jsp").include(request, response);
     }

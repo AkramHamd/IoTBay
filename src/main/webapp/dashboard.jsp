@@ -7,19 +7,29 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="stylesheet" href="css/layout.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="css/dashboard.css" type="text/css">
+
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
     <link rel="manifest" href="/assets/favicon/site.webmanifest">
+    <script type="text/javascript" src="js/index.js"></script>
+    <%-- jquery for enabling bootstrap --%>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <%-- enabling bootstrap --%>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-    <link rel="stylesheet" href="css/layout.css">
-    <link rel="stylesheet" href="css/dashboard.css" />
+
     <title>IoTBay - Dashboard</title>
   </head>
 
   <body>
+
     <%@ include file="assets/nav.jsp" %>
 
     <% if(user == null) { %>
@@ -42,17 +52,11 @@
 
               <div>
                 <div>
-                  <p style="font-size: 30px;">Hi welcome back, <%= user.getGiven_name()%></p>
+                  <p style="font-size: 30px; margin-bottom: 100px;">Hi welcome back, <%= user.getGiven_name()%></p>
                 </div>
 
-                <br>
-                <br>
-                <br>
-                <br>
+                <h2 style="margin-bottom: 50px;">Personal details</h2>
 
-                <h2>Personal details</h2>
-                <br>
-                <br>
                 <div class="details-div-wrapper">
                   <div class="details-div details-div-title">
                     <p>Customer ID:</p>
@@ -84,16 +88,9 @@
 
                 <% ArrayList<Address> addresses = (ArrayList<Address>) session.getAttribute("addresses"); %>
 
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <h2>Addresses</h2>
-                <br>
-                <br>
-                <div style="display: grid; grid-template-columns: repeat(4, 1fr);">
+                <h2 style="margin-top: 100px; margin-bottom: 50px;">Addresses</h2>
+
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
                   <% if(addresses != null && !addresses.isEmpty()) { %>
                     <% for(Address address : addresses) { %>
                     
@@ -148,5 +145,6 @@
     <% } %>
 
     <%@ include file="assets/footer.jsp" %>
+    
   </body>
 </html>

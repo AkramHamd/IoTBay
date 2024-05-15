@@ -19,30 +19,35 @@ nav {
     border-bottom: 2px solid var(--primary);
   }
   
-  .navbar {
+  .container-navbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 40px 0;
+    padding: 2vh 10vw 2vh 10vw;
+    width: 100vw;
+    height: 8rem;
   }
   
   .logo {
-    width: 200px;
+    width: 15vw;
+    height: auto;
   }
   
   .search-div {
-    width: 550px;
-    display: flex;
+    width: 40vw;
+    display: inline-flex;
     border: 1px solid var(--border-colour);
     border-radius: 25px;
     padding: 10px 20px;
     gap: 10px;
+    justify-content: space-between;
   }
   
   .search-div input {
     flex: 1;
     border: none;
     font-size: 14px;
+    width: 35vw;
   }
   
   .search-div input:focus {
@@ -51,7 +56,9 @@ nav {
   
   .search-icon,
   .cart-icon {
-    width: 25px;
+    width: 25px !important;
+    height: auto;
+    /* object-fit: contain; */
   }
   
   .user-icon {
@@ -90,7 +97,7 @@ nav {
 }
 
 .product-card p {
-    margin: 0;
+    margin-top: 5%;
     font-size: 0.9em;
     color: #777;
 }
@@ -121,16 +128,8 @@ nav {
   margin-right: 10%;
   width: auto;
   text-align: center;
-  display: flex;
   flex-wrap: wrap;
   justify-content: center; /* Center horizontally */
-}
-
-.container-cart {
-  margin-top: 3%;
-  margin: 3% auto;
-  width: auto;
-  text-align: center;
 }
 
 .product-details-container {
@@ -155,10 +154,54 @@ margin-left: 5vw;
 .product-details-heading h1 {
 font-weight: 900;
 font-size: 7rem;
+margin-bottom: 5%;
+}
+.createProductForm {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.createProductForm span {
+  font-size: 0.8rem;
+  color:#858585;
+  margin-top: 5px;
+}
+.form-inline {
+  display: inline-flex;
+  justify-content: space-around;
 }
 
+.staff-product-view {
+  display: inline-flex;
+  justify-content: space-around;
+  padding-top: 1%;
+  width: 100%;
+}
 
+.staff-product-view p, a {
+  width: 100%;
+}
 
+.product-staff-container {
+  width: 100%;
+  padding-left: 100px;
+}
+
+.heading-view p{
+  text-decoration: underline;
+  font-weight: bolder;
+}
+.delete-product-table {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.delete-product-table p{
+  margin-right: 5%;
+}
+.container-delete-product {
+  width: 80%;
+}
 
 
   footer {
@@ -230,7 +273,7 @@ font-size: 7rem;
   }
 
   
-/* for cart page */
+/* cart page */
 
 .cart-container {
   display: flex;
