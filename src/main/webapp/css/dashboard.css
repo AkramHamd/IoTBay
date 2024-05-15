@@ -50,6 +50,9 @@
   display: flex;
   gap: 200px;
 }
+.main-container-product-view {
+  display: flex;  
+}
 
 .sidebar {
   display: flex;

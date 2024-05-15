@@ -8,9 +8,6 @@
       <input type="text" placeholder="Search millions of things . . ." />
       <img src="/assets/search-icon.png" alt="search icon" class="search-icon" />
     </div>
-    <div class="cart-div">
-      Cart
-    </div>
     <div class="user-div">
       <% User user = (User) session.getAttribute("user"); %>
 
@@ -18,6 +15,7 @@
         <a href="/login.jsp">Login</a>
         <a href="/register.jsp">Register</a>
       <% } else { %>
+        <a href="/cart.jsp">Cart</a>
         <a href="/LogoutServlet">Logout</a>
         <a href="/dashboard.jsp"><img src="/assets/user-icon.png" alt="user icon" class="user-icon"/></a>
       <% } %>

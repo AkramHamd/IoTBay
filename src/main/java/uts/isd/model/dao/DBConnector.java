@@ -23,8 +23,6 @@ public class DBConnector extends DB {
 		}
 	}
 
-	
-
 	public Connection openConnection(){
 		return this.conn;
 	}
