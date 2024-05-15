@@ -1,48 +1,48 @@
 package uts.unit;
 
-// // import static org.junit.jupiter.api.Assertions.assertNotNull;
-// // import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-// // import java.sql.Connection;
-// // import java.sql.PreparedStatement;
-// // import java.sql.SQLException;
-// // import java.util.ArrayList;
-// // import java.util.List;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
-// // import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Test;
 
-// import java.sql.Connection;
-// import java.sql.SQLException;
+import java.sql.Connection;
+import java.sql.SQLException;
 
-// import uts.isd.model.Address;
-// import uts.isd.model.Log;
-// import uts.isd.model.Shipment;
-// import uts.isd.model.User;
-// import uts.isd.model.dao.AddressDAO;
-// import uts.isd.model.dao.DBConnector;
-// import uts.isd.model.dao.LogDAO;
-// import uts.isd.model.dao.UserDAO;
+import uts.isd.model.Address;
+import uts.isd.model.Log;
+import uts.isd.model.Shipment;
+import uts.isd.model.User;
+import uts.isd.model.dao.AddressDAO;
+import uts.isd.model.dao.DBConnector;
+import uts.isd.model.dao.LogDAO;
+import uts.isd.model.dao.UserDAO;
 
 public class DAOTest {
-    /* 
+    
     private DBConnector connector;
     private Connection conn;
     private UserDAO userDAO;
     private LogDAO logDAO;
     private AddressDAO addressDAO;
 
-//     public DAOTest() throws ClassNotFoundException, SQLException {
-//         connector = new DBConnector();
-//         conn = connector.openConnection();
-//         userDAO = new UserDAO(conn);
-//         logDAO = new LogDAO(conn);
-//         addressDAO = new AddressDAO(conn);
-//     }
+    public DAOTest() throws ClassNotFoundException, SQLException {
+        connector = new DBConnector();
+        conn = connector.openConnection();
+        userDAO = new UserDAO(conn);
+        logDAO = new LogDAO(conn);
+        addressDAO = new AddressDAO(conn);
+    }
 
-// //     @Test
-// //     public void testConnection() throws SQLException {
-// //         assertNotNull(conn);
-// //     }
+//     @Test
+//     public void testConnection() throws SQLException {
+//         assertNotNull(conn);
+//     }
 
     // @Test
     // public void testCreateUser() throws SQLException {
@@ -75,10 +75,10 @@ public class DAOTest {
     //     assertEquals("1999-01-01", updatedUser.getDob());
     // }
 
-//     // @Test
-//     // public void testDeleteUser() throws SQLException {
-//     //     userDAO.deleteUser(80);
-//     // }
+    // @Test
+    // public void testDeleteUser() throws SQLException {
+    //     userDAO.deleteUser(80);
+    // }
 
     // @Test
     // public void testAddLog() throws SQLException {
