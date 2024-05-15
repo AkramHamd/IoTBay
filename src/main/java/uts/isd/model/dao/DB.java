@@ -16,3 +16,4 @@ protected String dbpass = "password"; //db root password
 protected String driver = "com.mysql.cj.jdbc.Driver"; //jdbc client driver - built in with NetBeans   
 protected Connection conn; //connection null-instance to be initialized in sub-classes
 }
+//test
