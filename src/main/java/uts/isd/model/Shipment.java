@@ -12,6 +12,7 @@ public class Shipment {
     private Date date_Delivered;
     private String tracking_Number;
 
+    public Shipment(){}
     // Constructor
     public Shipment(int shipment_Id, int order_Id, int user_id, int address_Id, int courier_Id, Date date_Shipped, Date date_Delivered, String tracking_Number) {
         this.shipment_Id = shipment_Id;
@@ -24,9 +25,7 @@ public class Shipment {
         this.tracking_Number = tracking_Number;
     }
 
-    public Shipment() {
-        //TODO Auto-generated constructor stub
-    }
+
 
     // Getters and Setters
     public int getShipment_Id() {
