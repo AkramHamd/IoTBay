@@ -1,5 +1,7 @@
 package uts.isd.controller;
 
+import uts.isd.model.dao.*;
+
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -14,7 +16,6 @@ import uts.isd.model.dao.DBConnector;
 import uts.isd.model.dao.ShipmentDAO;
 import uts.isd.model.dao.AddressDAO;
 import uts.isd.model.dao.UserDAO;
-import uts.isd.model.dao.DBConnector;
 import uts.isd.model.dao.LogDAO;
 import uts.isd.model.dao.ProductDAO;
 import uts.isd.model.dao.OrderTableDAO;
@@ -26,6 +27,9 @@ public class ConnServlet extends HttpServlet{
     private UserDAO userDAO;
     private LogDAO logDAO;
     private AddressDAO addressDAO;
+    // added DAO
+    private PaymentMethodDAO paymentMethodDAO;
+    private PaymentDAO paymentdDAO;
     private ProductDAO productDAO;
     private OrderTableDAO OrderTableDAO;
     private Connection connection;
@@ -38,7 +42,7 @@ public class ConnServlet extends HttpServlet{
             shipmentDAO = new ShipmentDAO(conn);
             userDAO = new UserDAO(conn);
         } catch (ClassNotFoundException | SQLException ex) {
-            System.out.println("Database connection established.");
+            System.out.println("Failed to establish database connection.");
         }
     }
     
@@ -55,6 +59,8 @@ public class ConnServlet extends HttpServlet{
             userDAO = new UserDAO(connection);
             logDAO = new LogDAO(connection);
             addressDAO = new AddressDAO(connection);
+            paymentMethodDAO = new PaymentMethodDAO(connection);
+            paymentdDAO = new PaymentDAO(connection);
             OrderTableDAO = new OrderTableDAO(connection);
             productDAO = new ProductDAO(connection);
         } catch (SQLException e) {
@@ -64,6 +70,8 @@ public class ConnServlet extends HttpServlet{
         session.setAttribute("userDAO", userDAO);
         session.setAttribute("logDAO", logDAO);
         session.setAttribute("addressDAO", addressDAO);
+        session.setAttribute("paymentMethodDAO", paymentMethodDAO);
+        session.setAttribute("paymentDAO", paymentdDAO);
         session.setAttribute("OrderTableDAO", OrderTableDAO);
         session.setAttribute("productDAO", productDAO);
         System.out.println("All DAOs have been set in session.");
