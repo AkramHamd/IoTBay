@@ -78,6 +78,19 @@
             <h4>Status: <%= ordertable.getStatus() %></h4>
             <h4>Ordered: <%= ordertable.getOrderDate() %></h4>
         </div>
+        
+        <form method="post" action="/pay">
+            <div class="input-div">
+                <input name="orderId" type="hidden" value="4" />
+
+
+            </div>
+            <div class="submit-div">
+                <input type="submit" value="Proceed to Payment" />
+
+            </div>
+        </form>
+
     <% } %>
     
 </main>

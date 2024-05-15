@@ -25,6 +25,8 @@ public class SubmitPaymentServlet extends HttpServlet {
         System.out.println(customer);
         if (Objects.nonNull(customer)) {
 
+           // int orderId = Integer.parseInt(request.getParameter("orderId").trim()); // i just added this, not sure it is gunna woork 
+
          // get the paymentMethod object from request attribute 
 
             PaymentMethod paymentMethod = (PaymentMethod) request.getAttribute("paymentMethod");  // get the paymentMethod object from request attribute
