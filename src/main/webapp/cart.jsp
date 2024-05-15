@@ -43,7 +43,7 @@
 <%@ include file="assets/nav.jsp" %>
 <main>
     <div style="text-align: center;">
-        <a href="orderlog.jsp"><button>Order Log</button></a>
+        <a href="orderlog.jsp"><button>Order History</button></a>
         <form action="/CancelServlet" method="post">
             <input type="hidden" name="product_id">
             <button>Cancel Order</button> 
