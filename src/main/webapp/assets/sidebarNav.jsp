@@ -31,7 +31,7 @@
     <i class="material-icons" id="sidebar-item-arrow">chevron_right</i>
   </div>
   <div class="sidebar-items">
-    <a href="/list_shipments.jsp">Shipments Management (Staff)</a>
+    <a href="/ListShipmentServlet">Shipments Management (Staff)</a>
     <i class="material-icons" id="sidebar-item-arrow">chevron_right</i>
   </div>
   <div class="sidebar-items">
@@ -52,6 +52,11 @@
   </div>
   <div class="sidebar-items">
     <a href="/delete_product.jsp">Delete Product</a>
+    <i class="material-icons" id="sidebar-item-arrow">chevron_right</i>
+  </div>
+  <div class="sidebar-items">
+    <a href="/payments.jsp">View Payment History</a>
+    <a href="/orderlog.jsp">Order Log</a>
     <i class="material-icons" id="sidebar-item-arrow">chevron_right</i>
   </div>
 </div>

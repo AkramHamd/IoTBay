@@ -14,9 +14,7 @@
       <input type="image" src="/assets/search-icon.png" alt="search icon" class="search-icon" />
     </div>
     </form>
-    <div class="cart-div">
-      Cart
-    </div>
+
     <div class="user-div">
       <% User user = (User) session.getAttribute("user"); %>
 
@@ -24,6 +22,7 @@
         <a href="/login.jsp">Login</a>
         <a href="/register.jsp">Register</a>
       <% } else { %>
+        <a href="/cart.jsp" class="cart-div">Cart</a>
         <a href="/LogoutServlet">Logout</a>
         <a href="/dashboard.jsp"><img src="/assets/user-icon.png" alt="user icon" class="user-icon"/></a>
       <% } %>

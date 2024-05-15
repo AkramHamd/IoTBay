@@ -30,6 +30,7 @@
           <p>Nice to meet you!</p>
           <p>Create an account to get the most from IoTBay</p>
         </div>
+        // form is submitted to RegisterServlet
         <form method="post" action="/RegisterServlet">
           <div class="input-div">
 
@@ -54,9 +55,7 @@
               placeholder="Family Name"
               
             />
-
             
-
             <% if(register_emailErr != null) { %>
               <p><%=register_emailErr%></p>
             <% } %>

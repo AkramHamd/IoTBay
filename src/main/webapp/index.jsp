@@ -13,6 +13,7 @@
 <%@page import="java.sql.*"%>  
 <%@page import="javax.sql.*" %>
 <%@page import="uts.isd.model.dao.ProductDAO"%>
+<%@page import="uts.isd.model.dao.UserDAO"%>
 <%@page import="uts.isd.model.dao.DBConnector"%>
 
 <!DOCTYPE html>
@@ -102,9 +103,15 @@
                                 <div class="product-details">
                                     <h3><%= product.getProductName() %></h3>
                                     <p><%= product.getProductBrand() %> </p>
-                                    <p><%= product.getProductShortDesc() %> </p>
+                                    <%-- <p><%= product.getProductShortDesc() %> </p> --%>
                                     <p class="price">$<%= product.getProductPrice() %></p>
-                                    <a href="#" class="btn">Add to cart</a>
+                                    <% if(user != null) { %>
+                                    <form action="/AddToCartServlet" method="post">
+                                        <input type="hidden" name="product_id" value="<%= product.getProductId() %>">
+                                        <input type="hidden" name="productPrice" value="<%= product.getProductPrice() %>">
+                                        <input type="submit" value="Add to Cart">
+                                    </form>
+                                    <% } %>
                                 </div>
                             </div>
                         </a>
@@ -121,6 +128,20 @@
             <% } else { %>
                 <p>You are authenticated</p>
             <% } %>
+
+        
+        <!-- <form method="post" action="/pay">
+            <div class="input-div">
+                <input name="orderId" type="hidden" value=100 />
+
+
+            </div>
+            <div class="submit-div">
+                <input type="submit" value="Pay" />
+
+            </div>
+        </form> -->
+        
 
         <%@ include file="assets/footer.jsp" %>
     </body>

@@ -87,6 +87,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>DeleteAddressServlet</servlet-name>
+        <servlet-class>uts.isd.controller.DeleteAddressServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteAddressServlet</servlet-name>
+        <url-pattern>/DeleteAddressServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>SearchLogsServlet</servlet-name>
         <servlet-class>uts.isd.controller.SearchLogsServlet</servlet-class>
     </servlet>
@@ -121,6 +130,34 @@
       <servlet-name>ClearSearchAllLogsServlet</servlet-name>
       <url-pattern>/ClearSearchAllLogsServlet</url-pattern>
   </servlet-mapping>
+  
+ <servlet>
+        <servlet-name>PaymentServlet</servlet-name>
+        <servlet-class>uts.isd.controller.PaymentServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PaymentServlet</servlet-name>
+        <url-pattern>/pay</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>PaymentsServlet</servlet-name>
+        <servlet-class>uts.isd.controller.PaymentsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PaymentsServlet</servlet-name>
+        <url-pattern>/payments</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>SubmitPaymentServlet</servlet-name>
+        <servlet-class>uts.isd.controller.SubmitPaymentServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SubmitPaymentServlet</servlet-name>
+        <url-pattern>/submit-payment</url-pattern>
+    </servlet-mapping>
+  <session-config>
+    <session-timeout>30</session-timeout>
+  </session-config>
 
   <servlet>
       <servlet-name>CreateProductServlet</servlet-name>
@@ -274,6 +311,70 @@
         <servlet-name>UserSearchShipmentServlet</servlet-name>
         <url-pattern>/UserSearchShipmentServlet</url-pattern>
     </servlet-mapping>
+
+  <servlet>
+      <servlet-name>DeleteUserServlet</servlet-name>
+      <servlet-class>uts.isd.controller.DeleteUserServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>DeleteUserServlet</servlet-name>
+      <url-pattern>/DeleteUserServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+      <servlet-name>CancelServlet</servlet-name>
+      <servlet-class>uts.isd.controller.CancelServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>CancelServlet</servlet-name>
+      <url-pattern>/CancelServlet</url-pattern>
+  </servlet-mapping>
+
+    <servlet>
+    <servlet-name>SubmitServlet</servlet-name>
+    <servlet-class>uts.isd.controller.SubmitServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SubmitServlet</servlet-name>
+    <url-pattern>/SubmitServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>IncrementServlet</servlet-name>
+    <servlet-class>uts.isd.controller.IncrementServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>IncrementServlet</servlet-name>
+    <url-pattern>/IncrementServlet</url-pattern>
+  </servlet-mapping>
+
+    <servlet>
+    <servlet-name>DecreaseServlet</servlet-name>
+    <servlet-class>uts.isd.controller.DecreaseServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DecreaseServlet</servlet-name>
+    <url-pattern>/DecreaseServlet</url-pattern>
+  </servlet-mapping>
+
+    <servlet>
+    <servlet-name>AddToCartServlet</servlet-name>
+    <servlet-class>uts.isd.controller.AddToCartServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddToCartServlet</servlet-name>
+    <url-pattern>/AddToCartServlet</url-pattern>
+  </servlet-mapping>
+
+      <servlet>
+    <servlet-name>OrderTableSearchServlet</servlet-name>
+    <servlet-class>uts.isd.controller.OrderTableSearchServlet</servlet-class>
+    <load-on-startup>0</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>OrderTableSearchServlet</servlet-name>
+    <url-pattern>/OrderTableSearchServlet</url-pattern>
+  </servlet-mapping>
 
 
     <session-config>
