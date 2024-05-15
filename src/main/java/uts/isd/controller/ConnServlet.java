@@ -17,6 +17,7 @@ import uts.isd.model.dao.UserDAO;
 import uts.isd.model.dao.DBConnector;
 import uts.isd.model.dao.LogDAO;
 import uts.isd.model.dao.ProductDAO;
+import uts.isd.model.dao.OrderTableDAO;
 
 public class ConnServlet extends HttpServlet{
     private DBConnector db;
@@ -26,6 +27,7 @@ public class ConnServlet extends HttpServlet{
     private LogDAO logDAO;
     private AddressDAO addressDAO;
     private ProductDAO productDAO;
+    private OrderTableDAO OrderTableDAO;
     private Connection connection;
     
     @Override
@@ -53,6 +55,7 @@ public class ConnServlet extends HttpServlet{
             userDAO = new UserDAO(connection);
             logDAO = new LogDAO(connection);
             addressDAO = new AddressDAO(connection);
+            OrderTableDAO = new OrderTableDAO(connection);
             productDAO = new ProductDAO(connection);
         } catch (SQLException e) {
             System.out.print(e);
@@ -61,6 +64,7 @@ public class ConnServlet extends HttpServlet{
         session.setAttribute("userDAO", userDAO);
         session.setAttribute("logDAO", logDAO);
         session.setAttribute("addressDAO", addressDAO);
+        session.setAttribute("OrderTableDAO", OrderTableDAO);
         session.setAttribute("productDAO", productDAO);
         System.out.println("All DAOs have been set in session.");
         request.getRequestDispatcher("index.jsp").include(request, response);

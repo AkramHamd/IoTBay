@@ -1,18 +1,19 @@
 package uts.isd.model;
+
 import java.io.Serializable;
 
 public class OrderLineItem implements Serializable {
     
     private int orderLineNumber;
-    private int orderId;
-    private int productId;
+    private int order_id; // Modified from orderId
+    private int product_id; // Modified from productId
     private int quantity;
     private double orderLineNumberPrice;
     
-    public OrderLineItem(int orderLineNumber, int orderId, int productId, int quantity, double orderLineNumberPrice) {
+    public OrderLineItem(int orderLineNumber, int order_id, int product_id, int quantity, double orderLineNumberPrice) {
         this.orderLineNumber = orderLineNumber;
-        this.orderId = orderId;
-        this.productId = productId;
+        this.order_id = order_id;
+        this.product_id = product_id;
         this.quantity = quantity;
         this.orderLineNumberPrice = orderLineNumberPrice;
     }
@@ -23,17 +24,17 @@ public class OrderLineItem implements Serializable {
     public void setOrderLineNumber(int orderLineNumber) {
         this.orderLineNumber = orderLineNumber;
     }
-    public int getOrderId() {
-        return orderId;
+    public int getOrder_id() {
+        return order_id;
     }
-    public void setOrderId(int orderId) {
-        this.orderId = orderId;
+    public void setOrder_id(int order_id) {
+        this.order_id = order_id;
     }
-    public int getProductId() {
-        return productId;
+    public int getProduct_id() {
+        return product_id;
     }
-    public void setProductId(int productId) {
-        this.productId = productId;
+    public void setProduct_id(int product_id) {
+        this.product_id = product_id;
     }
     public int getQuantity() {
         return quantity;
