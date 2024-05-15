@@ -26,6 +26,7 @@ public class AddAddressServlet extends HttpServlet {
         String country = request.getParameter("country");
 
         AddressDAO addressDAO = (AddressDAO) session.getAttribute("addressDAO");
+        
 
         try {
             int address_id = addressDAO.createAddress(user_id, unit_number, street_number, street_name, suburb, state, postcode, country);

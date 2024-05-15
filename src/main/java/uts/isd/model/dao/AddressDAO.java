@@ -103,4 +103,26 @@ public class AddressDAO {
         statement.setInt(1, addressId);
         statement.executeUpdate();
     }
+
+    public Address getAddressByUserId(int userId) throws SQLException {
+        String query = "SELECT * FROM addresses WHERE user_id = ?";
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setInt(1, userId);
+        ResultSet rs = statement.executeQuery();
+    
+        if (rs.next()) {
+            int addressId = rs.getInt("address_id");
+            int unitNumber = rs.getInt("unit_number");
+            int streetNumber = rs.getInt("street_number");
+            String streetName = rs.getString("street_name");
+            String suburb = rs.getString("suburb");
+            String state = rs.getString("state");
+            int postcode = rs.getInt("postcode");
+            String country = rs.getString("country");
+    
+            return new Address(addressId, userId, unitNumber, streetNumber, streetName, suburb, state, postcode, country);
+        }
+    
+        return null;
+    }
 }
