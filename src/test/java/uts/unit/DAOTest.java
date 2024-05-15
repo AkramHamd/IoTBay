@@ -235,5 +235,11 @@ public class DAOTest {
                 productDAO.deleteProduct(product.getProductId());
             }
         }
+
+
+
+
+
+        
     } */
 }

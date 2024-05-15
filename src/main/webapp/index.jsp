@@ -122,7 +122,7 @@
             <% } %>
 
         
-        <form method="post" action="/pay">
+        <!-- <form method="post" action="/pay">
             <div class="input-div">
                 <input name="orderId" type="hidden" value=100 />
 
@@ -132,7 +132,8 @@
                 <input type="submit" value="Pay" />
 
             </div>
-        </form>
+        </form> -->
+        
 
         <%@ include file="assets/footer.jsp" %>
     </body>

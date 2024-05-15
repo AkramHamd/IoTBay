@@ -54,4 +54,8 @@
     <a href="/delete_product.jsp">Delete Product</a>
     <i class="material-icons" id="sidebar-item-arrow">chevron_right</i>
   </div>
+  <div class="sidebar-items">
+    <a href="/payments.jsp">View Payment History</a>
+    <i class="material-icons" id="sidebar-item-arrow">chevron_right</i>
+  </div>
 </div>
