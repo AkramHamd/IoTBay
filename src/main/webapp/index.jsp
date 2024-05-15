@@ -5,6 +5,7 @@
 <%@page import="java.sql.*"%>  
 <%@page import="javax.sql.*" %>
 <%@page import="uts.isd.model.dao.ProductDAO"%>
+<%@page import="uts.isd.model.dao.UserDAO"%>
 <%@page import="uts.isd.model.dao.DBConnector"%>
 
 <!DOCTYPE html>
@@ -94,8 +95,11 @@
                                     <p><%= product.getProductBrand() %> </p>
                                     <%-- <p><%= product.getProductShortDesc() %> </p> --%>
                                     <p class="price">$<%= product.getProductPrice() %></p>
-                                    <a href="#" class="btn">Add to cart</a>
-                                </div>
+                                    <form action="/AddToCartServlet" method="post">
+                                    <input type="hidden" name="product_id" value="<%= product.getProductId() %>">
+                                    <input type="hidden" name="productPrice" value="<%= product.getProductPrice() %>">
+                                    <input type="submit" value="add to cart">
+                                    </div>
                             </div>
                         </a>
                     <%-- </form> --%>

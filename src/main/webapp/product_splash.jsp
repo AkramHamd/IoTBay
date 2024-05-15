@@ -6,6 +6,8 @@
 <%@page import="javax.sql.*" %>
 <%@page import="uts.isd.model.dao.ProductDAO"%>
 <%@page import="uts.isd.model.dao.DBConnector"%>
+<%@page import="uts.isd.model.dao.OrderTableDAO"%>
+
 
 <html>
     <head>
@@ -90,7 +92,7 @@
                                 <div class="product-details">
                                     <h3><%= product.getProductName() %></h3>
                                     <p class="price">$<%= product.getProductPrice() %></p>
-                                    <a href="#" class="btn">Add to cart</a>
+                                    <a href="/AddToCartServlet?id=<%= product.getProductId() %>&userID=<%= user.getUser_id() %>&productPrice=<%= product.getProductPrice() %>" class="btn">Add to cart</a>
                                 </div>
                             </div>
                         </a>

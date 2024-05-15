@@ -88,6 +88,15 @@
   </servlet-mapping>
 
   <servlet>
+    <servlet-name>AddToCartServlet</servlet-name>
+    <servlet-class>uts.isd.controller.AddToCartServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddToCartServlet</servlet-name>
+    <url-pattern>/AddToCartServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
       <servlet-name>DeleteAddressServlet</servlet-name>
       <servlet-class>uts.isd.controller.DeleteAddressServlet</servlet-class>
   </servlet>
