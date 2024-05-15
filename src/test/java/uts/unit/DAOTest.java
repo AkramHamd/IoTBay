@@ -1,168 +1,109 @@
 package uts.unit;
 
-// // import static org.junit.jupiter.api.Assertions.assertNotNull;
-// // import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-// // import java.sql.Connection;
-// // import java.sql.PreparedStatement;
-// // import java.sql.SQLException;
-// // import java.util.ArrayList;
-// // import java.util.List;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-// // import org.junit.jupiter.api.Test;
 
-// import java.sql.Connection;
-// import java.sql.SQLException;
+import java.sql.Connection;
+import java.sql.SQLException;
 
-// import uts.isd.model.Address;
-// import uts.isd.model.Log;
-// import uts.isd.model.Shipment;
-// import uts.isd.model.User;
-// import uts.isd.model.dao.AddressDAO;
-// import uts.isd.model.dao.DBConnector;
-// import uts.isd.model.dao.LogDAO;
-// import uts.isd.model.dao.UserDAO;
+import uts.isd.model.Address;
+import uts.isd.model.Log;
+import uts.isd.model.Product;
+import uts.isd.model.Shipment;
+import uts.isd.model.User;
+import uts.isd.model.dao.AddressDAO;
+import uts.isd.model.dao.DBConnector;
+import uts.isd.model.dao.LogDAO;
+import uts.isd.model.dao.UserDAO;
+import uts.isd.model.dao.ProductDAO;
+import uts.isd.model.dao.ShipmentDAO;
 
-@Disabled public class DAOTest {
 public class DAOTest {
-    /* 
+    
     private DBConnector connector;
     private Connection conn;
     private UserDAO userDAO;
     private LogDAO logDAO;
     private AddressDAO addressDAO;
+    private ProductDAO productDAO;
+    private ShipmentDAO shipmentDAO;
 
-//     public DAOTest() throws ClassNotFoundException, SQLException {
-//         connector = new DBConnector();
-//         conn = connector.openConnection();
-//         userDAO = new UserDAO(conn);
-//         logDAO = new LogDAO(conn);
-//         addressDAO = new AddressDAO(conn);
-//     }
+    public DAOTest() throws ClassNotFoundException, SQLException {
+        connector = new DBConnector();
+        conn = connector.openConnection();
+        userDAO = new UserDAO(conn);
+        logDAO = new LogDAO(conn);
+        addressDAO = new AddressDAO(conn);
+        productDAO = new ProductDAO(conn);
+    }
 
-// //     @Test
-// //     public void testConnection() throws SQLException {
-// //         assertNotNull(conn);
-// //     }
+    @Test
+    public void testConnection() throws SQLException {
+        assertNotNull(conn);
+    }
 
-    // @Test
-    // public void testCreateUser() throws SQLException {
-    //     int user_id = userDAO.createUser("John", "Doe", "johndoe@gmail.com", "123456", "0422 222 222", "1999-01-01", "1234", "false", "false");	
-    //     assertNotNull(user_id);
-    // }
+    @Test
+    public void testCreateUser() throws SQLException {
+        int user_id = userDAO.createUser("John", "Doe", "johndoe@gmail.com", "123456", "0422 222 222", "1999-01-01", "1234", "false", "false");	
+        assertNotNull(user_id);
+    }
 
-    // @Test
-    // public void testCreateUser() throws SQLException {
-    //     int user_id = userDAO.createUser("John", "Doe", "johndoe@gmail.com", "123456", "0422 222 222", "1999-01-01", "1234", "false", "false");	
-    //     assertNotNull(user_id);
-    // }
+    @Test
+    public void testReadUser() throws SQLException {
+        User user = userDAO.readUser(40);
+        assertNotNull(user);
+    }
 
-    // @Test
-    // public void testReadUser() throws SQLException {
-    //     User user = userDAO.readUser(40);
-    //     assertNotNull(user);
-    // }
+    @Test
+    public void testReadAllUsers() throws SQLException {
+        ArrayList<User> users = userDAO.readAllUsers();
+        assertTrue(users.size() > 0);
+    }
 
-    // @Test
-    // public void testReadAllUsers() throws SQLException {
-    //     ArrayList<User> users = userDAO.readAllUsers();
-    //     assertTrue(users.size() > 0);
-    // }
-
-    // @Test
-    // public void testReadUser() throws SQLException {
-    //     User user = userDAO.readUser(40);
-    //     assertNotNull(user);
-    // }
-
-    // @Test
-    // public void testReadAllUsers() throws SQLException {
-    //     ArrayList<User> users = userDAO.readAllUsers();
-    //     assertTrue(users.size() > 0);
-    // }
-
-    // @Test
-    // public void testUpdateUser() throws SQLException {
-    //     userDAO.updateUser(40, "John", "Doe", "johndoe@TEST.com", "testPassword" ,"0000 000 000", "1999-01-01");	
+    @Test
+    public void testUpdateUser() throws SQLException {
+        userDAO.updateUser(40, "John TEST", "Doe TEST", "johndoe@TEST.com", "testPassword" ,"0000 000 000", "1999-01-01");	
     
-    //     User updatedUser = userDAO.readUser(40);
-    //     assertEquals("John", updatedUser.getGiven_name());
-    //     assertEquals("Doe", updatedUser.getFamily_name());
-    //     assertEquals("johndoe@TEST.com", updatedUser.getEmail());
-    //     assertEquals("testPassword", updatedUser.getPassword());
-    //     assertEquals("0000 000 000", updatedUser.getPhone());
-    //     assertEquals("1999-01-01", updatedUser.getDob());
-    // }
+        User updatedUser = userDAO.readUser(40);
+        assertEquals("John TEST", updatedUser.getGiven_name());
+        assertEquals("Doe TEST", updatedUser.getFamily_name());
+        assertEquals("johndoe@TEST.com", updatedUser.getEmail());
+        assertEquals("testPassword", updatedUser.getPassword());
+        assertEquals("0000 000 000", updatedUser.getPhone());
+        assertEquals("1999-01-01", updatedUser.getDob());
+    }
 
     // @Test
     // public void testDeleteUser() throws SQLException {
     //     userDAO.deleteUser(80);
     // }
 
-    // @Test
-    // public void testAddLog() throws SQLException {
-    //     logDAO.addLog(40, "test");
-    // }
+    @Test
+    public void testAddLog() throws SQLException {
+        logDAO.addLog(40, "TESTING");
+    }
 
-    // @Test
-    // public void testGetLogs() throws SQLException {
-    //     ArrayList<Log> logs = logDAO.getLogs(40);
-    //     assertTrue(logs.size() > 0);
-    // }
+    @Test
+    public void testGetLogs() throws SQLException {
+        ArrayList<Log> logs = logDAO.getLogs(40);
+        assertTrue(logs.size() > 0);
+    }
 
-    // @Test
-    // public void testGetAllLogs() throws SQLException {
-    //     ArrayList<Log> allLogs = logDAO.getAllLogs();
-    //     assertTrue(allLogs.size() > 0);
-    // }
-
-    // @Test
-    // public void testCreateAddress() throws SQLException {
-    //     int addressId = addressDAO.createAddress(40, 1, 1, "Test St", "Test Suburb", "NSW", 2000, "Australia");
-    //     assertNotNull(addressId);
-    // }
-
-    // @Test
-    // public void testReadAddress() throws SQLException {
-    //     Address address = addressDAO.readAddress(10);
-    //     assertNotNull(address);
-    // }
-
-    // @Test
-    // public void testReadAddresses() throws SQLException {
-    //     ArrayList<Address> addresses = addressDAO.readAddresses(40);
-    //     assertTrue(addresses.size() > 0);
-    // }
-
-    // @Test
-    // public void testUpdateAddress() throws SQLException {
-    //     addressDAO.updateAddress(10, 1, 1, "Test St", "Test Suburb", "NSW", 2000, "Australia");
-    // }
-    // }
-
-//     // @Test
-//     // public void testDeleteUser() throws SQLException {
-//     //     userDAO.deleteUser(80);
-//     // }
-
-    // @Test
-    // public void testAddLog() throws SQLException {
-    //     logDAO.addLog(40, "test");
-    // }
-
-    // @Test
-    // public void testGetLogs() throws SQLException {
-    //     ArrayList<Log> logs = logDAO.getLogs(40);
-    //     assertTrue(logs.size() > 0);
-    // }
-
-    // @Test
-    // public void testGetAllLogs() throws SQLException {
-    //     ArrayList<Log> allLogs = logDAO.getAllLogs();
-    //     assertTrue(allLogs.size() > 0);
-    // }
+    @Test
+    public void testGetAllLogs() throws SQLException {
+        ArrayList<Log> allLogs = logDAO.getAllLogs();
+        assertTrue(allLogs.size() > 0);
+    }
 
     // @Test
     // public void testCreateAddress() throws SQLException {
@@ -170,23 +111,23 @@ public class DAOTest {
     //     assertNotNull(addressId);
     // }
 
-    // @Test
-    // public void testReadAddress() throws SQLException {
-    //     Address address = addressDAO.readAddress(10);
-    //     assertNotNull(address);
-    // }
+    @Test
+    public void testReadAddress() throws SQLException {
+        Address address = addressDAO.readAddress(12);
+        assertNotNull(address);
+    }
 
-    // @Test
-    // public void testReadAddresses() throws SQLException {
-    //     ArrayList<Address> addresses = addressDAO.readAddresses(40);
-    //     assertTrue(addresses.size() > 0);
-    // }
+    @Test
+    public void testReadAddresses() throws SQLException {
+        ArrayList<Address> addresses = addressDAO.readAddresses(40);
+        assertTrue(addresses.size() > 0);
+    }
 
 
 
-    //---------- product tests ----------//
+//     //---------- product tests ----------//
 
-    //select/fetch all products
+//     //select/fetch all products
     @Test
     public void testSelectProducts() throws SQLException {
         ArrayList<Product> products = productDAO.fetchProducts();
@@ -210,9 +151,9 @@ public class DAOTest {
     public void testArrayProduct() throws SQLException {
         ArrayList<Integer> products = new ArrayList<>();
         products.add(1);
-        products.add(2);
+        products.add(3);
         ArrayList<Product> tester = productDAO.selectArrayProduct(products);
-        assertEquals(tester.get(1).getProductId(), 2);
+        assertEquals(tester.get(1).getProductId(), 3);
     }
 
     //create product
@@ -235,11 +176,5 @@ public class DAOTest {
                 productDAO.deleteProduct(product.getProductId());
             }
         }
-
-
-
-
-
-        
-    } */
+    }
 }
