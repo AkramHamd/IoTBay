@@ -43,7 +43,7 @@
 <%@ include file="assets/nav.jsp" %>
 <main>
     <div style="text-align: center;">
-        <a href="orderlog.jsp"><button>Order Log</button></a>
+        <a href="orderlog.jsp"><button>Order History</button></a>
         <form action="/CancelServlet" method="post">
             <input type="hidden" name="product_id">
             <button>Cancel Order</button> 
@@ -66,8 +66,11 @@
         <% for (OrderLineItem orderlineitem : currentItems) { %>
             <% Product product = productDAO.selectSpecificProduct(orderlineitem.getProduct_id()); %>
             <div>
-                <h3>Product: <%= product.getProductName() %></h2>
-                <h3>Quantity: <%= orderlineitem.getQuantity() %></h3>
+                 <h2>Product: <%= product.getProductName() %></h2>
+                <p>Price: $<%= product.getProductPrice() %></p>
+                <p>Quantity: <%= orderlineitem.getQuantity() %></p>
+                <img src="<%= product.getProductImg() %>" alt="<%= product.getProductName() %>" style="width: 10%; height: 10%;">
+
                 <form action="/IncrementServlet" method="post">
                     <input type="hidden" name="product_id" value="<%= product.getProductId() %>">
                     <button>+</button>

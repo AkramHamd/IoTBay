@@ -12,11 +12,13 @@ import uts.isd.model.Address;
 public class AddressDAO {
     private Connection connection;
 
+    // Address constructor to initialise the connection
     public AddressDAO(Connection connection) throws SQLException{
         this.connection = connection;
         connection.setAutoCommit(true);
     }
 
+    // create address method that accepts user id, unit number, street number, street name, suburb, state, postcode and country to create an address and return address id
     public Integer createAddress(int user_id, int unit_number, int street_number, String street_name, String suburb, String state, int postcode, String country) throws SQLException {
         String query = "INSERT INTO addresses (user_id, unit_number, street_number, street_name, suburb, state, postcode, country) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement st = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
@@ -38,6 +40,7 @@ public class AddressDAO {
         return null;
     }
 
+    // read address method that accepts address id and return the Address object if it exists
     public Address readAddress(int addressId) throws SQLException {
         String query = "SELECT * FROM addresses WHERE address_id = ?";
         PreparedStatement statement = connection.prepareStatement(query);
@@ -57,7 +60,7 @@ public class AddressDAO {
             return new Address(addressId, user_id, unitNumber, streetNumber, streetName, suburb, state, postcode, country);
         }
     
-        return null;
+        return null; // return null if address does not exist
     }
 
     public ArrayList<Address> readAddresses(int user_id) throws SQLException {

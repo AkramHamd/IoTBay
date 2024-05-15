@@ -18,6 +18,7 @@ public class UserDAO {
         connection.setAutoCommit(true);
     }
 
+    // creating a user method
     public Integer createUser(String given_name, String family_name, String email, String password, String phone, String dob, String verification_code, String is_verified, String is_staff) throws SQLException {
        
         String query = "INSERT INTO users (given_name, family_name, email, password, phone, dob, verification_code, is_verified, is_staff) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -42,6 +43,7 @@ public class UserDAO {
         }
     }
 
+    // reading a user by id method
     public User readUser(int user_id) throws SQLException {
         String query = "SELECT * FROM users WHERE user_id = ?";
         PreparedStatement st = connection.prepareStatement(query);
@@ -68,6 +70,7 @@ public class UserDAO {
         }
     }
 
+    // reading all users method
     public ArrayList<User> readAllUsers() throws SQLException {
         String query = "SELECT * FROM users";
         PreparedStatement statement = connection.prepareStatement(query);
@@ -95,6 +98,7 @@ public class UserDAO {
         return allUsers;
     }
 
+    //updating a user by id method
     public void updateUser(int user_id, String given_name, String family_name, String email, String password, String phone, String dob) throws SQLException {
         String query = "UPDATE users SET given_name = ?, family_name = ?, email = ?, password = ?, phone = ?, dob = ? WHERE user_id = ?";
         PreparedStatement statement = connection.prepareStatement(query);
@@ -110,6 +114,7 @@ public class UserDAO {
         statement.executeUpdate();
     }
 
+    //deleting a user by id method
     public void deleteUser(int user_id) throws SQLException {
         String query = "DELETE FROM users WHERE user_id = ?";
         PreparedStatement statement = connection.prepareStatement(query);
@@ -117,6 +122,7 @@ public class UserDAO {
         statement.executeUpdate();
     }
 
+    // checking if email exists method for register jsp to not allow a user to create an account with an existing email
     public boolean emailExists(String email) throws SQLException {
         String query = "SELECT COUNT(*) FROM users WHERE email = ?";
         PreparedStatement st = connection.prepareStatement(query);
@@ -124,12 +130,13 @@ public class UserDAO {
         ResultSet rs = st.executeQuery();
        
         if (rs.next()) {
-            return rs.getInt(1) > 0;
+            return rs.getInt(1) > 0; // returns true if an email exists
         } else {
-            return false;
+            return false; // returns false if an email does not exist
         }
     }
 
+    // checking if email exists method for login jsp to validate a user with entered email and password
     public Integer validateUser(String email, String password) throws SQLException {
         String query = "SELECT * FROM users WHERE email = ? AND password = ?";
         PreparedStatement statement = connection.prepareStatement(query);
