@@ -96,10 +96,11 @@
                                     <%-- <p><%= product.getProductShortDesc() %> </p> --%>
                                     <p class="price">$<%= product.getProductPrice() %></p>
                                     <form action="/AddToCartServlet" method="post">
-                                    <input type="hidden" name="product_id" value="<%= product.getProductId() %>">
-                                    <input type="hidden" name="productPrice" value="<%= product.getProductPrice() %>">
-                                    <input type="submit" value="add to cart">
-                                    </div>
+                                        <input type="hidden" name="product_id" value="<%= product.getProductId() %>">
+                                        <input type="hidden" name="productPrice" value="<%= product.getProductPrice() %>">
+                                        <input type="submit" value="Add to Cart">
+                                    </form>
+                                </div>
                             </div>
                         </a>
                     <%-- </form> --%>

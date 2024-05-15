@@ -88,6 +88,24 @@
   </servlet-mapping>
 
   <servlet>
+    <servlet-name>IncrementServlet</servlet-name>
+    <servlet-class>uts.isd.controller.IncrementServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>IncrementServlet</servlet-name>
+    <url-pattern>/IncrementServlet</url-pattern>
+  </servlet-mapping>
+
+    <servlet>
+    <servlet-name>DecreaseServlet</servlet-name>
+    <servlet-class>uts.isd.controller.DecreaseServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DecreaseServlet</servlet-name>
+    <url-pattern>/DecreaseServlet</url-pattern>
+  </servlet-mapping>
+
+    <servlet>
     <servlet-name>AddToCartServlet</servlet-name>
     <servlet-class>uts.isd.controller.AddToCartServlet</servlet-class>
   </servlet>
