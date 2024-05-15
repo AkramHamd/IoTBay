@@ -7,14 +7,12 @@ public class OrderTable implements Serializable {
     private int user_id; // Modified from customerId
     private String orderDate;
     private String status;
-    private String shippingId;
     
-    public OrderTable(int order_id, int user_id, String orderDate, String status, String shippingId) {
+    public OrderTable(int order_id, int user_id, String orderDate, String status) {
         this.order_id = order_id;
         this.user_id = user_id;
         this.orderDate = orderDate;
         this.status = status;
-        this.shippingId = shippingId;
     }
 
     public int getOrder_id() {
@@ -49,11 +47,4 @@ public class OrderTable implements Serializable {
         this.status = status;
     }
 
-    public String getShippingId() {
-        return shippingId;
-    }
-
-    public void setShippingId(String shippingId) {
-        this.shippingId = shippingId;
-    }   
 }

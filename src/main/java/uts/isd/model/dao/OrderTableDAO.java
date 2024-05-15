@@ -6,6 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import uts.isd.model.OrderLineItem;
+import uts.isd.model.OrderTable;
+import java.time.LocalDate;
+
 
 public class OrderTableDAO {
     private Connection con;
@@ -45,9 +48,11 @@ public class OrderTableDAO {
 
     // generates order table when a user adds an item to their cart // this should be run after it is confirmed the user has no active orders
     public void generateOrderTable(int user_id) throws SQLException {
+        LocalDate currentDate = LocalDate.now();
+
         PreparedStatement st = con.prepareStatement("INSERT INTO ordertable(user_id, Order_Date, status) VALUES(?,?,?)");
         st.setInt(1, user_id);
-        st.setDate(2, java.sql.Date.valueOf("2024-05-05"));
+        st.setDate(2, java.sql.Date.valueOf(currentDate));
         st.setString(3, "active");
         st.executeUpdate(); 
     }
@@ -76,12 +81,30 @@ public class OrderTableDAO {
     }
     // creates orderlineitem and adds it to active order // this is always run when the user clicks add to cart
     public void generateOrderLineItem(int order_id, int product_id, double price) throws SQLException {
-        PreparedStatement st = con.prepareStatement("INSERT INTO orderlineitem(order_id, product_id, quantity, orderLineNumberPrice) VALUES(?,?,?,?)");
+        PreparedStatement st = con.prepareStatement("SELECT * FROM orderlineitem WHERE order_id = ? AND product_id = ?");
         st.setInt(1, order_id);
         st.setInt(2, product_id);
-        st.setInt(3, 1);
-        st.setDouble(4, price);
-        st.executeUpdate(); 
+        ResultSet result = st.executeQuery();
+        
+        if (result.next()) { 
+            updateQuantity(order_id, product_id, result.getInt("quantity") + 1);
+        } else { 
+            PreparedStatement insertSt = con.prepareStatement("INSERT INTO orderlineitem(order_id, product_id, quantity, orderLineNumberPrice) VALUES(?,?,?,?)");
+            insertSt.setInt(1, order_id);
+            insertSt.setInt(2, product_id);
+            insertSt.setInt(3, 1); // Initial quantity is 1
+            insertSt.setDouble(4, price);
+            insertSt.executeUpdate();
+        }
+    }
+    
+    // Method to update the quantity of an existing order line item
+    private void updateQuantity(int order_id, int product_id, int newQuantity) throws SQLException {
+        PreparedStatement st = con.prepareStatement("UPDATE orderlineitem SET quantity = ? WHERE order_id = ? AND product_id = ?");
+        st.setInt(1, newQuantity);
+        st.setInt(2, order_id);
+        st.setInt(3, product_id);
+        st.executeUpdate();
     }
 
     // use this method to increment quantity by 1 // this is used in cart view
@@ -90,8 +113,8 @@ public class OrderTableDAO {
         st.setInt(1, user_id); 
         st.setString(2, "active"); 
         ResultSet result = st.executeQuery();
-        if (result.next()) { // Check if result set contains rows
-            int order_id = result.getInt("order_id"); // get user's ordertableID (order_id)
+        if (result.next()) { 
+            int order_id = result.getInt("order_id"); 
     
             PreparedStatement st2 = con.prepareStatement("UPDATE orderlineitem SET quantity = quantity + 1 WHERE order_id = ? AND product_id = ?");
             st2.setInt(1, order_id);
@@ -140,13 +163,15 @@ public class OrderTableDAO {
         st.setInt(1, user_id); 
         st.setString(2, "active"); 
         ResultSet result = st.executeQuery();
-        int order_id = result.getInt("order_id");
-
-        PreparedStatement st2 = con.prepareStatement("UPDATE ordertable SET status = ? WHERE order_id = ?");
-        st2.setString(1, "ordered");
-        st2.setInt(2, order_id);
-        st2.executeUpdate();
-    } 
+        if (result.next()) {
+            int order_id = result.getInt("order_id");
+    
+            PreparedStatement st2 = con.prepareStatement("UPDATE ordertable SET status = ? WHERE order_id = ?");
+            st2.setString(1, "ordered"); 
+            st2.setInt(2, order_id);
+            st2.executeUpdate();
+        }
+    }
 
     // deletes order // this should be run when user clicks delete button in cart view
     public void deleteOrder(int user_id) throws SQLException {
@@ -154,24 +179,47 @@ public class OrderTableDAO {
         st.setInt(1, user_id); 
         st.setString(2, "active"); 
         ResultSet result = st.executeQuery();
+        
+        if (result.next()) {
+            int order_id = result.getInt("order_id");
+    
+            // First, delete all items from the order
+            PreparedStatement deleteItemsSt = con.prepareStatement("DELETE FROM orderlineitem WHERE order_id = ?");
+            deleteItemsSt.setInt(1, order_id);
+            deleteItemsSt.executeUpdate();
+    
+            // Then, delete the order itself
+            PreparedStatement deleteOrderSt = con.prepareStatement("DELETE FROM ordertable WHERE order_id = ?");
+            deleteOrderSt.setInt(1, order_id);
+            deleteOrderSt.executeUpdate();
+        }
+    }
+
+    // returns orders that are inactive (used to list "ordered" carts)
+    public ArrayList<OrderTable> getInactiveOrders(int user_id) throws SQLException {
+    ArrayList<OrderTable> inactiveOrders = new ArrayList<>();
+
+    PreparedStatement st = con.prepareStatement("SELECT * FROM ordertable WHERE user_id = ? AND status <> ?");
+    st.setInt(1, user_id);
+    st.setString(2, "active");
+    ResultSet result = st.executeQuery();
+
+    while (result.next()) {
         int order_id = result.getInt("order_id");
+        String orderDate = result.getString("Order_Date");
+        String status = result.getString("status");
+        
+        OrderTable orderTable = new OrderTable(order_id, user_id, orderDate, status);
+        inactiveOrders.add(orderTable);
+    }
 
-        // delete item from table 
-        PreparedStatement deleteSt = con.prepareStatement("DELETE FROM orderlineitem WHERE order_id = ?");
-        deleteSt.setInt(1, order_id);
-        deleteSt.executeUpdate();
+    return inactiveOrders;
+}
 
-        // delete entire order
-        PreparedStatement deleteOrderSt = con.prepareStatement("DELETE FROM ordertable WHERE order_id = ?");
-        deleteOrderSt.setInt(1, order_id);
-        deleteOrderSt.executeUpdate();
-    } 
+
 
     public boolean testFunction() throws SQLException {
         return true;
     }
 
-
-    // todo: implement list functionality // double check methods sync up with the "Order.java" file as its just called order and not ordertable (and has different categories to database) 
-    // check orderlineitem database syncs up with "orderlineitem.java" //  add two item pages and order history page // complete cart page
 }

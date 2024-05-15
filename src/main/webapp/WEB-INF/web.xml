@@ -88,6 +88,24 @@
   </servlet-mapping>
 
   <servlet>
+      <servlet-name>CancelServlet</servlet-name>
+      <servlet-class>uts.isd.controller.CancelServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>CancelServlet</servlet-name>
+      <url-pattern>/CancelServlet</url-pattern>
+  </servlet-mapping>
+
+    <servlet>
+    <servlet-name>SubmitServlet</servlet-name>
+    <servlet-class>uts.isd.controller.SubmitServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SubmitServlet</servlet-name>
+    <url-pattern>/SubmitServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
     <servlet-name>IncrementServlet</servlet-name>
     <servlet-class>uts.isd.controller.IncrementServlet</servlet-class>
   </servlet>
@@ -157,6 +175,16 @@
   <servlet-mapping>
       <servlet-name>ClearSearchAllLogsServlet</servlet-name>
       <url-pattern>/ClearSearchAllLogsServlet</url-pattern>
+  </servlet-mapping>
+
+    <servlet>
+    <servlet-name>OrderTableSearchServlet</servlet-name>
+    <servlet-class>uts.isd.controller.OrderTableSearchServlet</servlet-class>
+    <load-on-startup>0</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>OrderTableSearchServlet</servlet-name>
+    <url-pattern>/OrderTableSearchServlet</url-pattern>
   </servlet-mapping>
 
   <session-config>
