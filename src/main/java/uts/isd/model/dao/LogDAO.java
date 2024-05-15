@@ -12,11 +12,13 @@ public class LogDAO {
     
     private Connection connection;
 
+    // log constructor to initialise the connection
     public LogDAO(Connection connection) throws SQLException {
         this.connection = connection;
         connection.setAutoCommit(true);
     }
 
+    // add log method that accepts user id and type such as login, logout and register
     public void addLog(int user_id, String type) throws SQLException {
         String query = "INSERT INTO logs (user_id, type) VALUES (?, ?)";
         PreparedStatement st = connection.prepareStatement(query);
@@ -43,6 +45,7 @@ public class LogDAO {
         return logs;
     }
 
+    //get all logs and return the an array of Log object
     public ArrayList<Log> getAllLogs() throws SQLException {
         String query = "SELECT * FROM logs";
         PreparedStatement statement = connection.prepareStatement(query);
@@ -59,6 +62,7 @@ public class LogDAO {
         return logs;
     }
 
+    //search logs by user id and date and return the an array of Log object
     public ArrayList<Log> searchLogs(int user_id, String date) throws SQLException {
         //search logs by user id and date
         String query = "SELECT * FROM logs WHERE user_id = ? AND DATE(timestamp) = ?";
@@ -78,6 +82,7 @@ public class LogDAO {
         return logs;
     }
 
+    //search all logs by date and return the an array of Log object
     public ArrayList<Log> searchAllLogs(String date) throws SQLException {
         //search logs by user id and date
         String query = "SELECT * FROM logs WHERE DATE(timestamp) = ?";
