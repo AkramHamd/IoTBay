@@ -216,6 +216,24 @@ public class OrderTableDAO {
     return inactiveOrders;
 }
 
+// returns ordertable when given specific order_id
+public OrderTable getOrder(int user_id, int order_id) throws SQLException {
+    OrderTable order = null;
+
+    PreparedStatement st = con.prepareStatement("SELECT * FROM ordertable WHERE user_id = ? AND order_id = ?");
+    st.setInt(1, user_id);
+    st.setInt(2, order_id);
+    ResultSet result = st.executeQuery();
+
+    if (result.next()) {
+        String orderDate = result.getString("Order_Date");
+        String status = result.getString("status");
+
+        order = new OrderTable(order_id, user_id, orderDate, status);
+    }
+
+    return order;
+}
 
 
     public boolean testFunction() throws SQLException {

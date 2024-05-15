@@ -57,39 +57,26 @@
     <% String bothEmpty = (String) session.getAttribute("bothEmpty"); %>
     <form method="post" action="/OrderTableSearchServlet">
         <input type="text" id="id" name="id" placeholder="Input Order ID" />
-        Date: <input type="date" name="date" id="date" >
         <input type="submit" value="Search">
     </form>
     <% if(bothEmpty != null) { %>
         <p style="color: red;"><%=bothEmpty%></p>
     <% } %>
 
-    <% ArrayList<OrderTable> searchedOrders = (ArrayList<OrderTable>) session.getAttribute("searchedOrders"); %>
-    <% if (searchedOrders != null) { %>
-        <h3>Searched logs</h3>
-        <br>
-        <% if (searchedOrders.size() == 0) { %>
-            <p>No orders found for that data</p>
-        <% } %>
-        <% for (OrderTable ordertable : searchedOrders) { %>
-            <div style="display: flex; gap: 30px; background-color: #fdfdfd; border: 1px solid var(--border-colour); border-radius: 10px; padding: 20px;">
-                <div style="display: flex; flex-direction: column; gap: 10px;">
-                    <p>Order: <%= ordertable.getOrder_id() %></p>
-                    <p>Status: <%= ordertable.getStatus() %></p>
-                    <p>Ordered: <%= ordertable.getOrderDate() %></p>
-                    <p style="font-weight: 600;">Timestamp:</p>
-                </div>
-            </div>
-        <% } %>
+    <% OrderTable searchedOrder = (OrderTable) session.getAttribute("searchedOrder"); %>
+    <% if (searchedOrder != null) { %>
+        <h3 style="color: red;">  Order: <%= searchedOrder.getOrder_id()%> </h3>
+        <h4 style="color: red;">Order: <%= searchedOrder.getStatus() %></h4>
+        <h4 style="color: red;">Order: <%= searchedOrder.getOrderDate() %></h4>
     <% } %>
 
 
     <h3>All Orders:</h3>
     <% for (OrderTable ordertable : currentItems) { %>
         <div>
-            <h4>Order: <%= ordertable.getOrder_id() %></h2>
-            <h4>Status: <%= ordertable.getStatus() %></h3>
-            <h4>Ordered: <%= ordertable.getOrderDate() %></h3>
+            <h4>Order: <%= ordertable.getOrder_id() %></h4>
+            <h4>Status: <%= ordertable.getStatus() %></h4>
+            <h4>Ordered: <%= ordertable.getOrderDate() %></h4>
         </div>
     <% } %>
     
