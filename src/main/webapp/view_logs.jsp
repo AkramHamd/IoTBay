@@ -94,7 +94,6 @@
                         <input type="hidden" name="user_id" value="<%= user.getUser_id() %>">
                         <input type="submit" value="Clear search">
                       </form>
-
                   <% } %>
                 </div>
 
@@ -119,7 +118,6 @@
                           <p><%= log.getTimestamp() %></p>
                         </div>
                       </div>
-
                     <% } %>
                   <% } %>
                 </div>
@@ -131,6 +129,5 @@
     <% } %>
 
     <%@ include file="assets/footer.jsp" %>
-
   </body>
 </html>

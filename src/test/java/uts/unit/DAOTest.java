@@ -1,4 +1,4 @@
-// // package uts.unit;
+package uts.unit;
 
 // // import static org.junit.jupiter.api.Assertions.assertNotNull;
 // // import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -26,6 +26,8 @@ import org.junit.jupiter.api.Test;
 // import uts.isd.model.dao.UserDAO;
 
 @Disabled public class DAOTest {
+public class DAOTest {
+    /* 
     private DBConnector connector;
     private Connection conn;
     private UserDAO userDAO;
@@ -189,6 +191,10 @@ import org.junit.jupiter.api.Test;
     public void testSelectProducts() throws SQLException {
         ArrayList<Product> products = productDAO.fetchProducts();
         assertTrue(products.size() > 0);
+        // System.out.println("---------");
+        // System.out.println(products.get(4).getProductId());
+        // System.out.println(products.get(4).getProductName());
+        // System.out.println("---------");
     }
 
     //test specific retrieval utilising select from previous test
@@ -229,5 +235,5 @@ import org.junit.jupiter.api.Test;
                 productDAO.deleteProduct(product.getProductId());
             }
         }
-    }
+    } */
 }

@@ -105,6 +105,5 @@
     <% } %>
 
     <%@ include file="assets/footer.jsp" %>
-
   </body>
 </html>
