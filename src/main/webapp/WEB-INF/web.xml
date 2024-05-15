@@ -87,6 +87,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>DeleteAddressServlet</servlet-name>
+        <servlet-class>uts.isd.controller.DeleteAddressServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteAddressServlet</servlet-name>
+        <url-pattern>/DeleteAddressServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>SearchLogsServlet</servlet-name>
         <servlet-class>uts.isd.controller.SearchLogsServlet</servlet-class>
     </servlet>
