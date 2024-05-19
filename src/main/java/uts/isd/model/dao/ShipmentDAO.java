@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import uts.isd.model.Shipment;
@@ -12,12 +13,9 @@ import uts.isd.model.Shipment;
 public class ShipmentDAO {
     private Connection conn;
 
-    public ShipmentDAO(Connection conn) {
+    public ShipmentDAO(Connection conn) throws SQLException{
         this.conn = conn;
-    }
-
-    public ShipmentDAO() {
-        //TODO Auto-generated constructor stub
+        this.conn.setAutoCommit(true);
     }
 
     public List<Shipment> getAllShipments() throws SQLException {
@@ -101,9 +99,9 @@ public class ShipmentDAO {
         }
     }
 
-    public void createShipment(Shipment shipment) throws SQLException {
+    public int createShipment(Shipment shipment) throws SQLException {
         String query = "INSERT INTO shipment (order_Id, user_id, address_Id, courier_Id, date_Shipped, date_Delivered, tracking_number) VALUES (?, ?, ?, ?, ?, ?, ?)";
-        try (PreparedStatement stmt = conn.prepareStatement(query)) {
+        try (PreparedStatement stmt = conn.prepareStatement(query,new String[]{"Shipment_ID"})) {
             stmt.setInt(1, shipment.getOrder_Id());
             stmt.setInt(2, shipment.getuser_id());
             stmt.setInt(3, shipment.getAddress_Id());
@@ -111,8 +109,16 @@ public class ShipmentDAO {
             stmt.setDate(5, shipment.getDate_Shipped());
             stmt.setDate(6, shipment.getDate_Delivered());
             stmt.setString(7, shipment.getTracking_Number());
+            System.out.println(stmt.toString());
             stmt.executeUpdate();
+
+            ResultSet rs = stmt.getGeneratedKeys();
+            if(rs.next()){
+                return rs.getInt(1);
+            }
         }
+
+        return 0;
     }
 
     public List<Shipment> searchShipments(Integer userId, Integer shipmentId, Date dateShipped) throws SQLException {

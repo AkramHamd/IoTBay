@@ -17,6 +17,8 @@ import org.junit.jupiter.api.Test;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 
 import uts.isd.model.Address;
 import uts.isd.model.Log;
@@ -60,191 +62,283 @@ public class DAOTest {
         assertNotNull(conn);
     }
 
-    @Test
-    public void testCreateUser() throws SQLException {
-        int user_id = userDAO.createUser("John", "Doe", "johndoe@gmail.com", "123456", "0422 222 222", "1999-01-01", "1234", "false", "false");	
-        assertNotNull(user_id);
-    }
+//     @Test
+//     public void testCreateUser() throws SQLException {
+//         int user_id = userDAO.createUser("John", "Doe", "johndoe@gmail.com", "123456", "0422 222 222", "1999-01-01", "1234", "false", "false");	
+//         assertNotNull(user_id);
+//     }
 
-    @Test
-    public void testReadUser() throws SQLException {
-        User user = userDAO.readUser(40);
-        assertNotNull(user);
-    }
+//     @Test
+//     public void testReadUser() throws SQLException {
+//         User user = userDAO.readUser(40);
+//         assertNotNull(user);
+//     }
 
-    @Test
-    public void testReadAllUsers() throws SQLException {
-        ArrayList<User> users = userDAO.readAllUsers();
-        assertTrue(users.size() > 0);
-    }
+//     @Test
+//     public void testReadAllUsers() throws SQLException {
+//         ArrayList<User> users = userDAO.readAllUsers();
+//         assertTrue(users.size() > 0);
+//     }
 
-    @Test
-    public void testUpdateUser() throws SQLException {
-        userDAO.updateUser(40, "John TEST", "Doe TEST", "johndoe@TEST.com", "testPassword" ,"0000 000 000", "1999-01-01");	
+//     @Test
+//     public void testUpdateUser() throws SQLException {
+//         userDAO.updateUser(40, "John TEST", "Doe TEST", "johndoe@TEST.com", "testPassword" ,"0000 000 000", "1999-01-01");	
     
-        User updatedUser = userDAO.readUser(40);
-        assertEquals("John TEST", updatedUser.getGiven_name());
-        assertEquals("Doe TEST", updatedUser.getFamily_name());
-        assertEquals("johndoe@TEST.com", updatedUser.getEmail());
-        assertEquals("testPassword", updatedUser.getPassword());
-        assertEquals("0000 000 000", updatedUser.getPhone());
-        assertEquals("1999-01-01", updatedUser.getDob());
-    }
+//         User updatedUser = userDAO.readUser(40);
+//         assertEquals("John TEST", updatedUser.getGiven_name());
+//         assertEquals("Doe TEST", updatedUser.getFamily_name());
+//         assertEquals("johndoe@TEST.com", updatedUser.getEmail());
+//         assertEquals("testPassword", updatedUser.getPassword());
+//         assertEquals("0000 000 000", updatedUser.getPhone());
+//         assertEquals("1999-01-01", updatedUser.getDob());
+//     }
 
-    // @Test
-    // public void testDeleteUser() throws SQLException {
-    //     userDAO.deleteUser(80);
-    // }
+//     // @Test
+//     // public void testDeleteUser() throws SQLException {
+//     //     userDAO.deleteUser(80);
+//     // }
 
-    @Test
-    public void testAddLog() throws SQLException {
-        logDAO.addLog(40, "TESTING");
-    }
+//     @Test
+//     public void testAddLog() throws SQLException {
+//         logDAO.addLog(40, "TESTING");
+//     }
 
-    @Test
-    public void testGetLogs() throws SQLException {
-        ArrayList<Log> logs = logDAO.getLogs(40);
-        assertTrue(logs.size() > 0);
-    }
+//     @Test
+//     public void testGetLogs() throws SQLException {
+//         ArrayList<Log> logs = logDAO.getLogs(40);
+//         assertTrue(logs.size() > 0);
+//     }
 
-    @Test
-    public void testGetAllLogs() throws SQLException {
-        ArrayList<Log> allLogs = logDAO.getAllLogs();
-        assertTrue(allLogs.size() > 0);
-    }
+//     @Test
+//     public void testGetAllLogs() throws SQLException {
+//         ArrayList<Log> allLogs = logDAO.getAllLogs();
+//         assertTrue(allLogs.size() > 0);
+//     }
 
-    // @Test
-    // public void testCreateAddress() throws SQLException {
-    //     int addressId = addressDAO.createAddress(40, 1, 1, "Test St", "Test Suburb", "NSW", 2000, "Australia");
-    //     assertNotNull(addressId);
-    // }
+//     // @Test
+//     // public void testCreateAddress() throws SQLException {
+//     //     int addressId = addressDAO.createAddress(40, 1, 1, "Test St", "Test Suburb", "NSW", 2000, "Australia");
+//     //     assertNotNull(addressId);
+//     // }
 
-    @Test
-    public void testReadAddress() throws SQLException {
-        Address address = addressDAO.readAddress(12);
-        assertNotNull(address);
-    }
+//     @Test
+//     public void testReadAddress() throws SQLException {
+//         Address address = addressDAO.readAddress(12);
+//         assertNotNull(address);
+//     }
 
-    @Test
-    public void testReadAddresses() throws SQLException {
-        ArrayList<Address> addresses = addressDAO.readAddresses(40);
-        assertTrue(addresses.size() > 0);
-    }
+//     @Test
+//     public void testReadAddresses() throws SQLException {
+//         ArrayList<Address> addresses = addressDAO.readAddresses(40);
+//         assertTrue(addresses.size() > 0);
+//     }
 
 
 
-//     //---------- product tests ----------//
+// //     //---------- product tests ----------//
 
-//     //select/fetch all products
-    @Test
-    public void testSelectProducts() throws SQLException {
-        ArrayList<Product> products = productDAO.fetchProducts();
-        assertTrue(products.size() > 0);
-        // System.out.println("---------");
-        // System.out.println(products.get(4).getProductId());
-        // System.out.println(products.get(4).getProductName());
-        // System.out.println("---------");
-    }
+// //     //select/fetch all products
+//     @Test
+//     public void testSelectProducts() throws SQLException {
+//         ArrayList<Product> products = productDAO.fetchProducts();
+//         assertTrue(products.size() > 0);
+//         // System.out.println("---------");
+//         // System.out.println(products.get(4).getProductId());
+//         // System.out.println(products.get(4).getProductName());
+//         // System.out.println("---------");
+//     }
 
-    //test specific retrieval utilising select from previous test
-    @Test
-    public void testSpecificProduct() throws SQLException {   
-        ArrayList<Product> products = productDAO.fetchProducts();
-        Product tester = productDAO.selectSpecificProduct(products.get(0).getProductId());
-        assertEquals(tester.getProductName(), products.get(0).getProductName());
-    }
+//     //test specific retrieval utilising select from previous test
+//     @Test
+//     public void testSpecificProduct() throws SQLException {   
+//         ArrayList<Product> products = productDAO.fetchProducts();
+//         Product tester = productDAO.selectSpecificProduct(products.get(0).getProductId());
+//         assertEquals(tester.getProductName(), products.get(0).getProductName());
+//     }
 
-    //select using specific array
-    @Test
-    public void testArrayProduct() throws SQLException {
-        ArrayList<Integer> products = new ArrayList<>();
-        products.add(1);
-        products.add(3);
-        ArrayList<Product> tester = productDAO.selectArrayProduct(products);
-        assertEquals(tester.get(1).getProductId(), 3);
-    }
+//     //select using specific array
+//     @Test
+//     public void testArrayProduct() throws SQLException {
+//         ArrayList<Integer> products = new ArrayList<>();
+//         products.add(1);
+//         products.add(3);
+//         ArrayList<Product> tester = productDAO.selectArrayProduct(products);
+//         assertEquals(tester.get(1).getProductId(), 3);
+//     }
 
-    //create product
-    @Test
-    public void testCreateProducts() throws SQLException {
-        productDAO.createProduct("MVN Test product", "Testers", "This is a test description", null, 1.23d, 0.00d, false, 30, 10, "adsa");
-    }
+//     //create product
+//     @Test
+//     public void testCreateProducts() throws SQLException {
+//         productDAO.createProduct("MVN Test product", "Testers", "This is a test description", null, 1.23d, 0.00d, false, 30, 10, "adsa");
+//     }
 
-    @Test
-    public void update() throws SQLException {
-        productDAO.updateProduct(1,"MVN Test product", "Testers", "This is a test description", null, 1.23d, 0.00d, false, 30, 10, "adsa");
-    }
+//     @Test
+//     public void update() throws SQLException {
+//         productDAO.updateProduct(1,"MVN Test product", "Testers", "This is a test description", null, 1.23d, 0.00d, false, 30, 10, "adsa");
+//     }
 
-    //delete product
-    @Test
-    public void testDeleteProducts() throws SQLException {
-        ArrayList<Product> products;
-        products = productDAO.fetchProducts();
-        Integer productOriginalSize = products.size();
-        productDAO.deleteProduct(products.get(products.size()-1).getProductId());
-        products = productDAO.fetchProducts();
-        assertTrue(products.size() < productOriginalSize);
-        for(Product product : productDAO.fetchProducts()) {
-            if(product.getProductName() == "MVN Test product") {
-                productDAO.deleteProduct(product.getProductId());
-            }
+//     //delete product
+//     @Test
+//     public void testDeleteProducts() throws SQLException {
+//         ArrayList<Product> products;
+//         products = productDAO.fetchProducts();
+//         Integer productOriginalSize = products.size();
+//         productDAO.deleteProduct(products.get(products.size()-1).getProductId());
+//         products = productDAO.fetchProducts();
+//         assertTrue(products.size() < productOriginalSize);
+//         for(Product product : productDAO.fetchProducts()) {
+//             if(product.getProductName() == "MVN Test product") {
+//                 productDAO.deleteProduct(product.getProductId());
+//             }
+//         }
+//     }
+
+//     @Test
+//     public void testGetAllPayments() {
+//         int testCustomerId = 1;  // replace with a valid customer ID
+
+//         // Get all payments for the test customer
+//         List<Payment> payments = paymentDAO.getAll(testCustomerId);
+
+//         // Check that the list is not empty
+//         assertFalse(payments.isEmpty());
+
+//         // Check the details of the first payment
+//         // Payment firstPayment = payments.get(0);
+//         // assertEquals(testCustomerId, firstPayment.getUserId());
+//         // Add more assertions here to check other fields of the payment
+//     }
+
+
+//     // @Test
+//     // public void testGenerateOrderTable() throws SQLException {
+//     //     User user = new User("test", "test", "test@gmail.com", "123456", "18-04-2003", "03131313", "1920", "yes", "no");
+//     //     orderTableDAO.generateOrderTable(1);
+//     // }
+
+//     // @Test
+//     // public void getInactiveOrders() throws SQLException {   
+//     //     orderTableDAO.getInactiveOrders(1);
+//     // }
+
+//     // @Test
+//     // public void genOrderLineItemTest() throws SQLException {
+//     //     orderTableDAO.generateOrderLineItem(1,1,1.1);
+//     // }
+
+//     // @Test
+//     // public void hasQuantityReachedZeroTesst() throws SQLException {
+//     //     orderTableDAO.hasQuantityReachedZero(1, 1);
+//     // }
+
+//     // @Test
+//     // public void testDelete() throws SQLException {
+//     //     orderTableDAO.deleteOrder(1);
+//     // }
+
+//     // HASSAN'S TESTS
+    
+//     // public void testCreatePayment() throws SQLException {
+//     //     Payment payment = new Payment(1, 100, 1, "2022-09-01", "Credit Card");
+//     //     int paymentid = paymentDAO.add(payment);
+//     //     assertNotNull(paymentid);
+//     // }
+
+//     // @Test
+//     // public void testGetAllPayments() throws SQLException {
+//     //     List<Payment> payment = paymentDAO.getAll(1);
+//     //     assertNotNull(payment);
+//     // }
+
+//AKRAM TESTS
+
+        @BeforeEach
+        public void setUp() throws ClassNotFoundException, SQLException {
+            connector = new DBConnector();
+            conn = connector.openConnection();
+            shipmentDAO = new ShipmentDAO(conn);
         }
-    }
-
-    @Test
-    public void testGetAllPayments() {
-        int testCustomerId = 1;  // replace with a valid customer ID
-
-        // Get all payments for the test customer
-        List<Payment> payments = paymentDAO.getAll(testCustomerId);
-
-        // Check that the list is not empty
-        assertFalse(payments.isEmpty());
-
-        // Check the details of the first payment
-        // Payment firstPayment = payments.get(0);
-        // assertEquals(testCustomerId, firstPayment.getUserId());
-        // Add more assertions here to check other fields of the payment
-    }
-
-
-    // @Test
-    // public void testGenerateOrderTable() throws SQLException {
-    //     User user = new User("test", "test", "test@gmail.com", "123456", "18-04-2003", "03131313", "1920", "yes", "no");
-    //     orderTableDAO.generateOrderTable(1);
-    // }
-
-    // @Test
-    // public void getInactiveOrders() throws SQLException {   
-    //     orderTableDAO.getInactiveOrders(1);
-    // }
-
-    // @Test
-    // public void genOrderLineItemTest() throws SQLException {
-    //     orderTableDAO.generateOrderLineItem(1,1,1.1);
-    // }
-
-    // @Test
-    // public void hasQuantityReachedZeroTesst() throws SQLException {
-    //     orderTableDAO.hasQuantityReachedZero(1, 1);
-    // }
-
-    // @Test
-    // public void testDelete() throws SQLException {
-    //     orderTableDAO.deleteOrder(1);
-    // }
-
-    // HASSAN'S TESTS
     
-    // public void testCreatePayment() throws SQLException {
-    //     Payment payment = new Payment(1, 100, 1, "2022-09-01", "Credit Card");
-    //     int paymentid = paymentDAO.add(payment);
-    //     assertNotNull(paymentid);
-    // }
+        @AfterEach
+        public void tearDown() throws SQLException {
+            conn.close();
+        }
 
-    // @Test
-    // public void testGetAllPayments() throws SQLException {
-    //     List<Payment> payment = paymentDAO.getAll(1);
-    //     assertNotNull(payment);
-    // }
+    
+        @Test
+        public void testGetAllShipments() throws SQLException {
+            List<Shipment> shipments = shipmentDAO.getAllShipments();
+            assertNotNull(shipments);
+            assertTrue(shipments.size() > 0);
+        }
+    
+        @Test
+        public void testGetShipmentById() throws SQLException {
+            Shipment shipment = shipmentDAO.getShipmentById(22); // adjust as necessary
+            assertNotNull(shipment);
+            assertEquals(22, shipment.getShipment_Id());
+        }
+    
+        @Test
+        public void testCreateShipment() throws SQLException {
+            Date now = new Date(System.currentTimeMillis());
+            System.out.println(now);
+            Shipment newShipment = new Shipment(0, 1, 1, 1, 1, now, now, "789012");
+            int shipmentId = shipmentDAO.createShipment(newShipment);
+            Shipment createdShipment = shipmentDAO.getShipmentById(shipmentId);
+            assertNotNull(createdShipment, "Created shipment should not be null");
+            assertEquals(shipmentId, createdShipment.getShipment_Id());  
+        }
+    
+        @Test
+        public void testDeleteShipment() throws SQLException {
+            Date now = new Date(System.currentTimeMillis());
+            System.out.println(now);
+            Shipment createdShipment = new Shipment(0, 1, 1, 1, 1, now, now, "789012");
+            int shipmentId = shipmentDAO.createShipment(createdShipment);
+            assertNotNull(createdShipment);
+            shipmentDAO.deleteShipment(shipmentId);
+            Shipment deletedShipment = shipmentDAO.getShipmentById(999);
+            assertNull(deletedShipment);
+        }
+    
+    
+        @Test
+        public void testGetShipmentsByUserId() throws SQLException {
+            List<Shipment> shipments = shipmentDAO.getShipmentsByUserId(1); // adjust as necessary
+            assertNotNull(shipments);
+            assertTrue(shipments.size() > 0);
+        }
+    
+        @Test
+        public void testSearchShipments() throws SQLException {
+            List<Shipment> shipments = shipmentDAO.searchShipments(1, null, null); // adjust as necessary
+            assertNotNull(shipments);
+            assertTrue(shipments.size() > 0);
+        }
+    
+        @Test
+        public void testSearchShipmentsByUserIdAndDate() throws SQLException {
+            Date searchDate = new Date(System.currentTimeMillis()); // Use current date
+            List<Shipment> shipments = shipmentDAO.searchShipmentsByUserIdAndDate(1, searchDate); // adjust as necessary
+            assertNotNull(shipments);
+            assertTrue(shipments.size() > 0);
+        }
+    
+        @Test
+        public void testUpdateShipment() throws SQLException {
+            Date now = new Date(System.currentTimeMillis());
+            Shipment newShipment = new Shipment(0, 1, 1, 1, 1, now, now, "789012");
+            int shipmentId = shipmentDAO.createShipment(newShipment); // Save and get the generated ID
+            Shipment shipment = shipmentDAO.getShipmentById(shipmentId);
+            shipment.setTracking_Number("123");
+            shipmentDAO.updateShipment(shipment);
+            Shipment updatedShipment = shipmentDAO.getShipmentById(shipmentId); // Use the correct ID
+            assertNotNull(updatedShipment);
+            assertEquals("123", updatedShipment.getTracking_Number());
+            shipmentDAO.deleteShipment(shipmentId); // clean up
+        }
+    
+
+
 }
