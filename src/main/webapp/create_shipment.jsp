@@ -4,6 +4,8 @@
     <title>Create Shipment</title>
     <link rel="stylesheet" href="css/layout.css">
     <link rel="stylesheet" href="css/list_shipments.css">
+    <link rel="stylesheet" href="css/style.css">
+
 </head>
 <body>
 

@@ -23,7 +23,7 @@ public class SubmitServlet extends HttpServlet {
         OrderTableDAO OrderTableDAO = (OrderTableDAO) session.getAttribute("OrderTableDAO"); 
         session.setAttribute("orderTableDAO", OrderTableDAO);
 
-        response.sendRedirect("index.jsp"); 
+        response.sendRedirect("orderlog.jsp"); 
         try {
             OrderTableDAO.completeOrder(user_id);
         } catch (SQLException e) {

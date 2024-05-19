@@ -12,6 +12,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/list_shipments.css">
     <title>My Shipments</title>   
 </head>

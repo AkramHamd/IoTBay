@@ -139,14 +139,16 @@
         <servlet-name>PaymentServlet</servlet-name>
         <url-pattern>/pay</url-pattern>
     </servlet-mapping>
+
     <servlet>
         <servlet-name>PaymentsServlet</servlet-name>
         <servlet-class>uts.isd.controller.PaymentsServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>PaymentsServlet</servlet-name>
-        <url-pattern>/payments</url-pattern>
+        <url-pattern>/PaymentsServlet</url-pattern>
     </servlet-mapping>
+
     <servlet>
         <servlet-name>SubmitPaymentServlet</servlet-name>
         <servlet-class>uts.isd.controller.SubmitPaymentServlet</servlet-class>
