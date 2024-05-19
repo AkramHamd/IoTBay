@@ -30,7 +30,7 @@
           <p>Nice to meet you!</p>
           <p>Create an account to get the most from IoTBay</p>
         </div>
-        <!-- // form is submitted to RegisterServlet -->
+        <!-- form is submiting form data to RegisterServlet -->
         <form method="post" action="/RegisterServlet">
           <div class="input-div">
 

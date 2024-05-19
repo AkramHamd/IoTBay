@@ -32,6 +32,7 @@ public class RegisterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
 
+        // retrieve registration form data
         String given_name = request.getParameter("given_name");
         String family_name = request.getParameter("family_name");
         String email = request.getParameter("email");
@@ -40,9 +41,11 @@ public class RegisterServlet extends HttpServlet {
         String dob = request.getParameter("dob");
         String is_staff = request.getParameter("is_staff");
 
+        // get userDAO and logDAO from the session
         UserDAO userDAO = (UserDAO) session.getAttribute("userDAO");
         LogDAO logDAO = (LogDAO) session.getAttribute("logDAO");
 
+        // validations
         if (given_name.length() <= 0) {
             session.setAttribute("register_givenNameErr", "First name can't be empty");
             request.getRequestDispatcher("register.jsp").include(request, response);
@@ -69,15 +72,18 @@ public class RegisterServlet extends HttpServlet {
 
         } else {
             try {
+                // check if email already exists through a method provided by userDAO
                 if (userDAO.emailExists(email)) {
                     session.setAttribute("register_email_exists", "Email already exists");
                     request.getRequestDispatcher("register.jsp").include(request, response);
                 } else {
+                    // create user and add log
                     int user_id = userDAO.createUser(given_name, family_name, email, password, phone, dob, verificationCode, "false", is_staff);
                     logDAO.addLog(user_id, "register");
                     session.setAttribute("user_id", user_id);
                     sendRegistrationEmail(given_name, email);
 
+                    // redirect user to dashboard servlet
                     response.sendRedirect("DashboardServlet");
                 }
             } catch (SQLException e) {
@@ -86,7 +92,7 @@ public class RegisterServlet extends HttpServlet {
         }
     }
 
-    // Method to send email
+    // Method accepts name and email to send email
     public void sendRegistrationEmail(String given_name, String toEmail) {
         final String fromEmail = "iotbay35@gmail.com";
         final String password = "ryyg tski sebc cvxc";

@@ -27,16 +27,19 @@ public class DashboardServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
 
+        // get user_id from the session
         int user_id = (int) session.getAttribute("user_id");
         
+        // get logDAO, addressDAO, userDAO, shipmentDAO from the session
         LogDAO logDAO = (LogDAO) session.getAttribute("logDAO");
         AddressDAO addressDAO = (AddressDAO) session.getAttribute("addressDAO");
         UserDAO userDAO = (UserDAO) session.getAttribute("userDAO");
         ShipmentDAO shipmentDAO = (ShipmentDAO) session.getAttribute("shipmentDAO");
-        System.out.println("Inside DashboardServlet");
 
         try {
+            // get user by user id from the database
             User user = userDAO.readUser(user_id);
+            // get user, allUsers, logs, allLogs, addresses, shipments, allshipments from the database
             ArrayList<User> allUsers = userDAO.readAllUsers();
             ArrayList<Log> logs = logDAO.getLogs(user_id);
             ArrayList<Log> allLogs = logDAO.getAllLogs();
@@ -44,6 +47,7 @@ public class DashboardServlet extends HttpServlet {
             List<Shipment> shipments = shipmentDAO.getShipmentsByUserId(user_id);
             List<Shipment> allshipments = shipmentDAO.getAllShipments();
             
+            // set the session attributes
             session.setAttribute("user", user);
             session.setAttribute("allUsers", allUsers);
             session.setAttribute("logs", logs);
@@ -52,6 +56,7 @@ public class DashboardServlet extends HttpServlet {
             session.setAttribute("shipments", shipments);
             session.setAttribute("allshipments", allshipments);
 
+            // redirect to dashboard page
             response.sendRedirect("dashboard.jsp");
         } catch (SQLException e) {
             e.printStackTrace();

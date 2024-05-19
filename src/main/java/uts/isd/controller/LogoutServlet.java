@@ -17,12 +17,18 @@ public class LogoutServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
 
+        // get user and logDAO from the session
         User user = (User) session.getAttribute("user");
         LogDAO logDAO = (LogDAO) session.getAttribute("logDAO");
 
+        // checking if validated user is logged in and logDAO is available
         if (user != null && logDAO != null) {
             try {
+
+                // add log to the database
                 logDAO.addLog(user.getUser_id(), "logout");
+
+                // invalidate the session and redirect to logout page
                 session.invalidate();
                 response.sendRedirect("logout.jsp");
             } catch (Exception e) {

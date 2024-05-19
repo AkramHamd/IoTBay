@@ -2,41 +2,49 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/layout.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/style.css" />
     <style>
       .log-out-div {
-          padding: 70px 0;
-      }
-  
-      .log-out-div h1 {
-          font-size: 40px;
-          font-weight: 700;
+        padding: 70px 0;
       }
 
+      .log-out-div h1 {
+        font-size: 40px;
+        font-weight: 700;
+      }
     </style>
     <title>IoTBay - Logout</title>
-</head>
+  </head>
 
-<body>
-  <%@ include file="assets/nav.jsp" %>
+  <body>
+    <%@ include file="assets/nav.jsp" %> <% session.invalidate(); %>
 
-  <%
-    session.invalidate();
-  %>
+    <main>
+      <div class="container log-out-div">
+        <h1>You're now logged out!</h1>
+      </div>
+      <div
+        class="container"
+        style="display: flex; gap: 20px; margin-top: 100px"
+      >
+        <a
+          href="/index.jsp"
+          style="
+            background-color: #d22020;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+          "
+          >Go to Homepage</a
+        >
+      </div>
+    </main>
 
-  <main>
-    <div class="container log-out-div">
-      <h1>You're now logged out!</h1>
-    </div>
-    <div class="container" style="display: flex; gap: 20px; margin-top: 100px;">
-      <a href="/index.jsp" style="background-color: #d22020; color: #ffffff; text-decoration: none; padding: 10px 20px; border-radius: 25px;">Go to Homepage</a>
-    </div>
-  </main>
-
-  <%@ include file="assets/footer.jsp" %>
-</body>
+    <%@ include file="assets/footer.jsp" %>
+  </body>
 </html>

@@ -91,6 +91,8 @@
                 <h2 style="margin-top: 100px; margin-bottom: 50px;">Addresses</h2>
 
                 <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
+
+                  <!-- looping through addresses arraylist -->
                   <% if(addresses != null && !addresses.isEmpty()) { %>
                     <% for(Address address : addresses) { %>
                     
@@ -127,11 +129,7 @@
                               <input type="submit" value="Delete address">
                             </form>
                           </div>
-                          
                         </div>
-                    
-                      
-                        
                     <% } %>
                   <% } else { %>
                       <p>No address added</p>
